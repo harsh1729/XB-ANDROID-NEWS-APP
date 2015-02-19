@@ -1,0 +1,171 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlytRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- Header aligned to top -->
+
+    <include layout="@layout/app_header" />
+
+    <LinearLayout
+        android:id="@+id/llytChooseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"        
+        android:layout_below="@+id/llytHeader"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_white_rounded"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingTop="12dp" >
+
+        <TextView
+            android:id="@+id/txtChooseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/app_transparent"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/txt_choose_date"
+            android:textColor="@color/app_red"
+            android:textSize="@dimen/font_lbl_small_medium" />
+
+        <LinearLayout
+            android:id="@+id/llytBottomLineChooseDate"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/app_red"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+       <LinearLayout 
+           android:id="@+id/llytStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            
+           <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start Date : "
+            android:textSize="@dimen/font_lbl_normal"/>
+           
+           <LinearLayout 
+           android:id="@+id/llytStartDateChild"
+            	android:layout_height="wrap_content"
+            	android:layout_width="0dp"
+            	android:layout_weight="1"
+            	android:gravity="center_vertical"
+            android:orientation="horizontal">
+           <TextView 
+           		android:id="@+id/txtStartDate"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Select"
+            	android:textSize="@dimen/font_lbl_normal"/>
+           
+          
+          <ImageButton 
+               	android:id="@+id/btnStartDate"
+               	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/calender_black"
+            	android:padding="0dp"
+            	android:background="@color/app_transparent"
+            	android:scaleType="fitCenter"
+            />
+          </LinearLayout>
+           
+       </LinearLayout>
+       
+       
+       <LinearLayout 
+           android:id="@+id/llytEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            
+           <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="End Date : "
+            android:textSize="@dimen/font_lbl_normal"/>
+           
+           <LinearLayout 
+           android:id="@+id/llytEndDateChild"
+            	android:layout_height="wrap_content"
+            	android:layout_width="0dp"
+            	android:layout_weight="1"
+            	android:gravity="center_vertical"
+            android:orientation="horizontal">
+           <TextView 
+           		android:id="@+id/txtEndDate"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Select"
+            	android:textSize="@dimen/font_lbl_normal"/>
+           
+          
+          <ImageButton 
+               	android:id="@+id/btnEndDate"
+               	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/calender_black"
+            	android:padding="0dp"
+            	android:background="@color/app_transparent"
+            	android:scaleType="fitCenter"
+            />
+          </LinearLayout>
+           
+       </LinearLayout>
+       
+       <Button 
+           	android:id="@+id/btnGetNews"
+            android:layout_width="wrap_content"
+           	android:layout_height="wrap_content"
+           	android:layout_gravity="center_horizontal"
+           	android:background="@drawable/selector_bg_button"
+           	android:textColor="@color/app_white"
+           	android:paddingBottom="12dp"
+        	android:paddingLeft="12dp"
+        	android:paddingRight="12dp"
+       		 android:paddingTop="12dp"
+           	android:text="Get News"/>
+       
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listDateWiseNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llytChooseDate"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/app_transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/app_black"
+        android:dividerHeight="0dp"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:listSelector="@color/app_transparent"
+        android:padding="0dp"
+        android:smoothScrollbar="true" >
+    </ListView>
+
+</RelativeLayout>
