@@ -9,7 +9,7 @@
     <color name="app_darkoffwhite">#E1E1E1</color> <!-- CACACA -->
     
     <color name="app_black">#000000</color>
-    <color name="app_tranparent_black">#CC000000</color>
+    <color name="app_tranparent_black">#99000000</color>
     <color name="app_darkgray">#212121</color>
     <color name="app_gray">#717171</color>   
     <color name="app_lightgray">#A1A1A1</color>

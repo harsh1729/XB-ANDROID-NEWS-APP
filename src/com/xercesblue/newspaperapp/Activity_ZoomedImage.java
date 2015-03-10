@@ -18,11 +18,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.polites.android.GestureImageView;
@@ -92,15 +94,18 @@ public class Activity_ZoomedImage extends Activity {
 		
 		 
 		//ImageView iv = (ImageView)findViewById(R.id.image_zoom);
-		LinearLayout container = (LinearLayout)findViewById(R.id.llytImageContainer);
-		container.removeAllViews();
+		RelativeLayout container = (RelativeLayout)findViewById(R.id.rlytImageContainer);
+		//container.removeAllViews();
+		if(currentImage != null)
+			container.removeView(currentImage);
 		
 		currentImage = new GestureImageView(this);
 		
         //iv.setFocusable(true);
-		LinearLayout.LayoutParams lpImg =  new LinearLayout.LayoutParams(imgWidth, imgHeight);//(LinearLayout.LayoutParams) iv.getLayoutParams();//new LinearLayout.LayoutParams(imgWidth,imgHeight);
+		RelativeLayout.LayoutParams lpImg =  new RelativeLayout.LayoutParams(imgWidth, imgHeight);//(LinearLayout.LayoutParams) iv.getLayoutParams();//new LinearLayout.LayoutParams(imgWidth,imgHeight);
 		//lpImg.height = imgHeight;
 		//lpImg.weight = imgWidth;
+		//lpImg.
 		currentImage.setLayoutParams(lpImg);
 		
 		currentImage.setMinimumHeight(200);
@@ -110,7 +115,14 @@ public class Activity_ZoomedImage extends Activity {
 		
 		//final ImageView iv = (ImageView)findViewById(R.id.image_zoom);
 		container.addView(currentImage);
-
+		
+		 TextView txtHead = (TextView)findViewById(R.id.txtNewsHeadingZoom);
+		 Log.i("HARSH1", "txtHead is" + findViewById(R.id.txtNewsHeadingZoom));
+	     txtHead.setText(item.getNewsHeading());
+	     
+	     TextView txtIndicator = (TextView)findViewById(R.id.txtNewsImageIndicator);
+	     txtIndicator.setText(currentSubItemNo+1 +" / "+ listAllCurrentNewsItem.size());
+	     
 		ProgressBar pBar = (ProgressBar)findViewById(R.id.loading_bar);
 		pBar.setVisibility(View.VISIBLE);
 		
@@ -148,6 +160,9 @@ public class Activity_ZoomedImage extends Activity {
 
 			
 		});
+
+	     setNextPrevButtonsState();
+	    
 	}
 	private void setListOfNewsItems(){
 		
