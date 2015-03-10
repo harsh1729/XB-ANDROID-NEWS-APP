@@ -175,6 +175,8 @@ BaseSliderView.OnSliderClickListener {
 		}
 
 		Log.i("HARSH", "Count of news item is " + listAllCurrentNewsItem.size());
+		
+		int itemNo = 0;
 		for (Object_SubNewsItem item : listAllCurrentNewsItem) {
 			final TextSliderView textSliderView = new TextSliderView(this);
 			textSliderView
@@ -203,10 +205,10 @@ BaseSliderView.OnSliderClickListener {
 			}
 
 			 */
-			textSliderView.getBundle().putString("imgURL",
-					objConfig.getNewsImagesFullPath() + item.getNewsImage());
+			//textSliderView.getBundle().putString("imgURL",objConfig.getNewsImagesFullPath() + item.getNewsImage());
 
-
+			textSliderView.getBundle().putInt("itemNo", itemNo);
+			itemNo ++;
 			slider.addSlider(textSliderView);
 
 
@@ -368,10 +370,15 @@ BaseSliderView.OnSliderClickListener {
 
 	@Override
 	public void onSliderClick(BaseSliderView slider) {
-		String url = (String) slider.getBundle().get("imgURL");
+		
+		//String url = (String) slider.getBundle().get("imgURL");
+		int itemNo = slider.getBundle().getInt("itemNo");
+		
 		if (slider.isImageload) {
 			Intent i = new Intent(this, Activity_ZoomedImage.class);
-			i.putExtra("Url", url);
+			//i.putExtra("Url", url);
+			i.putExtra("newsId", newsId);
+			i.putExtra("itemNo", itemNo);
 			startActivity(i);
 		}
 	}

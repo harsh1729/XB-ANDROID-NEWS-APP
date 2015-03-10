@@ -7,21 +7,22 @@
     tools:context=".Activity_ZoomedImage" >
 
     <LinearLayout
+        android:id="@+id/llytImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:background="@color/app_transparent"
          >
-
-        <com.polites.android.GestureImageView
-            android:id="@+id/image_zoom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="200dp"
-            gesture-image:double-tap="true"
-            gesture-image:max-scale="10.0"
-            gesture-image:min-scale="0.1"
-            gesture-image:strict="true" />
+<!--          <com.polites.android.GestureImageView -->
+<!--             android:id="@+id/image_zoom" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:minHeight="200dp" -->
+<!--             gesture-image:double-tap="true" -->
+<!--             gesture-image:max-scale="10.0" -->
+<!--             gesture-image:min-scale="0.1" -->
+<!--             gesture-image:strict="true" /> -->
     </LinearLayout>
 
     <ProgressBar
@@ -55,6 +56,33 @@
         android:layout_marginLeft="5dp"
         android:src="@drawable/share_selected"
         android:onClick="onCickShare"
+        android:scaleType="fitCenter"
+        android:background="@color/app_transparent" 
+        />
+    
+     <ImageButton
+        android:id="@+id/imgBtnPrev"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/share_selected"
+        android:onClick="onClickPrev"
+        android:scaleType="fitCenter"
+        android:background="@color/app_transparent" 
+        />
+      <ImageButton
+        android:id="@+id/imgBtnNext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/share_selected"
+        android:onClick="onClickNext"
         android:scaleType="fitCenter"
         android:background="@color/app_transparent" 
         />

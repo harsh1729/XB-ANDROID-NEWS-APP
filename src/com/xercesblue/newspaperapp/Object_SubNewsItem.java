@@ -1,5 +1,7 @@
 package com.xercesblue.newspaperapp;
 
+import android.content.Context;
+
 
 
 public class Object_SubNewsItem 
@@ -48,6 +50,12 @@ public class Object_SubNewsItem
 
 	public String getNewsImage() {
 		return newsImage;
+	}
+	
+	public String getNewsImageFullPath(Context con){
+		Object_AppConfig objConfig = new Object_AppConfig(con);
+		return objConfig.getNewsImagesFullPath() + newsImage;
+		
 	}
 
 	public void setNewsImage(String newsImage) {

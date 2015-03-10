@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,40 +20,43 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.polites.android.GestureImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 public class Activity_ZoomedImage extends Activity {
- 
+
+	private ArrayList<Object_SubNewsItem> listAllCurrentNewsItem;
+	
+	int currentSubItemNo;
+	int newsId;
+	GestureImageView currentImage;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zoomed_image);
 		
+		if (getIntent().hasExtra("newsId"))
+			newsId = getIntent().getIntExtra("newsId", 0);
+		else {
+			Globals.showAlertDialogError(this,
+					"Error Occured, Please try again");
+		}
+		
 		initZoomImage();
 	}
 	
-	private String imageUrl;
+	//private String imageUrl;
 	private void initZoomImage(){
 		
 		Point size= Globals.getScreenSize(this);
-		int imgWidth=size.x;
 		int  btnCloseHeightWidth = size.x/8;
-		int imgHeight=size.y ;//- btnCloseHeightWidth;
-			
-		final ImageView iv = (ImageView)findViewById(R.id.image_zoom);
-        //iv.setFocusable(true);
-		LinearLayout.LayoutParams lpImg = (LinearLayout.LayoutParams) iv.getLayoutParams();//new LinearLayout.LayoutParams(imgWidth,imgHeight);
-		lpImg.height = imgHeight;
-		lpImg.weight = imgWidth;
-		iv.setLayoutParams(lpImg);
 		
 		ImageButton btnClose = (ImageButton)findViewById(R.id.imgBtnClose);
 		RelativeLayout.LayoutParams lpbtn =(RelativeLayout.LayoutParams) btnClose.getLayoutParams();//new RelativeLayout.LayoutParams(btnCloseHeightWidth,btnCloseHeightWidth);
@@ -60,7 +64,56 @@ public class Activity_ZoomedImage extends Activity {
 		lpbtn.width = btnCloseHeightWidth;
 		btnClose.setLayoutParams(lpbtn);
 
-		imageUrl = getIntent().getStringExtra("Url");
+		setListOfNewsItems();
+  
+	}
+
+	private void setImage(int itemNo){
+		Object_SubNewsItem item = null;
+		
+		if(listAllCurrentNewsItem.size() > itemNo)
+			item = listAllCurrentNewsItem.get(itemNo);
+		else{
+			noImagesFound();
+			return ;
+		}
+		
+		if(item == null){
+			noImagesFound();
+			return ;
+		}
+		
+		currentSubItemNo = itemNo;
+		//imageUrl = getIntent().getStringExtra("Url");
+		String imageUrl = item.getNewsImageFullPath(this);
+		Point size= Globals.getScreenSize(this);
+		int imgWidth=size.x;
+		int imgHeight=size.y ;
+		
+		 
+		//ImageView iv = (ImageView)findViewById(R.id.image_zoom);
+		LinearLayout container = (LinearLayout)findViewById(R.id.llytImageContainer);
+		container.removeAllViews();
+		
+		currentImage = new GestureImageView(this);
+		
+        //iv.setFocusable(true);
+		LinearLayout.LayoutParams lpImg =  new LinearLayout.LayoutParams(imgWidth, imgHeight);//(LinearLayout.LayoutParams) iv.getLayoutParams();//new LinearLayout.LayoutParams(imgWidth,imgHeight);
+		//lpImg.height = imgHeight;
+		//lpImg.weight = imgWidth;
+		currentImage.setLayoutParams(lpImg);
+		
+		currentImage.setMinimumHeight(200);
+		currentImage.setMaxScale(10);
+		currentImage.setMinScale((float) 0.1);
+		currentImage.setStrict(true);
+		
+		//final ImageView iv = (ImageView)findViewById(R.id.image_zoom);
+		container.addView(currentImage);
+
+		ProgressBar pBar = (ProgressBar)findViewById(R.id.loading_bar);
+		pBar.setVisibility(View.VISIBLE);
+		
 		 Picasso p = Picasso.with(this);
 		    RequestCreator rq = null;
 		 if(imageUrl!=null)
@@ -70,7 +123,7 @@ public class Activity_ZoomedImage extends Activity {
 			 rq.centerInside();
 			 rq.noFade();
 		 }
-	     rq.into(iv, new Callback() {
+	     rq.into(currentImage, new Callback() {
 			
 			@SuppressLint("NewApi")
 			@Override
@@ -95,9 +148,61 @@ public class Activity_ZoomedImage extends Activity {
 
 			
 		});
-  
 	}
+	private void setListOfNewsItems(){
+		
+		if(listAllCurrentNewsItem != null){
+			listAllCurrentNewsItem.clear();
+		}
 
+		DBHandler_MainNews dbHMain = new DBHandler_MainNews(this);
+		Object_ListItem_MainNews currentNewsItem = dbHMain.getNewsItemWithId(newsId);
+
+		String parentHeading = "";
+		if (currentNewsItem != null) {
+			parentHeading = currentNewsItem.getHeading();
+		}
+		DBHandler_SubNews dbHSub = new DBHandler_SubNews(
+				this);
+		listAllCurrentNewsItem = dbHSub.getAllSubNewsItem(newsId,
+				parentHeading);
+
+		if (currentNewsItem != null) {
+			Object_SubNewsItem temp = new Object_SubNewsItem();
+			temp.setNewsContent(currentNewsItem.getContent());
+			temp.setNewsHeading(currentNewsItem.getHeading());
+			temp.setNewsImage(currentNewsItem.getImage());
+			temp.setNewsImageTagline(currentNewsItem.getImageTagline());
+			temp.setNewsVideo(currentNewsItem.getVideo());
+
+			listAllCurrentNewsItem.add(0, temp);
+		}
+		
+		if(listAllCurrentNewsItem.size() > 0){
+			
+			if (getIntent().hasExtra("itemNo"))
+				setImage(getIntent().getIntExtra("itemNo", 0));
+			else
+				setImage(0);
+			
+			if(listAllCurrentNewsItem.size() == 1){
+				ImageButton imgBtnNext = (ImageButton)findViewById(R.id.imgBtnNext);
+				ImageButton imgBtnPrev = (ImageButton)findViewById(R.id.imgBtnPrev);
+				
+				imgBtnNext.setVisibility(View.GONE);
+				imgBtnPrev.setVisibility(View.GONE);
+			}
+		}else{
+			
+			noImagesFound();
+		}
+	}
+	
+	private void noImagesFound(){
+		Toast.makeText(this, "No images to show!", Toast.LENGTH_SHORT).show();
+		this.finish();
+	}
+	
 	public void onCickCancel(View v)
 	{
 		this.finish();
@@ -127,9 +232,14 @@ public class Activity_ZoomedImage extends Activity {
 	
 	public void shareImageWhatsApp() {
 
-		ImageView iv = (ImageView)findViewById(R.id.image_zoom);
+		//ImageView iv = (ImageView)findViewById(R.id.image_zoom);
 		
-	    Bitmap adv = ((BitmapDrawable)iv.getDrawable()).getBitmap();//BitmapFactory.decodeResource(getResources(), R.drawable.adv);
+		if(currentImage == null){
+			Toast.makeText(this, "Error occured", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+	    Bitmap adv = ((BitmapDrawable)currentImage.getDrawable()).getBitmap();//BitmapFactory.decodeResource(getResources(), R.drawable.adv);
 	    Intent share = new Intent(Intent.ACTION_SEND);
 	    share.setType("image/jpeg");
 	    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -165,5 +275,37 @@ public class Activity_ZoomedImage extends Activity {
 	    }
 	}
 
+	public void onClickPrev(View v){
+		if(currentSubItemNo > 0)
+		{
+			setImage(currentSubItemNo - 1);
+			
+		}
+	}
 	
+	public void onClickNext(View v){
+		
+		if(currentSubItemNo < listAllCurrentNewsItem.size()-1)
+		{
+			setImage(currentSubItemNo + 1);
+			
+		}
+	}
+	
+	private void setNextPrevButtonsState(){
+		ImageButton imgBtnNext = (ImageButton)findViewById(R.id.imgBtnNext);
+		ImageButton imgBtnPrev = (ImageButton)findViewById(R.id.imgBtnPrev);
+		
+		if(currentSubItemNo == 0){
+			imgBtnPrev.setEnabled(false);
+		}else{
+			imgBtnPrev.setEnabled(true);
+		}
+		
+		if(currentSubItemNo == listAllCurrentNewsItem.size()-1){
+			imgBtnNext.setEnabled(false);
+		}else{
+			imgBtnNext.setEnabled(true);
+		}
+	}
 }

@@ -2,7 +2,6 @@ package com.daimajia.slider.library.SliderTypes;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
