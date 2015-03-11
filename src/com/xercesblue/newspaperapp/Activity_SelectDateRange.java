@@ -10,20 +10,21 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Activity_DateWiseNews extends Activity_Parent {
+public class Activity_SelectDateRange extends Activity_Parent {
 
 	private TextView pDisplayStartDate;
 	private ImageButton pPickStartDate;
-	private int pStartYear;
+	private int pStartYear=0;
 	private int pStartMonth;
 	private int pStartDay;
 	
 	private TextView pDisplayEndDate;
 	private ImageButton pPickEndDate;
 	private int pEndYear = 0;
-	private int pEndMonth = 0;
-	private int pEndDay = 0;
+	private int pEndMonth;
+	private int pEndDay;
 
 		final int DATE_DIALOG_ID_START = 99;
 		final int DATE_DIALOG_ID_END = 104;
@@ -31,7 +32,7 @@ public class Activity_DateWiseNews extends Activity_Parent {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_date_wise_news);
+		setContentView(R.layout.activity_select_date_range);
 		initSuper();
 		init_DateWiseNews();
 	}
@@ -106,9 +107,9 @@ public class Activity_DateWiseNews extends Activity_Parent {
 	private void updateStartDisplay() {
 		pDisplayStartDate.setText(
 				new StringBuilder()
+				.append(pStartDay).append("/")
 				// Month is 0 based so add 1
 				.append(pStartMonth + 1).append("/")
-				.append(pStartDay).append("/")
 				.append(pStartYear).append(" "));
 		
 		if(pEndYear == 0){
@@ -125,19 +126,42 @@ public class Activity_DateWiseNews extends Activity_Parent {
 
 		public void onDateSet(DatePicker view, int year, 
 				int monthOfYear, int dayOfMonth) {
-			pEndYear = year;
-			pEndMonth = monthOfYear;
-			pEndDay = dayOfMonth;
-			updateEndDisplay();
+			
+			boolean isLessThanStartDate = false;
+			if(year < pStartYear)
+				isLessThanStartDate = true;
+			else if(year == pStartYear && monthOfYear < pStartMonth)
+				isLessThanStartDate = true;
+			else if(year == pStartYear && monthOfYear == pStartMonth && dayOfMonth<pStartDay)
+				isLessThanStartDate = true;
+			
+			if(isLessThanStartDate){
+				Toast.makeText(Activity_SelectDateRange.this, "End date cannot be less than start date", Toast.LENGTH_SHORT).show();
+				
+			}else{
+				pEndYear = year;
+				pEndMonth = monthOfYear;
+				pEndDay = dayOfMonth;
+				updateEndDisplay();
+			}
 		}
 	};
 
 	private void updateEndDisplay() {
 		pDisplayEndDate.setText(
 				new StringBuilder()
+				.append(pEndDay).append("/")
 				// Month is 0 based so add 1
 				.append(pEndMonth + 1).append("/")
-				.append(pEndDay).append("/")
 				.append(pEndYear).append(" "));
+	}
+	
+	public void btnGetNewsClick(View v){
+		
+		if( pDisplayStartDate.getText() != null && !pDisplayStartDate.getText().toString().trim().equals("Select")){
+			
+		}else{
+			Toast.makeText(this, "Please select start date", Toast.LENGTH_SHORT).show();
+		}
 	}
 }

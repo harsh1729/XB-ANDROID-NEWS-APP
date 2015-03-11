@@ -89,7 +89,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_DateWiseNews"
+            android:name="com.xercesblue.newspaperapp.Activity_SelectDateRange"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">

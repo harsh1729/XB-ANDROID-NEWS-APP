@@ -21,7 +21,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -200,6 +199,7 @@ public class Activity_ZoomedImage extends Activity {
 			else
 				setImage(0);
 			
+			/*
 			if(listAllCurrentNewsItem.size() == 1){
 				ImageButton imgBtnNext = (ImageButton)findViewById(R.id.imgBtnNext);
 				ImageButton imgBtnPrev = (ImageButton)findViewById(R.id.imgBtnPrev);
@@ -207,6 +207,7 @@ public class Activity_ZoomedImage extends Activity {
 				imgBtnNext.setVisibility(View.GONE);
 				imgBtnPrev.setVisibility(View.GONE);
 			}
+			*/
 		}else{
 			
 			noImagesFound();
@@ -254,8 +255,25 @@ public class Activity_ZoomedImage extends Activity {
 			return;
 		}
 		
+		if(currentImage.getDrawable() == null)
+		{
+			Toast.makeText(this, "Please wait, Image not loaded", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		if(((BitmapDrawable)currentImage.getDrawable()).getBitmap() == null)
+		{
+			Toast.makeText(this, "Please wait, Image not loaded", Toast.LENGTH_SHORT).show();
+			return;
+		}
 	    Bitmap adv = ((BitmapDrawable)currentImage.getDrawable()).getBitmap();//BitmapFactory.decodeResource(getResources(), R.drawable.adv);
 	    Intent share = new Intent(Intent.ACTION_SEND);
+	    if(listAllCurrentNewsItem.size() > currentSubItemNo){
+			Object_SubNewsItem item = listAllCurrentNewsItem.get(currentSubItemNo);
+			 share.putExtra(Intent.EXTRA_TEXT, item.getNewsHeading());
+			  share.setType("text/plain");
+	    }
+	   
+		
 	    share.setType("image/jpeg");
 	    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 	    adv.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -312,15 +330,19 @@ public class Activity_ZoomedImage extends Activity {
 		ImageButton imgBtnPrev = (ImageButton)findViewById(R.id.imgBtnPrev);
 		
 		if(currentSubItemNo == 0){
-			imgBtnPrev.setEnabled(false);
+			//imgBtnPrev.setEnabled(false);
+			imgBtnPrev.setVisibility(View.GONE);
 		}else{
-			imgBtnPrev.setEnabled(true);
+			//imgBtnPrev.setEnabled(true);
+			imgBtnPrev.setVisibility(View.VISIBLE);
 		}
 		
 		if(currentSubItemNo == listAllCurrentNewsItem.size()-1){
-			imgBtnNext.setEnabled(false);
+			//imgBtnNext.setEnabled(false);
+			imgBtnNext.setVisibility(View.GONE);
 		}else{
-			imgBtnNext.setEnabled(true);
+			//imgBtnNext.setEnabled(true);
+			imgBtnNext.setVisibility(View.VISIBLE);
 		}
 	}
 }

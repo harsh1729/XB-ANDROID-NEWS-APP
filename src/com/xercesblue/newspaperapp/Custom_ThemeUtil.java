@@ -54,6 +54,8 @@ public class Custom_ThemeUtil
 				setThemeHome(activity);
 			}else if(activity.getClass() == Activity_NewsDetail.class){
 				setThemeNewsDetail(activity);
+			}else if(activity.getClass() == Activity_SelectDateRange.class){
+				setThemeSetDateRange(activity);
 			}else {
 				setThemeGeneralHeaderBack(activity);
 			}
@@ -128,6 +130,72 @@ public class Custom_ThemeUtil
 		}
 
 	}
+	
+	private static void setThemeSetDateRange(Activity activity){
+		
+		setThemeGeneralHeaderBack(activity);
+		Object_AppConfig obj = new Object_AppConfig(activity);
+		
+		TextView txtChooseDate = (TextView)activity.findViewById(R.id.txtChooseDate);
+		LinearLayout llytLine = (LinearLayout)activity.findViewById(R.id.llytBottomLineChooseDate);
+		ImageButton imgBtnCalStart = (ImageButton)activity.findViewById(R.id.btnStartDate);
+		ImageButton imgBtnCalEnd = (ImageButton)activity.findViewById(R.id.btnEndDate);
+		String imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
+		
+		switch (obj.getTheme())
+		{
+
+		case THEME_YELLOW_VALUE:		
+			
+			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_yellow));
+			llytLine.setBackgroundResource(R.drawable.bg_yellow_gradient);			
+			imagePostFix = Custom_ThemeUtil.THEME_YELLOW_POST_TEXT;
+			
+			break;
+
+		case THEME_RED_VALUE:
+			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_red));
+			llytLine.setBackgroundResource(R.color.app_red);
+	
+			imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
+
+			break;
+
+		case THEME_GREEN_VALUE:
+			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_green));
+			llytLine.setBackgroundResource(R.color.app_green);
+			imagePostFix = Custom_ThemeUtil.THEME_GREEN_POST_TEXT;
+			
+			break;
+
+		case THEME_BLUE_VALUE:	
+			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_darkblue));
+			llytLine.setBackgroundResource(R.color.app_darkblue);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_BLUE_POST_TEXT;
+
+			break;
+
+		case THEME_BLACK_VALUE:
+			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_black));
+			llytLine.setBackgroundResource(R.color.app_black);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_BLACK_POST_TEXT;
+
+			break;
+
+		default:
+			break;
+
+		}
+		
+		int idImg = activity.getResources().getIdentifier("calender"+imagePostFix, "drawable", activity.getPackageName());
+		
+		
+		imgBtnCalEnd.setImageResource(idImg);
+		imgBtnCalStart.setImageResource(idImg);
+	}
+	
 	private static void setThemeHome(Activity activity){
 
 		Object_AppConfig obj = new Object_AppConfig(activity);

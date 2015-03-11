@@ -36,8 +36,8 @@ public class Activity_Parent extends Activity {
 		if(this.getClass() == Activity_SavedNews.class){
 			txtHeading.setText("Saved News");
 			
-		}else if(this.getClass() == Activity_DateWiseNews.class){
-			txtHeading.setText("Date Wise News");
+		}else if(this.getClass() == Activity_SelectDateRange.class){
+			txtHeading.setText("Select Date");
 		}
 		else if(this.getClass() == Activity_Settings.class){
 			txtHeading.setText("Settings");

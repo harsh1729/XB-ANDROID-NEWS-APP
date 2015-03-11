@@ -825,7 +825,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 					nextClass = Activity_Settings.class;
 				}
 				else if(obj.getText().equals(Globals.OPTION_CALENDER)){
-					nextClass = Activity_DateWiseNews.class;
+					nextClass = Activity_SelectDateRange.class;
 				}
 				if (nextClass != null) {
 					Intent intent = new Intent(this, nextClass);
