@@ -43,7 +43,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 	private ExpandableListView expListCategories;
 	private PullToRefreshListView listViewNews;
-	private ArrayList<Object_Category> listNewsCategory = new ArrayList<Object_Category>();
+	//private ArrayList<Object_Category> listNewsCategory = new ArrayList<Object_Category>();
 	private Custom_AdapterNewsList news_adaptor;
 	private SlidingMenu slidingMenu;
 	//private Boolean isNewsSpinnerShown = false;
@@ -74,7 +74,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		if(selectedTheme != obj.getTheme() || fontFactor != obj.getFontFactor()){
 			Custom_ThemeUtil.onActivityCreateSetTheme(this);
-			serverCallForCategories();
+			serverCallForCategoriesAndNews();
 			selectedTheme = obj.getTheme();
 			fontFactor = obj.getFontFactor();
 			//showCategories();
@@ -145,7 +145,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		initPullToRefreshListProperties();
 		// Get categories from Server in case of change along with Application
 		// Configuration
-		serverCallForCategories();
+		serverCallForCategoriesAndNews();
 		
 	}
 
@@ -171,7 +171,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		imgViewName.setImageBitmap(name);
 	}
 
-	private void serverCallForCategories() {
+	private void serverCallForCategoriesAndNews() {
 		try {
 			Log.i("HARSH", "FirstCall");
 			showSpinnerCategories();			
@@ -387,11 +387,18 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 				}
 			}
+			Object_AppConfig objConfig = new Object_AppConfig(this);
+			
+			//// If news is there insert new news News
+					if (response.has("news")) {
+						//currentCategoryId = objConfig.getRootCatId();
+						insertNewAndDeleteOldNews(response.getJSONArray("news"),objConfig.getRootCatId() , false);
+					}
 
 			// Now set Categories
 			if (response.has("categories_need_update")) {
 
-				Object_AppConfig objConfig = new Object_AppConfig(this);
+				
 
 				if (response.getInt("categories_need_update") > 0) {
 
@@ -409,6 +416,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 				showCategories();
 			}
 
+			
+			
 		} catch (Exception ex) {
 			showCategories();
 			Log.i("HARSH", "Error in parsin jSOn" + ex.getMessage());
@@ -457,7 +466,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		hideSpinnerCategories();
 
 		DBHandler_Category db = new DBHandler_Category(this);
-		listNewsCategory = db.getCategories(this);
+		ArrayList<Object_Category> listNewsCategory = db.getCategories(this);
 
 		Custom_AdapterCatHome adapter = new Custom_AdapterCatHome(this,
 				listNewsCategory);
@@ -471,8 +480,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 			hideLoadingScreen();
 		}
 		*/
-		if (listNewsCategory.size() > 0)
-			currentCategoryId = listNewsCategory.get(0).getId();
+		Object_AppConfig obj = new Object_AppConfig(this);
+		showNewsList(obj.getRootCatId());
 		hideLoadingScreen();
 	}
 
@@ -605,6 +614,12 @@ public class Activity_Home extends SlidingFragmentActivity {
 	private void gotNewsResponce(JSONArray response, int catId,
 			Boolean isPullToRefresh) {
 
+		insertNewAndDeleteOldNews(response,catId,isPullToRefresh);
+		showNewsList(catId);
+	}
+
+	private void insertNewAndDeleteOldNews(JSONArray response, int catId,
+			Boolean isPullToRefresh){
 		ArrayList<Object_ListItem_MainNews> listNewsItemServer;
 
 		Log.i("DARSH", "getNewsDataFromServer onResponse" + response);
@@ -628,9 +643,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 		DBHandler_MainNews dbH = new DBHandler_MainNews(getApplicationContext());
 		dbH.insertNewsItemList(listNewsItemServer);
-		showNewsList(catId);
 	}
-
 	private void showNewsList(final int catId) {
 
 		getListData().clear();
@@ -837,7 +850,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 				if(obj.getText().equals(Globals.OPTION_SAVED_NEWS)){
 					nextClass = Activity_SavedNews.class;
 				}else if(obj.getText().equals(Globals.OPTION_REFRESH)){
-					serverCallForCategories();
+					serverCallForCategoriesAndNews();
 				}
 				else if(obj.getText().equals(Globals.OPTION_SETTINGS)){
 					nextClass = Activity_Settings.class;
