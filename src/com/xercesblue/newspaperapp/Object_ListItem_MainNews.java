@@ -11,7 +11,7 @@ public class Object_ListItem_MainNews implements Interface_ListItem
 	private String content;
 	private int catId;
 	private String date;
-	private String image;
+	private String imagePath;
 	private String video;
 	private String shareLink;
 	private String imageTagline;
@@ -59,12 +59,12 @@ public class Object_ListItem_MainNews implements Interface_ListItem
 		this.date = date;
 	}
 
-	public String getImage() {
-		return image;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImagePath(String image) {
+		this.imagePath = image;
 	}
 
 	public String getVideo() {

@@ -5,8 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import com.xercesblue.newspaperapp.R;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -31,25 +31,33 @@ public class Globals {
 
 	public static final int APP_TRUE = 1;
 	public static final int APP_FALSE = 0;
+	
+	/* To be changed with each client */
 	public static final int APP_ID= 1;
-
+	public static final int CLIENT_ID= 1;
 	public static final String APP_NAME = "XB NEWS";
 	public static final String AD_INMOBI_PROPERTY_ID = "";
 	public static  String GCM_REG_ID = "";
 	public static final String VSERV_BILLBOARD_ZONE_ID = "";
 	public static final String VSERV_BANNER_ZONE_ID = "";
+	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 10;
+	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
+	/* To be changed with each client   */
+	
+	public static final String DEFAULT_APP_SERVER_PATH= "http://www.newstest2.tk/newsci/client_requests/";//"http://xercesblue.in/newsentry/";
+	//public static final String DEFAULT_APP_NEWS_IMAGES_PATH= "uploads/";
+	//public static final String DEFAULT_APP_CAT_IMAGES_PATH= "CategoryUploads/";
+	public static final String PREFIX_HOME_IMAGES="small_";
+	public static final String DEFAULT_NEWS_HEADING = "#9#";
+	public static final String DEFAULT_APP_WEBSITE = "www.xercesblue.in";
+	
 	public static final int ADD_TYPE_INMOBI = 1;
 	public static final int ADD_TYPE_VSERV= 2;
 	public static final int VOLLEY_TIMEOUT_MILLISECS = 10000;
 	public static final String CALLTYPE_NEW = "new";
 	public static final String CALLTYPE_OLD = "old";
 	public static final String CALLTYPE_FRESH = "fresh";
-	public static final String DEFAULT_APP_SERVER_PATH= "http://xercesblue.in/newsentry/";
-	public static final String DEFAULT_APP_NEWS_IMAGES_PATH= "uploads/";
-	public static final String DEFAULT_APP_CAT_IMAGES_PATH= "CategoryUploads/";
-	public static final String PREFIX_HOME_IMAGES="small_";
-	public static final String DEFAULT_NEWS_HEADING = "#9#";
-	public static final String DEFAULT_APP_WEBSITE = "www.xercesblue.in";
+
 	
 	public static final String TEXT_CONNECTION_ERROR_HEADING = "Error in Connection";
 	public static final String TEXT_CONNECTION_ERROR_DETAIL_TOAST ="Please check your internet connection and try again.";
@@ -69,23 +77,46 @@ public class Globals {
 	public static final String OPTION_REFRESH = "Refresh All";
 	public static final String OPTION_SHARE = "Share";
 	
-	static String getURLAppConfigByVersion(int catVersionId,int appVersionId){
-		
+	static String getURL_CatNewsFirstCall(){
+		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_cat_news
 		//return DEFAULT_APP_SERVER_PATH+"getAppConfig.php?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
 		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"mobile/getAppConfig.php?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId);
-		return DEFAULT_APP_SERVER_PATH+"mobile/getAppConfig.php?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
+		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_cat_news");
+		return DEFAULT_APP_SERVER_PATH+"news/mob_get_cat_news";//?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
 	}
-	static String getURLNewsByCategory(int catId , int lastNewsId, String callType){
-		
+	
+	static Map<String, String> getParams_CatNewsFirstCall(int catVersionId,int appVersionId){
+		HashMap<String, String> mParams = new HashMap<String, String>();
+			        mParams.put("clientid", CLIENT_ID+"");
+			        mParams.put("catversion", catVersionId+"");
+			        mParams.put("appconfigversion", appVersionId+"");
+			        
+			        
+			        return mParams;
+	}
+	static String getURL_NewsByCategory(){ //int catId , int lastNewsId, String callType
+		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
 		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
 		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"mobile/getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
-		return  DEFAULT_APP_SERVER_PATH+"mobile/getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_news_by_category");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
+		return  DEFAULT_APP_SERVER_PATH+"news/mob_get_news_by_category";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
 		
 		//Calltype : fresh,new,old
 	}
 
+	static Map<String, String> getParams_NewsByCategory(int catId,String callType,int lastNewsId,int limit){
+		
+		
+		HashMap<String, String> mParams = new HashMap<String, String>();
+			        mParams.put("catid", catId+"");
+			        mParams.put("calltype", callType);
+			        mParams.put("lastnewsid", lastNewsId+"");
+			        mParams.put("limit", limit+"");
+			        Log.i("DARSH", "getParams_NewsByCategory --->" + mParams);
+			        
+			        return mParams;
+	}
+	
 	static String getURLPushNotification(String gcmId,int appId){
 		
 		return  DEFAULT_APP_SERVER_PATH+"pushNotification/registerPushNotificationUser.php?gcmId="+gcmId+"&AppId="+appId;

@@ -64,7 +64,7 @@ public class DBHandler_SubNews extends SQLiteOpenHelper {
 						 objNews.setNewsHeading(cur.getString(cur.getColumnIndex(KEY_NEWS_HEADING)));
 						 
 					 objNews.setNewsId(cur.getInt(cur.getColumnIndex(KEY_NEWS_ID)));
-					 objNews.setNewsImage(cur.getString(cur.getColumnIndex(KEY_NEWS_IMAGE)));
+					 objNews.setNewsImagePath(cur.getString(cur.getColumnIndex(KEY_NEWS_IMAGE)));
 					 objNews.setNewsImageTagline(cur.getString(cur.getColumnIndex(KEY_NEWS_TAGLINE)));
 					 objNews.setNewsParentId(cur.getInt(cur.getColumnIndex(KEY_NEWS_PARENT_ID)));
 					 objNews.setNewsVideo(cur.getString(cur.getColumnIndex(KEY_NEWS_VIDEO)));
@@ -87,7 +87,7 @@ public class DBHandler_SubNews extends SQLiteOpenHelper {
 			 try{
 			 values.put(KEY_NEWS_CONTENT, obMain.getNewsContent());
 			 values.put(KEY_NEWS_HEADING, obMain.getNewsHeading());
-			 values.put(KEY_NEWS_IMAGE, obMain.getNewsImage());
+			 values.put(KEY_NEWS_IMAGE, obMain.getNewsImagePath());
 			 values.put(KEY_NEWS_VIDEO, obMain.getNewsVideo());
 			 values.put(KEY_NEWS_TAGLINE, obMain.getNewsImageTagline());
 			 values.put(KEY_NEWS_ID, obMain.getNewsId());

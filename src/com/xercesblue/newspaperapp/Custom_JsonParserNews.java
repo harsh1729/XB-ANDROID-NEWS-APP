@@ -1,7 +1,6 @@
 package com.xercesblue.newspaperapp;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +18,7 @@ public class Custom_JsonParserNews {
 	public Custom_JsonParserNews(String jsonString) {
 		this.jsonString = jsonString;
 	}
-	public ArrayList<Object_ListItem_MainNews> getParsedJson()
+	public ArrayList<Object_ListItem_MainNews> getParsedJson(int catId)
 	{
 
 		if(jsonString != null && !jsonString.trim().equals(""))
@@ -38,13 +37,17 @@ public class Custom_JsonParserNews {
 
 					int news_id = -1;
 					
-					if(jsonObjNews.has("news_id")){
-						news_id = jsonObjNews.getInt("news_id");
+					if(jsonObjNews.has("id")){
+						news_id = jsonObjNews.getInt("id");
 						objMainNews.setId(news_id);
 					}
+					
 					if(jsonObjNews.has("cat_id")){
 						objMainNews.setCatId(jsonObjNews.getInt("cat_id"));
+					}else{
+						objMainNews.setCatId(catId);
 					}
+					
 					if(jsonObjNews.has("heading")){
 						objMainNews.setHeading(jsonObjNews.getString("heading").trim());
 					}
@@ -52,13 +55,13 @@ public class Custom_JsonParserNews {
 						objMainNews.setContent(jsonObjNews.getString("content").trim());
 					}
 					if(jsonObjNews.has("image")){
-						objMainNews.setImage(jsonObjNews.getString("image").trim());
+						objMainNews.setImagePath(jsonObjNews.getString("image").trim());
 					}
-					if(jsonObjNews.has("date")){
-						objMainNews.setDate(jsonObjNews.getString("date").trim());
+					if(jsonObjNews.has("datetime")){
+						objMainNews.setDate(jsonObjNews.getString("datetime").trim());
 					}
-					if(jsonObjNews.has("tagline")){
-						objMainNews.setImageTagline(jsonObjNews.getString("tagline").trim());
+					if(jsonObjNews.has("imgtagline")){
+						objMainNews.setImageTagline(jsonObjNews.getString("imgtagline").trim());
 					}
 					if(jsonObjNews.has("share_link")){
 						objMainNews.setShareLink(jsonObjNews.getString("share_link").trim());
@@ -67,7 +70,7 @@ public class Custom_JsonParserNews {
 						objMainNews.setVideo(jsonObjNews.getString("video").trim());
 					}
 					
-					
+					  
 					
 					if(jsonObjNews.has("linked_news") && news_id > 0){
 					JSONArray subNewsArray = jsonObjNews.getJSONArray("linked_news");
@@ -91,7 +94,7 @@ public class Custom_JsonParserNews {
 							objSubNews.setNewsContent(objSubNewsJSON.getString("content").trim());
 						}
 						if(objSubNewsJSON.has("image")){
-							objSubNews.setNewsImage(objSubNewsJSON.getString("image").trim());
+							objSubNews.setNewsImagePath(objSubNewsJSON.getString("image").trim());
 						}
 						if(objSubNewsJSON.has("tagline")){
 							objSubNews.setNewsImageTagline(objSubNewsJSON.getString("tagline").trim());
@@ -113,6 +116,7 @@ public class Custom_JsonParserNews {
 				e.printStackTrace();
 			}
 		}
+		Log.i("DARSH", "COunt of NEws : "+ listNews.size());
 		return listNews;
 	}
 }

@@ -86,7 +86,7 @@ public class Activity_ZoomedImage extends Activity {
 		
 		currentSubItemNo = itemNo;
 		//imageUrl = getIntent().getStringExtra("Url");
-		String imageUrl = item.getNewsImageFullPath(this);
+		String imageUrl = item.getNewsImagePath();
 		Point size= Globals.getScreenSize(this);
 		int imgWidth=size.x;
 		int imgHeight=size.y ;
@@ -185,7 +185,7 @@ public class Activity_ZoomedImage extends Activity {
 			Object_SubNewsItem temp = new Object_SubNewsItem();
 			temp.setNewsContent(currentNewsItem.getContent());
 			temp.setNewsHeading(currentNewsItem.getHeading());
-			temp.setNewsImage(currentNewsItem.getImage());
+			temp.setNewsImagePath(currentNewsItem.getImagePath());
 			temp.setNewsImageTagline(currentNewsItem.getImageTagline());
 			temp.setNewsVideo(currentNewsItem.getVideo());
 

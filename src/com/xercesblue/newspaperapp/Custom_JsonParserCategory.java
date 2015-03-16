@@ -32,11 +32,11 @@ public class Custom_JsonParserCategory {
 			{
 				JSONObject  mainObject= new JSONObject(jsonString);
 				
-				if(!mainObject.has("CatArray")){
+				if(!mainObject.has("categories")){
 					return listCategories;
 				}
 				int i;
-				JSONArray Cat_Object_Array = mainObject.getJSONArray("CatArray");
+				JSONArray Cat_Object_Array = mainObject.getJSONArray("categories");
 				for(i=0; i<Cat_Object_Array.length(); i++)
 				{
 					Object_Category ob = new Object_Category();
@@ -51,8 +51,8 @@ public class Custom_JsonParserCategory {
 						Log.i("HARSH","Fething Picasso for "+ob.getName());
 						Picasso p = Picasso.with(this.context);
 					    RequestCreator rq = null;
-					    Object_AppConfig objConfig = new Object_AppConfig(context);					    
-					    rq=p.load(objConfig.getCategoryImagesFullPath() + ob.getImageName());
+					    
+					    rq=p.load(ob.getImageName());
 					    
 					    //rq.placeholder(R.drawable.selector_options_search);
 					    
@@ -67,7 +67,7 @@ public class Custom_JsonParserCategory {
 					
 					Log.i("HARSH","name"+ob.getName());
 					
-					ob.setParentId(Single_Cat.getInt("ParentId"));
+					ob.setParentId(Single_Cat.getInt("parent_id"));
 					listCategories.add(ob);
 				}
 				

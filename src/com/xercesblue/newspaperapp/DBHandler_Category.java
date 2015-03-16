@@ -50,7 +50,7 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 		return catName;
 	}
 
-	public ArrayList<Object_Category> getCategories() {
+	public ArrayList<Object_Category> getCategories(Context con) {
 
 		Log.i("HARSH", "get categories called!");
 		String selectQuery = "select * from " + TABLE_CATEGORY + " where "
@@ -127,6 +127,20 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 		}
 
 		db.close();
+		
+		for(int i = 0; i<Cat_group.size();i++){
+			Object_Category catObj = Cat_group.get(i);
+			if(catObj != null){
+				Object_AppConfig objConfig = new Object_AppConfig(con);
+				if(catObj.getId() == objConfig.getRootCatId()){
+					if(i != 0){
+						Cat_group.remove(i);
+						Cat_group.add(0, catObj);
+					}
+					break;
+				}
+			}
+		}
 		return Cat_group;
 
 	}

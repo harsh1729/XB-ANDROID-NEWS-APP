@@ -170,7 +170,7 @@ public class DBHandler_MainNews extends SQLiteOpenHelper {
 		objNews.setCatId(cur.getInt(cur.getColumnIndex(KEY_NEWS_CAT_ID)));
 		objNews.setHeading(cur.getString(cur
 				.getColumnIndex(KEY_NEWS_HEADING)));
-		objNews.setImage(cur.getString(cur.getColumnIndex(KEY_NEWS_IMAGE)));
+		objNews.setImagePath(cur.getString(cur.getColumnIndex(KEY_NEWS_IMAGE)));
 		objNews.setContent(cur.getString(cur
 				.getColumnIndex(KEY_NEWS_CONTENT)));
 		objNews.setDate(cur.getString(cur.getColumnIndex(KEY_NEWS_DATE)));
@@ -194,7 +194,7 @@ public class DBHandler_MainNews extends SQLiteOpenHelper {
 				values.put(KEY_NEWS_CONTENT, obMain.getContent());
 				values.put(KEY_NEWS_DATE, obMain.getDate());
 				values.put(KEY_NEWS_HEADING, obMain.getHeading());
-				values.put(KEY_NEWS_IMAGE, obMain.getImage());
+				values.put(KEY_NEWS_IMAGE, obMain.getImagePath());
 				values.put(KEY_NEWS_CAT_ID, obMain.getCatId());
 				values.put(KEY_NEWS_ID, obMain.getId());
 				values.put(KEY_NEWS_VIDEO, obMain.getVideo());
@@ -202,7 +202,7 @@ public class DBHandler_MainNews extends SQLiteOpenHelper {
 				values.put(KEY_NEWS_IMAGE_TAGLINE, obMain.getImageTagline());
 
 				db.insert(TABLE_NEWS, null, values);
-
+				Log.i("DARSH", "Inserting News");
 				if (!obMain.isListSubNewsNull()) {
 					DBHandler_SubNews dbHChild = new DBHandler_SubNews(context);
 					dbHChild.insertSubNewsItemList(obMain.getListSubNews(), db);

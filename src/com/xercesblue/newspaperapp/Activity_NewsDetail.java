@@ -159,13 +159,13 @@ BaseSliderView.OnSliderClickListener {
 		listAllCurrentNewsItem = dbHSub.getAllSubNewsItem(newsId,
 				parentHeading);
 
-		Object_AppConfig objConfig = new Object_AppConfig(this);
+		//Object_AppConfig objConfig = new Object_AppConfig(this);
 
 		if (currentNewsItem != null) {
 			Object_SubNewsItem temp = new Object_SubNewsItem();
 			temp.setNewsContent(currentNewsItem.getContent());
 			temp.setNewsHeading(currentNewsItem.getHeading());
-			temp.setNewsImage(currentNewsItem.getImage());
+			temp.setNewsImagePath(currentNewsItem.getImagePath());
 			temp.setNewsImageTagline(currentNewsItem.getImageTagline());
 			temp.setNewsVideo(currentNewsItem.getVideo());
 
@@ -181,8 +181,8 @@ BaseSliderView.OnSliderClickListener {
 			final TextSliderView textSliderView = new TextSliderView(this);
 			textSliderView
 			.description(item.getNewsContent())
-			.image(objConfig.getNewsImagesFullPath()
-					+ item.getNewsImage())
+			.image(
+					item.getNewsImagePath())
 					.Heading(item.getNewsHeading())
 					.setScaleType(BaseSliderView.ScaleType.CenterCrop)
 					.setOnSliderClickListener(this);
@@ -253,7 +253,7 @@ BaseSliderView.OnSliderClickListener {
 			container.setLayoutParams(params);
 		}
 		
-		Object_AppConfig objConfig = new Object_AppConfig(this);
+		//Object_AppConfig objConfig = new Object_AppConfig(this);
 		Point pnt = Globals.getScreenSize(this);
 
 		//int containerHeight = pnt.y;
@@ -279,8 +279,7 @@ BaseSliderView.OnSliderClickListener {
 			lpImgPrev.height = imgNextPrevHeightWidth;
 			lpImgPrev.width = imgNextPrevHeightWidth;
 			imgView.setLayoutParams(lpImgPrev);
-			setImage(imgView, objConfig
-					.getNewsImagesFullPath() + obj.getImage());
+			setImage(imgView,  obj.getImagePath());
 			
 			TextView txtHiddenNewsId = (TextView) rowItem.findViewById(R.id.txtHiddenNewsId);
 			txtHiddenNewsId.setText(obj.getId()+"");

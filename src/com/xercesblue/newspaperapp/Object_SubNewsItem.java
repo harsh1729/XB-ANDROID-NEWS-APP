@@ -1,6 +1,5 @@
 package com.xercesblue.newspaperapp;
 
-import android.content.Context;
 
 
 
@@ -11,7 +10,7 @@ public class Object_SubNewsItem
 	private int newsParentId;
 	private String newsHeading;
 	private String newsContent;
-	private String newsImage;
+	private String newsImagePath;
 	private String newsVideo;
 	private String newsImageTagline;
 
@@ -48,18 +47,18 @@ public class Object_SubNewsItem
 		this.newsContent = newsContent;
 	}
 
-	public String getNewsImage() {
-		return newsImage;
+	public String getNewsImagePath() {
+		return newsImagePath;
 	}
-	
+	/*
 	public String getNewsImageFullPath(Context con){
 		Object_AppConfig objConfig = new Object_AppConfig(con);
 		return objConfig.getNewsImagesFullPath() + newsImage;
 		
 	}
-
-	public void setNewsImage(String newsImage) {
-		this.newsImage = newsImage;
+	*/
+	public void setNewsImagePath(String newsImagePath) {
+		this.newsImagePath = newsImagePath;
 	}
 
 	public String getNewsVideo() {

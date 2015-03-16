@@ -108,9 +108,9 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		int imgMargin = 6;
 		int imgWidthHeight = (int)screenHeight/6;
 		ImageView iv = (ImageView) convertView.findViewById(R.id.img_news_item);
-		Object_AppConfig objAppConfig = new Object_AppConfig(context);
+		//Object_AppConfig objAppConfig = new Object_AppConfig(context);
 		
-		String imgURL = objAppConfig.getNewsImagesFullPath() +Globals.PREFIX_HOME_IMAGES+ objNews.getImage();
+		String imgURL =  objNews.getImagePath();//objAppConfig.getNewsImagesFullPath() +Globals.PREFIX_HOME_IMAGES+
 		Log.i("HARSH", "imgURL :"+imgURL);
 		
 		LinearLayout.LayoutParams lpImg = (LayoutParams) iv.getLayoutParams();
@@ -124,9 +124,16 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		Picasso p = Picasso.with(context);
 		RequestCreator rq = null;
 
-		rq = p.load(imgURL);
-		rq.placeholder(R.drawable.loading_with_boundry);
-		rq.error(R.drawable.no_image);
+		if(!imgURL.trim().isEmpty()){
+			rq = p.load(imgURL);
+			rq.placeholder(R.drawable.loading_with_boundry);
+			rq.error(R.drawable.no_image);
+		}
+		else
+			rq = p.load(R.drawable.no_image);
+		
+		
+		
 		
 		
 		//rq.resize(imgWidthHeight,imgWidthHeight);
@@ -162,9 +169,9 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		lp.height = imgHeight;
 		Container.setLayoutParams(lp);
 		
-		Object_AppConfig objAppConfig = new Object_AppConfig(context);
-		
-		String imgURL = objAppConfig.getNewsImagesFullPath() + objNews.getImage();
+		//Object_AppConfig objAppConfig = new Object_AppConfig(context);
+		//objAppConfig.getNewsImagesFullPath() +
+		String imgURL =  objNews.getImagePath();
 		
 		
 		ImageView iv = (ImageView) convertView.findViewById(R.id.img_news_item);

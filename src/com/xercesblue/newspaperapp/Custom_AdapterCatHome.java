@@ -54,7 +54,7 @@ public class Custom_AdapterCatHome extends BaseExpandableListAdapter  {
 
 		activity.toggle();
 		//Globals.showSpinnerNews(activity.mDialog, activity);
-		activity.getNewsDataFromServer(catId,Globals.CALLTYPE_FRESH, 0,false);
+		activity.getNewsDataFromServer(catId,Globals.CALLTYPE_FRESH, 0,false,Globals.FINAL_NEWS_LIMIT_FIRST_CALL);
 		
 		System.out.println("child id : " + catId);
 

@@ -27,10 +27,10 @@ public class Object_ListItem_NewsCategory implements Interface_ListItem
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getImage() {
+	public String getImagePath() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImagePath(String image) {
 		this.image = image;
 	}
 	public String getVideo() {

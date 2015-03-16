@@ -27,11 +27,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
@@ -96,8 +95,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 	private void initHome() {
 
 		showLoadingScreen();
-		
-		new Custom_GCM_Register(this);
+		//new Custom_GCM_Register(this);
 
 		
 		DBHandler_Main db = new DBHandler_Main(this);
@@ -178,20 +176,21 @@ public class Activity_Home extends SlidingFragmentActivity {
 			Log.i("HARSH", "FirstCall");
 			showSpinnerCategories();			
 
-			Object_AppConfig objAppConfig = new Object_AppConfig(this);
-
-			String url = Globals.getURLAppConfigByVersion(
-					objAppConfig.getVersionNoCategory(),
-					objAppConfig.getVersionNoAppConfig());
+			String url = Globals.getURL_CatNewsFirstCall();
 			Log.i("HARSH", "Cat URL -- "+url);
 			
-			JsonObjectRequest jsonObjectRQST = new JsonObjectRequest(
-					url, null,
+			//CustomRequest jsObjRequest = new CustomRequest(Method.POST, url, params, this.createRequestSuccessListener(), this.createRequestErrorListener());
+			Object_AppConfig objAppConfig = new Object_AppConfig(Activity_Home.this);
+			
+			Log.i("DARSH", "PARAMS"+Globals.getParams_CatNewsFirstCall(objAppConfig.getVersionNoCategory(),objAppConfig.getVersionNoAppConfig()));
+		
+			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
+					url, Globals.getParams_CatNewsFirstCall(objAppConfig.getVersionNoCategory(),objAppConfig.getVersionNoAppConfig()),
 							new Listener<JSONObject>() {
 
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.i("HARSH", "json Response recieved !!"
+							Log.i("DARSH", "json Response recieved !!"
 									+ response.toString());
 
 							parseAppConfigJson(response);
@@ -199,37 +198,21 @@ public class Activity_Home extends SlidingFragmentActivity {
 					}, new ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError err) {
-							Log.i("HARSH", "ERROR VolleyError");
+							Log.i("DARSH", "ERROR VolleyError");
 							Globals.showAlertDialogOneButton(
 									Globals.TEXT_CONNECTION_ERROR_HEADING,
 									Globals.TEXT_CONNECTION_ERROR_DETAIL_TOAST,
 									Activity_Home.this, "OK", null, false);
 							if(err != null){
-								Log.i("HARSH", "ERROR Details getLocalizedMessage : "+err.getLocalizedMessage());
-								Log.i("HARSH", "ERROR Details getMessage : "+err.getMessage());
-								Log.i("HARSH", "ERROR Details getStackTrace : "+err.getStackTrace());
+								Log.i("DARSH", "ERROR Details getLocalizedMessage : "+err.getLocalizedMessage());
+								Log.i("DARSH", "ERROR Details getMessage : "+err.getMessage());
+								Log.i("DARSH", "ERROR Details getStackTrace : "+err.getStackTrace());
 							}
 							showCategories();
 
 						}
 					});
 
-			/*
-			{
-				@Override
-				public Map<String, String> getHeaders() throws AuthFailureError {
-					HashMap<String, String> headers = new HashMap<String, String>();
-					headers.put("Content-Type", "application/json");
-					return headers;
-				}
-
-				@Override
-				protected Map<String, String> getParams()
-						throws AuthFailureError {
-					return super.getParams();
-				}
-			};
-			 */
 			Custom_VolleyAppController.getInstance().addToRequestQueue(
 					jsonObjectRQST);
 
@@ -262,27 +245,35 @@ public class Activity_Home extends SlidingFragmentActivity {
 						| DateUtils.FORMAT_ABBREV_ALL);
 				refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
 
-				if (getListData().size() == 0) {
-					getNewsDataFromServer(currentCategoryId,
-							Globals.CALLTYPE_FRESH, 0, true);
-					return;
-				}
-
+				
+				Object_ListItem_MainNews objMainNewsItem = null;
+				
 				if (listViewNews.getCurrentMode().toString().equals("PULL_FROM_START"))
 				{
-					getNewsDataFromServer(currentCategoryId,
-							Globals.CALLTYPE_NEW, getListData().get(0)
-							.getId(), true);
+					objMainNewsItem = getFirstNewsItem();
+					if(objMainNewsItem != null){
+						getNewsDataFromServer(currentCategoryId,
+								Globals.CALLTYPE_NEW, objMainNewsItem.getId(), true,Globals.FINAL_NEWS_LIMIT_REFRESH);
+					}
+							
 				}
 
 				else if (listViewNews.getCurrentMode().toString().equals("PULL_FROM_END"))
 				{
-					getNewsDataFromServer(currentCategoryId,
-							Globals.CALLTYPE_OLD,
-							getListData().get(getListData().size() - 1)
-							.getId(), true);
+					objMainNewsItem = getLastNewsItem();
+					if(objMainNewsItem != null){
+						getNewsDataFromServer(currentCategoryId,
+								Globals.CALLTYPE_OLD,
+								objMainNewsItem.getId(), true,Globals.FINAL_NEWS_LIMIT_REFRESH);
+					}
+					
 				}
 
+				///No news item found
+				if(objMainNewsItem == null){
+					getNewsDataFromServer(currentCategoryId,
+							Globals.CALLTYPE_FRESH, 0, true,Globals.FINAL_NEWS_LIMIT_FIRST_CALL);
+				}
 
 			}
 		});
@@ -302,6 +293,30 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 	}
 
+	private Object_ListItem_MainNews getFirstNewsItem(){
+		Object_ListItem_MainNews item = null;
+		for (int i =0 ; i < getListData().size();i++){
+			if(getListData().get(i).getClass() == Object_ListItem_MainNews.class){
+				item =(Object_ListItem_MainNews) getListData().get(i);
+				break;
+			}
+		}
+		
+		return item;
+	}
+	
+	private Object_ListItem_MainNews getLastNewsItem(){
+		Object_ListItem_MainNews item = null;
+		for (int i =getListData().size() -1 ; i>=0 ;i--){
+			if(getListData().get(i).getClass() == Object_ListItem_MainNews.class){
+				item =(Object_ListItem_MainNews) getListData().get(i);
+				break;
+			}
+		}
+		
+		return item;
+	}
+	
 	private void navigateToNewsDetail(int pos) {
 		//
 
@@ -334,24 +349,29 @@ public class Activity_Home extends SlidingFragmentActivity {
 		}
 		try {
 			// Set App Config
-			if (response.has("appConfigNeedUpdate")) {
-				if (response.getInt("appConfigNeedUpdate") > 0) {
+			if (response.has("appconfig_need_update")) {
+				if (response.getInt("appconfig_need_update") > 0) {
 
 					Object_AppConfig objConfig = new Object_AppConfig(this);
-					if (response.has("appConfigVersion")) {
+					if (response.has("appconfig_version")) {
 						objConfig.setVersionNoAppConfig(response
-								.getInt("appConfigVersion"));
+								.getInt("appconfig_version"));
 					}
-					if (response.has("appConfig")) {
+					if (response.has("appconfig")) {
 						JSONObject objJsonConfig = response
-								.getJSONObject("appConfig");
+								.getJSONObject("appconfig");
 						if (objJsonConfig != null) {
 
-							if (objJsonConfig.has("serverPath")) {
+							if (objJsonConfig.has("server_path")) {
 								objConfig.setServerPath(objJsonConfig
-										.getString("serverPath"));
+										.getString("server_path"));
+							}
+							if (objJsonConfig.has("root_cat_id")) {
+								objConfig.setRootCatId(objJsonConfig
+										.getInt("root_cat_id"));
 							}
 
+							/*
 							if (objJsonConfig.has("newsImagesPath")) {
 								objConfig.setNewsImagesPath(objJsonConfig
 										.getString("newsImagesPath"));
@@ -361,6 +381,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 								objConfig.setCategoryImagesPath(objJsonConfig
 										.getString("categoryImagesPath"));
 							}
+							*/
 						}
 					}
 
@@ -368,15 +389,15 @@ public class Activity_Home extends SlidingFragmentActivity {
 			}
 
 			// Now set Categories
-			if (response.has("categoriesNeedUpdate")) {
+			if (response.has("categories_need_update")) {
 
 				Object_AppConfig objConfig = new Object_AppConfig(this);
 
-				if (response.getInt("categoriesNeedUpdate") > 0) {
+				if (response.getInt("categories_need_update") > 0) {
 
-					if (response.has("CatVersion")) {
+					if (response.has("category_version")) {
 						objConfig.setVersionNoCategory(response
-								.getInt("CatVersion"));
+								.getInt("category_version"));
 					}
 					GetCategoriesThread thread = new GetCategoriesThread(
 							response, Activity_Home.this);
@@ -436,19 +457,23 @@ public class Activity_Home extends SlidingFragmentActivity {
 		hideSpinnerCategories();
 
 		DBHandler_Category db = new DBHandler_Category(this);
-		listNewsCategory = db.getCategories();
+		listNewsCategory = db.getCategories(this);
 
 		Custom_AdapterCatHome adapter = new Custom_AdapterCatHome(this,
 				listNewsCategory);
 		expListCategories.setAdapter(adapter);
 
+		/*
 		if (listNewsCategory.size() > 0) {
 			currentCategoryId = listNewsCategory.get(0).getId();
-			getNewsDataFromServer(currentCategoryId, Globals.CALLTYPE_FRESH, 0,
-					false);
+			//getNewsDataFromServer(currentCategoryId, Globals.CALLTYPE_FRESH, 0,false);
 		}else{
 			hideLoadingScreen();
 		}
+		*/
+		if (listNewsCategory.size() > 0)
+			currentCategoryId = listNewsCategory.get(0).getId();
+		hideLoadingScreen();
 	}
 
 	public void showSpinnerCategories() {
@@ -488,13 +513,15 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 		txt.setText(dbH.getCategoryName(catId));
 	}
-	 */
-
+	 
+	*/
+	
 	public void getNewsDataFromServer(final int catId, final String callType,
-			int lastNewsId, final Boolean isPullToRefresh) {
+			int lastNewsId, final Boolean isPullToRefresh , int limit) 
+	{
 
 		try{
-
+			
 			//listViewNews.removeAllViews();
 			if (!isPullToRefresh)
 				listViewNews.setAdapter(null);
@@ -528,13 +555,16 @@ public class Activity_Home extends SlidingFragmentActivity {
 				if(!isShowingLoadingScreen())
 					mDialog = Globals.showLoadingDialog(mDialog, this,false);
 
-			JsonArrayRequest jsonArrayRQST = new JsonArrayRequest(
-					Globals.getURLNewsByCategory(catId, lastNewsId, callType),
-					new Listener<JSONArray>() {
+			Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(Request.Method.POST,
+					Globals.getURL_NewsByCategory(), Globals.getParams_NewsByCategory(catId, callType, lastNewsId, limit),
+							new Listener<JSONArray>() {
 
+
+						
 						@Override
 						public void onResponse(JSONArray response) {
 							gotNewsResponce(response, catId, isPullToRefresh);
+							
 						}
 
 					}, new ErrorListener() {
@@ -563,25 +593,10 @@ public class Activity_Home extends SlidingFragmentActivity {
 						}
 					});
 
-			/*
-		{
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("Content-Type", "application/json");
-				return headers;
-				// return super.getHeaders();
-			}
-
-			@Override
-			protected Map<String, String> getParams()
-					throws AuthFailureError {
-				return super.getParams();
-			}
-		};
-			 */
+		
 			Custom_VolleyAppController.getInstance().addToRequestQueue(
-					jsonArrayRQST);
+					jsonObjectRQST);
+			
 		}catch(Exception ex){
 
 		}
@@ -592,11 +607,11 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 		ArrayList<Object_ListItem_MainNews> listNewsItemServer;
 
-		Log.i("HARSH", "getNewsDataFromServer onResponse" + response);
+		Log.i("DARSH", "getNewsDataFromServer onResponse" + response);
 
 		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
 				response.toString());
-		listNewsItemServer = parserObject.getParsedJson();
+		listNewsItemServer = parserObject.getParsedJson(catId);
 
 		if (!isPullToRefresh) {
 			Globals.hideLoadingDialog(mDialog);
@@ -627,10 +642,13 @@ public class Activity_Home extends SlidingFragmentActivity {
 		///Breaking News
 		Object_ListItem_BreakingNews objBreakingNews = new Object_ListItem_BreakingNews();
 		objBreakingNews.setHeading("Phil Huges an Australian cricketer died by hit on head from a bouncer.");
-		objBreakingNews.setImage("Phillip-Hughes-Wallpaper.jpg");
+		objBreakingNews.setImagePath("Phillip-Hughes-Wallpaper.jpg");
 		getListData().add(objBreakingNews);
 		
 		///
+		
+		Log.i("DARSH ", "Size of inserted news item"+listMainNewsdata.size());
+		
 		if(listMainNewsdata.size() > 0){
 			Object_ListItem_NewsCategory catObj = new Object_ListItem_NewsCategory();
 			DBHandler_Category dbH = new DBHandler_Category(this);

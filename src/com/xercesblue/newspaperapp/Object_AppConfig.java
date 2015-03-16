@@ -13,8 +13,8 @@ public class Object_AppConfig {
 	
 
 	private String serverPath;
-	private String newsImagesPath;
-	private String categoryImagesPath;
+	//private String newsImagesPath;
+	//private String categoryImagesPath;
 	private Context context;
 	
 	private final String KEY_APP_CONFIG = "appConfig";
@@ -60,6 +60,19 @@ public class Object_AppConfig {
 		}
 
 		this.theme = theme;
+	}
+	
+	public int getRootCatId() {
+		if(prefs != null) 
+			return prefs.getInt("appConfig_RootCatId",1);
+		else
+			return 1;
+	}
+	public void setRootCatId(int rootCatId) {
+		if (editor != null) {
+			editor.putInt("appConfig_RootCatId", rootCatId);
+			editor.commit();
+		}
 	}
 	
 	public float getFontFactor() {
@@ -116,6 +129,11 @@ public class Object_AppConfig {
 		this.serverPath = serverPath;
 	}
 	
+	/* Sending full path fro server now
+	  
+	 
+	
+	
 	public String getNewsImagesPath() {
 		if(prefs != null)
 			newsImagesPath = prefs.getString("appConfig_NewsImagesPath", Globals.DEFAULT_APP_NEWS_IMAGES_PATH);
@@ -124,15 +142,6 @@ public class Object_AppConfig {
 		
 		return newsImagesPath;
 	}
-	public void setNewsImagesPath(String newsImagesPath) {
-		if (editor != null) {
-			editor.putString("appConfig_NewsImagesPath", newsImagesPath);
-			editor.commit();
-		}
-		
-		this.newsImagesPath = newsImagesPath;
-	}
-	
 	public String getCategoryImagesPath() {
 		if(prefs != null)
 			categoryImagesPath = prefs.getString("appConfig_CatImagesPath", Globals.DEFAULT_APP_CAT_IMAGES_PATH);
@@ -140,14 +149,6 @@ public class Object_AppConfig {
 			categoryImagesPath = Globals.DEFAULT_APP_CAT_IMAGES_PATH;
 		
 		return categoryImagesPath;
-	}
-	public void setCategoryImagesPath(String categoryImagesPath) {
-		if (editor != null) {
-			editor.putString("appConfig_CatImagesPath", categoryImagesPath);
-			editor.commit();
-		}
-		
-		this.categoryImagesPath = categoryImagesPath;
 	}
 	
 	public String getNewsImagesFullPath() {
@@ -159,4 +160,27 @@ public class Object_AppConfig {
 		
 		return getServerPath()+getCategoryImagesPath();
 	}
+	
+
+	public void setNewsImagesPath(String newsImagesPath) {
+		if (editor != null) {
+			editor.putString("appConfig_NewsImagesPath", newsImagesPath);
+			editor.commit();
+		}
+		
+		this.newsImagesPath = newsImagesPath;
+	}
+	
+	
+	public void setCategoryImagesPath(String categoryImagesPath) {
+		if (editor != null) {
+			editor.putString("appConfig_CatImagesPath", categoryImagesPath);
+			editor.commit();
+		}
+		
+		this.categoryImagesPath = categoryImagesPath;
+	}
+		*/
+	
+	
 }
