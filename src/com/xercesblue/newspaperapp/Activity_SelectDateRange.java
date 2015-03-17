@@ -160,10 +160,10 @@ public class Activity_SelectDateRange extends Activity_Parent {
 	private void updateStartDisplay() {
 		pDisplayStartDate.setText(
 				new StringBuilder()
-				.append(pStartDay).append("/")
-				// Month is 0 based so add 1
-				.append(pStartMonth + 1).append("/")
-				.append(pStartYear).append(" "));
+		.append(Globals.getTwoDigitNo(pStartDay)).append("-")
+		// Month is 0 based so add 1
+		.append(Globals.getTwoDigitNo(pStartMonth + 1)).append("-")
+		.append(Globals.getTwoDigitNo(pStartYear)));
 		
 		if(pEndYear == 0){
 			pEndYear = pStartYear;
@@ -203,11 +203,12 @@ public class Activity_SelectDateRange extends Activity_Parent {
 	private void updateEndDisplay() {
 		pDisplayEndDate.setText(
 				new StringBuilder()
-				.append(pEndDay).append("/")
+				.append(Globals.getTwoDigitNo(pEndDay)).append("-")
 				// Month is 0 based so add 1
-				.append(pEndMonth + 1).append("/")
-				.append(pEndYear).append(" "));
+				.append(Globals.getTwoDigitNo(pEndMonth + 1)).append("-")
+				.append(Globals.getTwoDigitNo(pEndYear)));
 	}
+	
 	
 	public void btnGetNewsClick(View v){
 		
@@ -216,8 +217,8 @@ public class Activity_SelectDateRange extends Activity_Parent {
 					Activity_DateWiseNewsList.class);
 
 			i.putExtra("catId", selectedCatId);
-			i.putExtra("startDate", pStartDay +"-"+pStartMonth+1 +"-"+pStartYear);
-			i.putExtra("endDate", pEndDay +"-"+pEndMonth+1 +"-"+pEndYear);
+			i.putExtra("startDate", pDisplayStartDate.getText());
+			i.putExtra("endDate", pDisplayEndDate.getText());
 			
 			startActivity(i);
 		}
@@ -228,6 +229,9 @@ public class Activity_SelectDateRange extends Activity_Parent {
 		if( pDisplayStartDate.getText() == null || pDisplayStartDate.getText().toString().trim().equals("Select")){
 			returnVal = false;
 			Toast.makeText(this, "Please select start date", Toast.LENGTH_SHORT).show();
+		}else if( pDisplayEndDate.getText() == null || pDisplayEndDate.getText().toString().trim().equals("Select")){
+			returnVal = false;
+			Toast.makeText(this, "Please select end date", Toast.LENGTH_SHORT).show();
 		}else if(selectedCatId == -1){
 			returnVal = false;
 			Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();

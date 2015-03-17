@@ -265,6 +265,10 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
 				response.toString());
 		listNewsItemServer = parserObject.getParsedJsonMainNews(catId);
+		if (!isPullToRefresh) {
+			Globals.hideLoadingDialog(mDialog);
+
+		}
 		if (listNewsItemServer == null || listNewsItemServer.size() == 0) {
 			if (!isPullToRefresh) {
 				Globals.showAlertDialogOneButton("News Not Found",
@@ -276,10 +280,7 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 			
 			return;
 		}
-		if (!isPullToRefresh) {
-			Globals.hideLoadingDialog(mDialog);
-
-		}
+		
 		
 		getListData().addAll(listNewsItemServer);
 		

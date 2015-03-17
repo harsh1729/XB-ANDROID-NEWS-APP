@@ -425,4 +425,12 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 		 
 
 	}
+	
+	public static String getTwoDigitNo(int no){
+		if(no>=10 || no<-9)
+			return no +"";
+		
+		return "0"+no;
+		
+	}
 }
