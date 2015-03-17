@@ -135,43 +135,70 @@
            
        </LinearLayout>
        
+       <TextView
+            android:id="@+id/txtChooseCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/app_transparent"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/txt_choose_cat"
+            android:textColor="@color/app_red"
+            android:textSize="@dimen/font_lbl_small_medium" />
+
+        <LinearLayout
+            android:id="@+id/llytBottomLineChooseCat"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/app_red"
+            android:orientation="vertical" >
+        </LinearLayout>
+        
+        <LinearLayout 
+           android:id="@+id/llytChooseCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal">
+            
+           <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Category : "
+            android:textSize="@dimen/font_lbl_normal"/>
+           
+           <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7" 
+                    />
+           
+       </LinearLayout>
+        
        <Button 
            	android:id="@+id/btnGetNews"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
            	android:layout_height="wrap_content"
            	android:layout_gravity="center_horizontal"
-           	android:background="@drawable/selector_bg_button"
-           	android:textColor="@color/app_white"
+           	android:background="@drawable/selector_bg_offwhite"
+           	android:textColor="@drawable/selector_text_color_black_to_white"
+           	android:layout_marginTop="20dp"
            	android:paddingBottom="12dp"
         	android:paddingLeft="12dp"
         	android:paddingRight="12dp"
        		android:paddingTop="12dp"
            	android:text="Get News"
+           	android:textSize="@dimen/font_lbl_normal"
            	android:onClick="btnGetNewsClick"
            	/>
        
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/listDateWiseNews"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llytChooseDate"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/app_transparent"
-        android:cacheColorHint="#00000000"
-        android:divider="@color/app_black"
-        android:dividerHeight="0dp"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="false"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:listSelector="@color/app_transparent"
-        android:padding="0dp"
-        android:smoothScrollbar="true" >
-    </ListView>
 
 </RelativeLayout>

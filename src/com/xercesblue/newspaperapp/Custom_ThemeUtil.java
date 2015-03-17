@@ -138,6 +138,8 @@ public class Custom_ThemeUtil
 		
 		TextView txtChooseDate = (TextView)activity.findViewById(R.id.txtChooseDate);
 		LinearLayout llytLine = (LinearLayout)activity.findViewById(R.id.llytBottomLineChooseDate);
+		TextView txtChooseCat = (TextView)activity.findViewById(R.id.txtChooseCat);
+		LinearLayout llytLineCat = (LinearLayout)activity.findViewById(R.id.llytBottomLineChooseCat);
 		ImageButton imgBtnCalStart = (ImageButton)activity.findViewById(R.id.btnStartDate);
 		ImageButton imgBtnCalEnd = (ImageButton)activity.findViewById(R.id.btnEndDate);
 		String imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
@@ -148,7 +150,11 @@ public class Custom_ThemeUtil
 		case THEME_YELLOW_VALUE:		
 			
 			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_yellow));
-			llytLine.setBackgroundResource(R.drawable.bg_yellow_gradient);			
+			llytLine.setBackgroundResource(R.drawable.bg_yellow_gradient);
+			
+			txtChooseCat.setTextColor(activity.getResources().getColor(R.color.app_yellow));
+			llytLineCat.setBackgroundResource(R.drawable.bg_yellow_gradient);
+			
 			imagePostFix = Custom_ThemeUtil.THEME_YELLOW_POST_TEXT;
 			
 			break;
@@ -156,7 +162,10 @@ public class Custom_ThemeUtil
 		case THEME_RED_VALUE:
 			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_red));
 			llytLine.setBackgroundResource(R.color.app_red);
-	
+			
+			txtChooseCat.setTextColor(activity.getResources().getColor(R.color.app_red));
+			llytLineCat.setBackgroundResource(R.color.app_red);
+			
 			imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
 
 			break;
@@ -164,6 +173,10 @@ public class Custom_ThemeUtil
 		case THEME_GREEN_VALUE:
 			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_green));
 			llytLine.setBackgroundResource(R.color.app_green);
+			
+			txtChooseCat.setTextColor(activity.getResources().getColor(R.color.app_green));
+			llytLineCat.setBackgroundResource(R.color.app_green);
+			
 			imagePostFix = Custom_ThemeUtil.THEME_GREEN_POST_TEXT;
 			
 			break;
@@ -172,6 +185,9 @@ public class Custom_ThemeUtil
 			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_darkblue));
 			llytLine.setBackgroundResource(R.color.app_darkblue);
 			
+			txtChooseCat.setTextColor(activity.getResources().getColor(R.color.app_darkblue));
+			llytLineCat.setBackgroundResource(R.color.app_darkblue);
+			
 			imagePostFix = Custom_ThemeUtil.THEME_BLUE_POST_TEXT;
 
 			break;
@@ -179,6 +195,9 @@ public class Custom_ThemeUtil
 		case THEME_BLACK_VALUE:
 			txtChooseDate.setTextColor(activity.getResources().getColor(R.color.app_black));
 			llytLine.setBackgroundResource(R.color.app_black);
+			
+			txtChooseCat.setTextColor(activity.getResources().getColor(R.color.app_black));
+			llytLineCat.setBackgroundResource(R.color.app_black);
 			
 			imagePostFix = Custom_ThemeUtil.THEME_BLACK_POST_TEXT;
 

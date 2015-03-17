@@ -4,12 +4,16 @@
     <string name="app_name">XB News</string>
     <string name="news_paper_name">XB News</string>
     <string name="image">image</string>
-	<string name="saved_news">Saved News</string>
-	<string name="app_settings">APPLICATION SETTINGS</string>
-	<string name="app_theme">Set Theme</string>
-	<string name="app_set_font">Set News Font Size</string>
-	<string name="app_set_notification">Set Notification Alert</string>
-	<string name="app_sample_font">Sample Text</string>
-	<string name="app_support_feedback">SUPPORT &amp; FEEDBACK</string>
-	<string name="txt_choose_date">CHOOSE DATE FOR NEWS</string>
+    <string name="saved_news">Saved News</string>
+    <string name="app_settings">APPLICATION SETTINGS</string>
+    <string name="app_theme">Set Theme</string>
+    <string name="app_set_font">Set News Font Size</string>
+    <string name="app_set_notification">Set Notification Alert</string>
+    <string name="app_sample_font">Sample Text</string>
+    <string name="app_support_feedback">SUPPORT &amp; FEEDBACK</string>
+    <string name="txt_choose_date">CHOOSE DATE RANGE FOR NEWS</string>
+    <string name="txt_choose_cat">CHOOSE CATEGORY</string>
+    <string name="title_activity_activity__date_wise_news_list">Activity_DateWiseNewsList</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

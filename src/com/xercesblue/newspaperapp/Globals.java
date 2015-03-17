@@ -116,10 +116,41 @@ public class Globals {
 			        
 			        return mParams;
 	}
-	
-	static String getURLPushNotification(String gcmId,int appId){
+static Map<String, String> getParams_NewsByCategoryDateWise(int catId,String callType,int lastNewsId,int limit,String startDate,String endDate ){
 		
-		return  DEFAULT_APP_SERVER_PATH+"pushNotification/registerPushNotificationUser.php?gcmId="+gcmId+"&AppId="+appId;
+		
+		HashMap<String, String> mParams = new HashMap<String, String>();
+			        mParams.put("catid", catId+"");
+			        mParams.put("calltype", callType);
+			        mParams.put("lastnewsid", lastNewsId+"");
+			        mParams.put("limit", limit+"");
+			        mParams.put("startdate", startDate+"");
+			        mParams.put("enddate", endDate+"");
+			        Log.i("DARSH", "getParams_NewsByCategory --->" + mParams);
+			        
+			        return mParams;
+	}
+	
+	static String getURL_NewsDetail(){ //int catId , int lastNewsId, String callType
+		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
+		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		
+		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_news_detail");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
+		return  DEFAULT_APP_SERVER_PATH+"news/mob_get_news_detail";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		
+		//Calltype : fresh,new,old
+	}
+
+	static Map<String, String> getParams_NewsDetail(int newsId){	
+		HashMap<String, String> mParams = new HashMap<String, String>();
+			        mParams.put("newsid", newsId+"");			        
+			        Log.i("DARSH", "getParams_NewsDetail --->" + mParams);
+			        
+			        return mParams;
+	}
+	static String getURLPushNotification(String gcmId,int appId){
+		//DEFAULT_APP_SERVER_PATH
+		return  "http://xercesblue.in/newsentry/pushNotification/registerPushNotificationUser.php?gcmId="+gcmId+"&AppId="+appId;
 	}
 	
 	@SuppressLint("NewApi")

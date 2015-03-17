@@ -77,7 +77,12 @@ public class DBHandler_SubNews extends SQLiteOpenHelper {
 		 return list;
 	 }
 	 
-	 
+	 public void insertSubNewsItemList(ArrayList<Object_SubNewsItem> list) {
+
+			SQLiteDatabase db = this.getWritableDatabase();
+			insertSubNewsItemList(list, db);
+			
+	 }
 	 public void insertSubNewsItemList(ArrayList<Object_SubNewsItem> list ,SQLiteDatabase db )
 	 {
 		 ContentValues values = new ContentValues();

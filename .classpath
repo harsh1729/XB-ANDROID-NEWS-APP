@@ -9,6 +9,5 @@
 	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/NineOldAndroid-2.4.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/picasso-2.3.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/gcm.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

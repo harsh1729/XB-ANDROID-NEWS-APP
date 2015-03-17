@@ -127,7 +127,50 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 		}
 
 		db.close();
+		setRootNewsOnTop(con, Cat_group);
 		
+		return Cat_group;
+
+	}
+
+	public ArrayList<Object_Category> getAllCategories(Context con) {
+
+		Log.i("HARSH", " getAllCategories called!");
+		String selectQuery = "select * from " + TABLE_CATEGORY ;
+
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		ArrayList<Object_Category> Cat_group = new ArrayList<Object_Category>();
+
+		Cursor cur = db.rawQuery(selectQuery, null);
+		if (cur != null) {
+			if (cur.moveToFirst()) {
+				do {
+					System.out.println(cur.getString(cur
+							.getColumnIndex(KEY_NAME)));
+					Object_Category catParent = new Object_Category();
+					catParent.setName(cur.getString(cur
+							.getColumnIndex(KEY_NAME)));
+					catParent.setId(cur.getInt(cur.getColumnIndex(KEY_ID)));
+					catParent.setParentId(cur.getInt(cur.getColumnIndex(KEY_PARENT_ID)));
+					catParent.setImage(Globals.byteArrayToBitmap(cur
+							.getBlob(cur.getColumnIndex(KEY_IMAGE))));
+
+					Cat_group.add(catParent);
+
+				} while (cur.moveToNext());
+			}
+		}
+
+		db.close();
+		
+		setRootNewsOnTop(con, Cat_group);
+		
+		return Cat_group;
+
+	}
+	
+	private void setRootNewsOnTop(Context con ,ArrayList<Object_Category> Cat_group){
 		for(int i = 0; i<Cat_group.size();i++){
 			Object_Category catObj = Cat_group.get(i);
 			if(catObj != null){
@@ -141,11 +184,7 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 				}
 			}
 		}
-		return Cat_group;
-
 	}
-
-	
 
 	private void clearCategoryTable(SQLiteDatabase db) {
 		String deleteall = "delete from " + TABLE_CATEGORY;

@@ -626,7 +626,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
 				response.toString());
-		listNewsItemServer = parserObject.getParsedJson(catId);
+		listNewsItemServer = parserObject.getParsedJsonMainNews(catId);
 
 		if (!isPullToRefresh) {
 			Globals.hideLoadingDialog(mDialog);
@@ -639,6 +639,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 				Globals.showAlertDialogOneButton("News Not Found",
 						"Please try after some time.", this, "OK", null, false);
 			}
+		}else if(listNewsItemServer == null || listNewsItemServer.size() == 0){
+			Toast.makeText(getApplicationContext(), "No more news", Toast.LENGTH_SHORT).show();
 		}
 
 		DBHandler_MainNews dbH = new DBHandler_MainNews(getApplicationContext());

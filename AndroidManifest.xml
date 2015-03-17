@@ -8,7 +8,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
-     <permission
+    <permission
         android:name="com.xercesblue.newspaperapp.permission.C2D_MESSAGE"
         android:protectionLevel="signature" >
     </permission>
@@ -19,83 +19,81 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.xercesblue.newspaperapp.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.xercesblue.newspaperapp.Custom_VolleyAppController"
+        android:name=".Custom_VolleyAppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_Splash"
+            android:name=".Activity_Splash"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
-           
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_Home"
+            android:name=".Activity_Home"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_NewCatWise"
+            android:name=".Activity_NewCatWise"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Single_news_show"
+            android:name=".Single_news_show"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_NewsDetail"
+            android:name=".Activity_NewsDetail"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.ChildAnimationExample"
+            android:name=".ChildAnimationExample"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_ZoomedImage"
+            android:name=".Activity_ZoomedImage"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_SavedNews"
+            android:name=".Activity_SavedNews"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_Settings"
+            android:name=".Activity_Settings"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xercesblue.newspaperapp.Activity_SelectDateRange"
+            android:name=".Activity_SelectDateRange"
             android:configChanges="orientation"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
-        
-        <service android:name="com.xercesblue.newspaperapp.GCMIntentService" />
+
+        <service android:name=".GCMIntentService" />
 
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
@@ -107,9 +105,11 @@
                 <category android:name="com.xercesblue.newspaperapp" />
             </intent-filter>
         </receiver>
-        
+
+        <activity
+            android:name=".Activity_DateWiseNewsList"
+            android:label="@string/title_activity_activity__date_wise_news_list" >
+        </activity>
     </application>
-    
-    
 
 </manifest>

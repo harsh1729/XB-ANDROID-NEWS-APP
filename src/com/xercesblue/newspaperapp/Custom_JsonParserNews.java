@@ -13,17 +13,17 @@ import android.util.Log;
 public class Custom_JsonParserNews {
 
 	private String jsonString;
-	private ArrayList<Object_ListItem_MainNews> listNews;
+	//private  listNews;
 
 	public Custom_JsonParserNews(String jsonString) {
 		this.jsonString = jsonString;
 	}
-	public ArrayList<Object_ListItem_MainNews> getParsedJson(int catId)
+	public ArrayList<Object_ListItem_MainNews> getParsedJsonMainNews(int catId)
 	{
-
+		ArrayList<Object_ListItem_MainNews> listNews = new ArrayList<Object_ListItem_MainNews>();
+		
 		if(jsonString != null && !jsonString.trim().equals(""))
 		{
-			listNews = new ArrayList<Object_ListItem_MainNews>();
 			try 
 			{
 				JSONArray mainArray = new JSONArray(jsonString);
@@ -73,7 +73,8 @@ public class Custom_JsonParserNews {
 					  
 					
 					if(jsonObjNews.has("linked_news") && news_id > 0){
-					JSONArray subNewsArray = jsonObjNews.getJSONArray("linked_news");
+					//JSONArray subNewsArray = jsonObjNews.getJSONArray("linked_news");
+					/*
 					ArrayList<Object_SubNewsItem> listSubNews = new ArrayList<Object_SubNewsItem>();
 					
 					for(int j=0;j<subNewsArray.length();j++)
@@ -104,9 +105,12 @@ public class Custom_JsonParserNews {
 						}
 						
 						listSubNews.add(objSubNews);
-					}
+						
+						}
+					
 
 					objMainNews.setListSubNews(listSubNews);
+					*/
 					}
 					listNews.add(objMainNews);
 				} 
@@ -117,6 +121,58 @@ public class Custom_JsonParserNews {
 			}
 		}
 		Log.i("DARSH", "COunt of NEws : "+ listNews.size());
+		return listNews;
+	}
+	
+	public ArrayList<Object_SubNewsItem> getParsedJsonSubNews(int parentNewsId)
+	{
+		ArrayList<Object_SubNewsItem> listNews = new ArrayList<Object_SubNewsItem>();
+		if(jsonString != null && !jsonString.trim().equals(""))
+			try 
+			{
+				JSONArray mainArray = new JSONArray(jsonString);
+				if(mainArray != null)
+				for(int i=0;i<mainArray.length();i++)
+				{
+					Object_SubNewsItem objSubNews = new Object_SubNewsItem();
+
+					JSONObject jsonObjNews = mainArray.getJSONObject(i);
+					
+
+					int news_id = -1;
+					
+					if(jsonObjNews.has("id")){
+						news_id = jsonObjNews.getInt("id");
+						objSubNews.setNewsId(news_id);
+					}
+					objSubNews.setNewsParentId(parentNewsId);
+									
+					if(jsonObjNews.has("heading")){
+						objSubNews.setNewsHeading(jsonObjNews.getString("heading").trim());
+					}
+					if(jsonObjNews.has("content")){
+						objSubNews.setNewsContent(jsonObjNews.getString("content").trim());
+					}
+					if(jsonObjNews.has("image")){
+						objSubNews.setNewsImagePath(jsonObjNews.getString("image").trim());
+					}
+					
+					if(jsonObjNews.has("imgtagline")){
+						objSubNews.setNewsImageTagline(jsonObjNews.getString("imgtagline").trim());
+					}
+					
+					if(jsonObjNews.has("video")){
+						objSubNews.setNewsVideo(jsonObjNews.getString("video").trim());
+					}
+						 
+					listNews.add(objSubNews);
+				} 
+			} 
+			catch (JSONException e) 
+			{
+				e.printStackTrace();
+			}
+		
 		return listNews;
 	}
 }
