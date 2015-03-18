@@ -42,6 +42,9 @@ public class Globals {
 	public static final String VSERV_BANNER_ZONE_ID = "";
 	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 10;
 	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
+	public final static String APP_TITLE = "Seema Sandesh News App";
+	public final static String APP_PNAME = "com.xercesblue.onlinebankexampo";
+	public final static String SHARE_URL = "http://xercesblue.in/download/androidApp.php?id=5";
 	/* To be changed with each client   */
 	
 	public static final String DEFAULT_APP_SERVER_PATH= "http://www.newstest2.tk/newsci/client_requests/";//"http://xercesblue.in/newsentry/";
@@ -90,7 +93,7 @@ public class Globals {
 			        mParams.put("clientid", CLIENT_ID+"");
 			        mParams.put("catversion", catVersionId+"");
 			        mParams.put("appconfigversion", appVersionId+"");
-			        
+			        mParams.put("limit", Globals.FINAL_NEWS_LIMIT_FIRST_CALL+"");
 			        
 			        return mParams;
 	}
@@ -104,6 +107,15 @@ public class Globals {
 		//Calltype : fresh,new,old
 	}
 
+	static String getURL_ContactUs(){ //int catId , int lastNewsId, String callType
+		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
+		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		
+		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_contact_us");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
+		return  DEFAULT_APP_SERVER_PATH+"news/mob_contact_us";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		
+		//Calltype : fresh,new,old
+	}
 	static Map<String, String> getParams_NewsByCategory(int catId,String callType,int lastNewsId,int limit){
 		
 		
@@ -131,6 +143,19 @@ static Map<String, String> getParams_NewsByCategoryDateWise(int catId,String cal
 			        return mParams;
 	}
 	
+static Map<String, String> getParams_NewsByContactUs(String imeiNo,String contactDetail, String message , String name){
+	
+	
+	HashMap<String, String> mParams = new HashMap<String, String>();
+		        mParams.put("imei", imeiNo);
+		        mParams.put("contact_detail", contactDetail);
+		        mParams.put("message", message);
+		        mParams.put("name", name);
+		        
+		        Log.i("DARSH", "getParams_NewsByContactUs --->" + mParams);
+		        
+		        return mParams;
+}
 	static String getURL_NewsDetail(){ //int catId , int lastNewsId, String callType
 		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
 		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
@@ -152,6 +177,11 @@ static Map<String, String> getParams_NewsByCategoryDateWise(int catId,String cal
 		//DEFAULT_APP_SERVER_PATH
 		return  "http://xercesblue.in/newsentry/pushNotification/registerPushNotificationUser.php?gcmId="+gcmId+"&AppId="+appId;
 	}
+	
+	public static String getShareAppMsg() {
+		return "Friends, check out this awesome news app . ";
+	}
+	
 	
 	@SuppressLint("NewApi")
 	static public Point getScreenSize(Activity currentActivity){

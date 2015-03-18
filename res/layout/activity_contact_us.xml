@@ -2,11 +2,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlytRoot"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <include layout="@layout/app_header" />
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llytHeader"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp" >
+        
+    <LinearLayout
+            android:id="@+id/llytMainBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_rounded"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
+            <TextView
+                android:id="@+id/txtCompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt_company_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/app_black" />
+
+            <TextView
+                android:id="@+id/txtWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt_company_website"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/app_black" />
+
+            <TextView
+                android:id="@+id/txtPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt_company_phone"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/app_black" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Email: support@xercesblue.in"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/app_black" />
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="write your name" >
+            </EditText>
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="your email id or mobile no.." >
+            </EditText>
+            <EditText
+                android:id="@+id/edtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="write a message to us ..." >
+            </EditText>
+
+            <Button
+                android:id="@+id/btnSendMesage"
+            	android:layout_width="match_parent"
+           		android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_offwhite"
+           		android:textColor="@drawable/selector_text_color_black_to_white"
+           		android:layout_marginTop="20dp"
+           		android:paddingBottom="12dp"
+        		android:paddingLeft="12dp"
+        		android:paddingRight="12dp"
+       			android:paddingTop="12dp"
+           		android:text="Send"
+           		android:textSize="@dimen/font_lbl_normal"
+                android:onClick="onClickSendMessage"
+                android:textStyle="bold" />
+        </LinearLayout>
+ </ScrollView>
 </RelativeLayout>

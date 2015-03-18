@@ -20,7 +20,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.xercesblue.newspaperapp.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	
     <application
         android:name=".Custom_VolleyAppController"
         android:allowBackup="true"
@@ -107,20 +108,16 @@
         </receiver>
 
         <activity
-            android:name=".Activity_DateWiseNewsList"
-            android:label="@string/title_activity_activity__date_wise_news_list" >
+            android:name=".Activity_DateWiseNewsList" >
         </activity>
         <activity
-            android:name=".Activity_ContactUs"
-            android:label="@string/title_activity_activity__contact_us" >
+            android:name=".Activity_ContactUs" >
         </activity>
         <activity
-            android:name=".Activity_TermsOfUSe"
-            android:label="@string/title_activity_activity__terms_of_use" >
+            android:name=".Activity_TermsOfUSe" >
         </activity>
         <activity
-            android:name=".Activity_AboutUs"
-            android:label="@string/title_activity_activity__about_us" >
+            android:name=".Activity_AboutUs" >
         </activity>
     </application>
 

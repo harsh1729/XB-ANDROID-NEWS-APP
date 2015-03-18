@@ -37,7 +37,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.extras.SoundPullEventListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;;
 
 public class Activity_Home extends SlidingFragmentActivity {
 
@@ -146,6 +146,12 @@ public class Activity_Home extends SlidingFragmentActivity {
 		// Get categories from Server in case of change along with Application
 		// Configuration
 		serverCallForCategoriesAndNews();
+		
+		Custom_ConnectionDetector cd = new Custom_ConnectionDetector(this);
+		if(cd.isConnectingToInternet()){
+			 Custom_AppRater.app_launched(this);
+
+		}
 		
 	}
 

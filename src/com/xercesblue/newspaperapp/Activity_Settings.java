@@ -1,6 +1,8 @@
 package com.xercesblue.newspaperapp;
 
 
+
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -186,9 +188,47 @@ public class Activity_Settings extends Activity_Parent {
 	    }
 	}
 	public void onSelectSettingOptions(View view) {
-		Toast.makeText(this, "Development in progress", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "Development in progress", Toast.LENGTH_SHORT).show();
+		
+		Class<?> nextClass = null;
+		switch (view.getId()) {
+		case R.id.txtAboutUs:
+			nextClass = Activity_AboutUs.class;
+			break;
+		case R.id.txtTerms:
+			nextClass = Activity_TermsOfUSe.class;
+			break;
+		case R.id.txtShareUs:
+			shareClick();
+			break;
+		case R.id.txtRateUs:
+			Custom_ConnectionDetector cd = new Custom_ConnectionDetector(this);
+			if(cd.isConnectingToInternet()){
+				 Custom_AppRater.rateIt(this);
+
+			}
+			break;
+		case R.id.txtContactUs:
+			nextClass = Activity_ContactUs.class;
+			break;
+			
+		}
+		if(nextClass != null){
+			Intent i = new Intent(this, nextClass);
+			startActivity(i);
+		}
+		
+		
 	}
 	
-	
+public void shareClick(){
+		
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, Globals.getShareAppMsg()+ "\n "+Globals.SHARE_URL);
+		//sendIntent.setPackage("com.whatsapp");
+		sendIntent.setType("text/plain");
+		startActivity(sendIntent);
+	}
 	
 }

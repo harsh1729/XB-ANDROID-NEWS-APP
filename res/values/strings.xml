@@ -13,10 +13,16 @@
     <string name="app_support_feedback">SUPPORT &amp; FEEDBACK</string>
     <string name="txt_choose_date">CHOOSE DATE RANGE FOR NEWS</string>
     <string name="txt_choose_cat">CHOOSE CATEGORY</string>
-    <string name="title_activity_activity__date_wise_news_list">Activity_DateWiseNewsList</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_activity__contact_us">Activity_ContactUs</string>
-    <string name="title_activity_activity__terms_of_use">Activity_TermsOfUSe</string>
-    <string name="title_activity_activity__about_us">Activity_AboutUs</string>
+    <string name="txt_about_us">Write something long about newspaper</string>
+    <string name="txt_company_name">Xerces Blue Software Solutions Pvt. Ltd.</string>
+    <string name="txt_company_website">www.xercesblue.in</string>
+    <string name="txt_company_phone">Ph : 01542470701</string>
+    <string name="txt_terms_of_use">TERMS OF SERVICE\n\nPlease read this document carefully before using this app. This license provides important information concerning the app.
+        \n\n1.All the questions and information provided in this app are gathered from various resources including internet and we do not express any ownership of these, although we have taken extra care to keep the information accurate but we not take the responsibility in case of any faulty information or question.
+        \n\n2.In this free app advertisements will be shown, when you click on advertisement you will be redirected to a third party\'s webpage and they may use certain of your information, including your email address, phone number and a list of apps on your device.TERMS OF SERVICE\n\nPlease read this document carefully before using this app. This license provides important information concerning the app.
+        \n\n1.All the questions and information provided in this app are gathered from various resources including internet and we do not express any ownership of these, although we have taken extra care to keep the information accurate but we not take the responsibility in case of any faulty information or question.
+        \n\n2.In this free app advertisements will be shown, when you click on advertisement you will be redirected to a third party\'s webpage and they may use certain of your information, including your email address, phone number and a list of apps on your device.</string>
+    
+    
 
 </resources>
