@@ -219,10 +219,12 @@ public class DBHandler_MainNews extends SQLiteOpenHelper {
 }
 
 public void clearNewsTable(int catID) {
+	
+	//TODO Optimize this query by joins
 	SQLiteDatabase db = this.getWritableDatabase();
 	System.out.println("empty table called");
 	String queryPostFix = " FROM " + TABLE_NEWS + " WHERE "
-			+ KEY_NEWS_CAT_ID + " = " + catID;
+			+ KEY_NEWS_CAT_ID + " = " + catID +" AND "+ KEY_NEWS_ID +" NOT IN ( SELECT "+KEY_SAVED_NEWS_NEWS_ID +" FROM "+TABLE_SAVED_NEWS+")";
 	String deleteQuery = "DELETE " + queryPostFix;
 	String childQuery = "SELECT " + KEY_NEWS_ID + " " + queryPostFix;
 

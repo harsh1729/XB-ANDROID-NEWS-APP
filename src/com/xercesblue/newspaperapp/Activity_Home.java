@@ -327,10 +327,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 						Activity_NewsDetail.class);
 
 				i.putExtra("newsId", getListData().get(pos - 1).getId());
-				// LinearLayout ll =
-				// (LinearLayout)findViewById(R.id.llytHomeHeader);
-				// if(ll!= null && ll.getLayoutParams()!=null)
-				// i.putExtra("headerHeight", ll.getHeight());
+				i.putExtra("navFrom", Activity_NewsDetail.NAV_FROM_HOME);
+				
 				startActivity(i);
 			}
 
@@ -614,11 +612,11 @@ public class Activity_Home extends SlidingFragmentActivity {
 	private void gotNewsResponce(JSONArray response, int catId,
 			Boolean isPullToRefresh) {
 
-		insertNewAndDeleteOldNews(response,catId,isPullToRefresh);
-		showNewsList(catId);
+		if(insertNewAndDeleteOldNews(response,catId,isPullToRefresh))
+			showNewsList(catId);
 	}
 
-	private void insertNewAndDeleteOldNews(JSONArray response, int catId,
+	private boolean insertNewAndDeleteOldNews(JSONArray response, int catId,
 			Boolean isPullToRefresh){
 		ArrayList<Object_ListItem_MainNews> listNewsItemServer;
 
@@ -635,16 +633,24 @@ public class Activity_Home extends SlidingFragmentActivity {
 			DBHandler_MainNews dbH = new DBHandler_MainNews(
 					getApplicationContext());
 			dbH.clearNewsTable(catId);
+			/*
 			if (listNewsItemServer == null || listNewsItemServer.size() == 0) {
 				Globals.showAlertDialogOneButton("News Not Found",
 						"Please try after some time.", this, "OK", null, false);
 			}
+			*/
 		}else if(listNewsItemServer == null || listNewsItemServer.size() == 0){
 			Toast.makeText(getApplicationContext(), "No more news", Toast.LENGTH_SHORT).show();
+			listViewNews.onRefreshComplete();
+			
+			return false;
 		}
 
 		DBHandler_MainNews dbH = new DBHandler_MainNews(getApplicationContext());
 		dbH.insertNewsItemList(listNewsItemServer);
+		
+		
+		return true;
 	}
 	private void showNewsList(final int catId) {
 
@@ -664,16 +670,19 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		Log.i("DARSH ", "Size of inserted news item"+listMainNewsdata.size());
 		
+		Object_ListItem_NewsCategory catObj = new Object_ListItem_NewsCategory();
+		DBHandler_Category dbH = new DBHandler_Category(this);
+		catObj.setCatName(dbH.getCategoryName(catId));
+
+		getListData().add(catObj);
+		
 		if(listMainNewsdata.size() > 0){
-			Object_ListItem_NewsCategory catObj = new Object_ListItem_NewsCategory();
-			DBHandler_Category dbH = new DBHandler_Category(this);
-			catObj.setCatName(dbH.getCategoryName(catId));
-
-			getListData().add(catObj);
-
 			for (Interface_ListItem object : listMainNewsdata) {
 				getListData().add(object);
 			}
+		}else{
+			Globals.showAlertDialogOneButton("News Not Found",
+					"Please try after some time.", this, "OK", null, false);
 		}
 
 		news_adaptor = new Custom_AdapterNewsList(Activity_Home.this,R.layout.row_item_news_list,

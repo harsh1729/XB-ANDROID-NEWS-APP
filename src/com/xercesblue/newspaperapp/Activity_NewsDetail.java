@@ -43,19 +43,22 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	int newsId;
 	private SliderLayout slider;
 
-	// int nextNewsId;
-	// int prevNewsId;
 	private String shareLink;
 	private ListView listViewOptions;
 	private ArrayList<Object_Options> listOptions;
 	private Object_ListItem_MainNews currentNewsItem;
-	// private Object_ListItem_MainNews nextNewsItem;
-	// private Object_ListItem_MainNews prevNewsItem;
 	private ArrayList<Object_SubNewsItem> listAllCurrentNewsItem;
 	private Boolean firstTime = true;
 	private ProgressDialog mDialog;
 	private LinearLayout sliderContainer;
+	
+	//private boolean comingFromHomeScreen = false;
+	
+	public final static int NAV_FROM_HOME =1;
+	public final static int NAV_FROM_SAVED_NEWS =2;
+	public final static int NAV_FROM_DATE_WISE =3;
 
+	private int navFrom = NAV_FROM_HOME;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,12 +66,6 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		initNewsDetail();
 	}
 
-	/*
-	 * @Override public void onWindowFocusChanged(boolean hasFocus) {
-	 * super.onWindowFocusChanged(hasFocus); if(firstTime){
-	 * 
-	 * firstTime = false; showNewsDeatils(); //handler.sendEmptyMessage(0); } }
-	 */
 
 	@Override
 	protected void onResume() {
@@ -77,7 +74,11 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		if(firstTime)
 		{ 
 			firstTime = false;
-			getNewsDetail();
+			if(navFrom == NAV_FROM_SAVED_NEWS){
+				showNewsDeatils();
+			}else{
+				getNewsDetail();
+			}
 		}
 	}
 
@@ -90,12 +91,11 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 			Globals.showAlertDialogError(this,
 					"Error Occured, Please try again");
 		}
+		
+		if (getIntent().hasExtra("navFrom"))
+			navFrom = getIntent().getIntExtra("navFrom", NAV_FROM_HOME);
+		
 
-		// headerHeight =
-		// getIntent().getIntExtra("headerHeight",Globals.getScreenSize(this).y/10);
-
-		// nextNewsId = -1;
-		// prevNewsId = -1;
 		sliderContainer = (LinearLayout) findViewById(R.id.llytSliderContainer);
 
 		ImageButton imgButtonBack = (ImageButton) (findViewById(R.id.imgHeaderBtnLeft));
@@ -168,19 +168,17 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	}
 
 	private void gotNewsDetailResponce(JSONArray response){
+		
 		ArrayList<Object_SubNewsItem> listNewsItemServer;
-
 		Log.i("DARSH", "gotNewsDetailResponce onResponse" + response);
-
 		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
 				response.toString());
-		listNewsItemServer = parserObject.getParsedJsonSubNews(newsId);
 
-		
-
+		listNewsItemServer = parserObject.getParsedJsonSubNews(newsId);	
+			
 		DBHandler_SubNews dbH = new DBHandler_SubNews(getApplicationContext());
 		dbH.insertSubNewsItemList(listNewsItemServer);
-		
+	
 		showNewsDeatils();
 	}
 	private void showNewsDeatils() {
@@ -231,11 +229,11 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		if (currentNewsItem != null) {
 			parentHeading = currentNewsItem.getHeading();
 		}
-		DBHandler_SubNews dbHSub = new DBHandler_SubNews(
+		
+			DBHandler_SubNews dbHSub = new DBHandler_SubNews(
 				Activity_NewsDetail.this);
-		listAllCurrentNewsItem = dbHSub
+			listAllCurrentNewsItem = dbHSub
 				.getAllSubNewsItem(newsId, parentHeading);
-
 		// Object_AppConfig objConfig = new Object_AppConfig(this);
 
 		if (currentNewsItem != null) {
@@ -291,7 +289,9 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 				// list.add(nextNewsItem);
 				// list.add(prevNewsItem);
-				createHorizontalNewsSlider();
+				
+				if(navFrom == NAV_FROM_HOME)
+					createHorizontalNewsSlider();
 			}
 		});
 	}

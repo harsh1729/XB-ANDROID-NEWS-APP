@@ -15,5 +15,8 @@
     <string name="txt_choose_cat">CHOOSE CATEGORY</string>
     <string name="title_activity_activity__date_wise_news_list">Activity_DateWiseNewsList</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_activity__contact_us">Activity_ContactUs</string>
+    <string name="title_activity_activity__terms_of_use">Activity_TermsOfUSe</string>
+    <string name="title_activity_activity__about_us">Activity_AboutUs</string>
 
 </resources>

@@ -231,14 +231,18 @@ public abstract class BaseSliderView {
 
 		
 		if (mUrl != null) {
-
-			rq = p.load(mUrl);
+			
+			if(!mUrl.trim().isEmpty())
+				rq = p.load(mUrl);
+			else if (getError() != 0) {
+				rq = p.load(getError());
+				}
 
 		} else if (mFile != null) {
 			rq = p.load(mFile);
-		} else if (mRes != null) {
-
-		} else {
+		}  else {
+			if (getError() != 0)
+				rq = p.load(getError());
 			return;
 		}
 

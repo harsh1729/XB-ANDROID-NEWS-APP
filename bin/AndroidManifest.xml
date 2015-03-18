@@ -110,6 +110,18 @@
             android:name=".Activity_DateWiseNewsList"
             android:label="@string/title_activity_activity__date_wise_news_list" >
         </activity>
+        <activity
+            android:name=".Activity_ContactUs"
+            android:label="@string/title_activity_activity__contact_us" >
+        </activity>
+        <activity
+            android:name=".Activity_TermsOfUSe"
+            android:label="@string/title_activity_activity__terms_of_use" >
+        </activity>
+        <activity
+            android:name=".Activity_AboutUs"
+            android:label="@string/title_activity_activity__about_us" >
+        </activity>
     </application>
 
 </manifest>

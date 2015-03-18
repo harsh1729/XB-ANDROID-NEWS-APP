@@ -31,6 +31,8 @@ public class Activity_SavedNews extends Activity_Parent {
 		listViewNews.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				
 				navigateToNewsDetail(position);
 			}
 		});
@@ -77,7 +79,7 @@ public class Activity_SavedNews extends Activity_Parent {
 					Activity_NewsDetail.class);
 			
 			i.putExtra("newsId", getListData().get(pos).getId());
-			
+			i.putExtra("navFrom", Activity_NewsDetail.NAV_FROM_SAVED_NEWS);
 			startActivity(i);
 			}
 		}

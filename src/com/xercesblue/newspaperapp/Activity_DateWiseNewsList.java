@@ -135,6 +135,8 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 						Activity_NewsDetail.class);
 
 				i.putExtra("newsId", getListData().get(pos - 1).getId());
+				i.putExtra("navFrom", Activity_NewsDetail.NAV_FROM_DATE_WISE);
+				
 				startActivity(i);
 			}
 
@@ -276,11 +278,14 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 
 			}else{
 				Toast.makeText(getApplicationContext(), "No more news", Toast.LENGTH_SHORT).show();
+				listViewNews.onRefreshComplete();
 			}
 			
 			return;
 		}
-		
+		//Insert Into database
+		DBHandler_MainNews dbH = new DBHandler_MainNews(getApplicationContext());
+		dbH.insertNewsItemList(listNewsItemServer);
 		
 		getListData().addAll(listNewsItemServer);
 		

@@ -56,6 +56,7 @@ public class TextSliderView extends BaseSliderView {
 		lpDesc.height = sliderDescHeight;
 		llytSliderDesc.setLayoutParams(lpDesc);
 		llytSliderDesc.setBackgroundResource(Custom_ThemeUtil.getThemeColorId(context));
+		
 		ImageView imgView = (ImageView) v
 				.findViewById(R.id.imgNewsDetailBig);
 		RelativeLayout.LayoutParams lpImg = new RelativeLayout.LayoutParams(
@@ -146,7 +147,7 @@ public class TextSliderView extends BaseSliderView {
 		
 
 		empty(R.drawable.loading_no_boundry);
-		//error(R.drawable.no_image);
+		error(R.drawable.no_image);
 		bindEventAndShow(v, imgView);
 		return v;
 	}

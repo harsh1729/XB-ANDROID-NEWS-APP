@@ -127,13 +127,15 @@ public class Activity_ZoomedImage extends Activity {
 		
 		 Picasso p = Picasso.with(this);
 		    RequestCreator rq = null;
-		 if(imageUrl!=null)
+		 if(imageUrl!=null && !imageUrl.trim().isEmpty())
 		 {
 			 rq = p.load(imageUrl);
 			 rq.resize(imgWidth, imgHeight);
 			 rq.centerInside();
 			 rq.noFade();
-		 }
+		 }else
+				rq = p.load(R.drawable.no_image);
+		 
 	     rq.into(currentImage, new Callback() {
 			
 			@SuppressLint("NewApi")
