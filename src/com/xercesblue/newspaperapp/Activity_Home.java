@@ -95,7 +95,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 	private void initHome() {
 
 		showLoadingScreen();
-		//new Custom_GCM_Register(this);
+		new Custom_GCM_Register(this);
 
 		
 		DBHandler_Main db = new DBHandler_Main(this);

@@ -78,23 +78,24 @@ public class Custom_ThemeUtil
 		RelativeLayout rlytRoot =(RelativeLayout) activity.findViewById(R.id.rlytRoot);
 		
 		TextView txtScreenHeading = ((TextView)activity.findViewById(R.id.txtHeader));
-		TextView txtUpdater1	 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater1));
-		TextView txtUpdater2 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater2));
-		TextView txtUpdater3 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater3));
+		
+		//TextView txtUpdater1	 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater1));
+		//TextView txtUpdater2 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater2));
+		//TextView txtUpdater3 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater3));
 
 		
 		if(currentTheme == THEME_YELLOW_VALUE){
 			llHeader.setBackgroundResource(R.color.app_black);
 			txtScreenHeading.setTextColor(activity.getResources().getColor(R.color.app_white));
-			txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_white));
-			txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_white));
-			txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_white));
+			//txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_white));
+			//txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_white));
+			//txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_white));
 		}else{
 			llHeader.setBackgroundResource(R.color.app_white);
 			txtScreenHeading.setTextColor(activity.getResources().getColor(R.color.app_black));
-			txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_black));
-			txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_black));
-			txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_black));
+			//txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_black));
+			//txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_black));
+			//txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_black));
 		}
 		
 		

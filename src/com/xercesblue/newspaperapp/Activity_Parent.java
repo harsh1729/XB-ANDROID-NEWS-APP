@@ -39,6 +39,19 @@ public class Activity_Parent extends Activity {
 		}else if(this.getClass() == Activity_SelectDateRange.class){
 			txtHeading.setText("Select Date");
 		}
+		else if(this.getClass() == Activity_AboutUs.class){
+			txtHeading.setText("About Us");
+		}
+		else if(this.getClass() == Activity_ContactUs.class){
+			txtHeading.setText("Contact Us");
+		}
+		
+		else if(this.getClass() == Activity_DateWiseNewsList.class){
+			txtHeading.setText("News By Date");
+		}
+		else if(this.getClass() == Activity_TermsOfUSe.class){
+			txtHeading.setText("Terms Of Use");
+		}
 		else if(this.getClass() == Activity_Settings.class){
 			txtHeading.setText("Settings");
 		}

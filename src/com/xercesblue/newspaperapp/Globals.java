@@ -47,7 +47,7 @@ public class Globals {
 	public final static String SHARE_URL = "http://xercesblue.in/download/androidApp.php?id=5";
 	/* To be changed with each client   */
 	
-	public static final String DEFAULT_APP_SERVER_PATH= "http://www.newstest2.tk/newsci/client_requests/";//"http://xercesblue.in/newsentry/";
+	public static final String DEFAULT_APP_SERVER_PATH= "http://xbnews.in/newsci/client_requests/";//"http://xercesblue.in/newsentry/";
 	//public static final String DEFAULT_APP_NEWS_IMAGES_PATH= "uploads/";
 	//public static final String DEFAULT_APP_CAT_IMAGES_PATH= "CategoryUploads/";
 	public static final String PREFIX_HOME_IMAGES="small_";
@@ -143,11 +143,12 @@ static Map<String, String> getParams_NewsByCategoryDateWise(int catId,String cal
 			        return mParams;
 	}
 	
-static Map<String, String> getParams_NewsByContactUs(String imeiNo,String contactDetail, String message , String name){
+static Map<String, String> getParams_NewsByContactUs(String device_uid,String contactDetail, String message , String name){
 	
 	
 	HashMap<String, String> mParams = new HashMap<String, String>();
-		        mParams.put("imei", imeiNo);
+		        mParams.put("clientid", CLIENT_ID+"");
+		        mParams.put("device_uid", device_uid);
 		        mParams.put("contact_detail", contactDetail);
 		        mParams.put("message", message);
 		        mParams.put("name", name);

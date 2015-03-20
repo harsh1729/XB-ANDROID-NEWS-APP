@@ -3,6 +3,7 @@
             android:id="@+id/llytHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
             android:padding="4dp"
             android:background="@color/app_white"
             android:layout_alignParentTop="true"
@@ -35,48 +36,48 @@
                 android:text="@string/news_paper_name"
                 android:textSize="@dimen/font_lbl_news_paper_name" />
 
-            <LinearLayout
-                android:id="@+id/llytHeaderUpdateContainer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:gravity="center_horizontal"
-                android:background="@color/app_transparent"
-                android:orientation="vertical" >
+<!--             <LinearLayout -->
+<!--                 android:id="@+id/llytHeaderUpdateContainer" -->
+<!--                 android:layout_width="0dp" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_weight="2.5" -->
+<!--                 android:gravity="center_horizontal" -->
+<!--                 android:background="@color/app_transparent" -->
+<!--                 android:orientation="vertical" > -->
 
-                <TextView
-                    android:id="@+id/txtHeaderUpdater1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-					android:ellipsize="end"
-                    android:text="Live"
-                    android:textSize="@dimen/font_lbl_very_small"
-                    android:background="@color/app_transparent"
-                    android:textStyle="bold" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/txtHeaderUpdater1" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:maxLines="1" -->
+<!-- 					android:ellipsize="end" -->
+<!--                     android:text="Live" -->
+<!--                     android:textSize="@dimen/font_lbl_very_small" -->
+<!--                     android:background="@color/app_transparent" -->
+<!--                     android:textStyle="bold" /> -->
 
-                <TextView
-                    android:id="@+id/txtHeaderUpdater2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-					android:ellipsize="end"
-                    android:text="IND Vs Sri"
-                    android:textSize="@dimen/font_lbl_very_small"
-                    android:background="@color/app_transparent"
-                    android:textStyle="bold" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/txtHeaderUpdater2" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:maxLines="1" -->
+<!-- 					android:ellipsize="end" -->
+<!--                     android:text="IND Vs Sri" -->
+<!--                     android:textSize="@dimen/font_lbl_very_small" -->
+<!--                     android:background="@color/app_transparent" -->
+<!--                     android:textStyle="bold" /> -->
 
-                <TextView
-                    android:id="@+id/txtHeaderUpdater3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="IND 255/44.3"
-                    android:maxLines="1"
-					android:ellipsize="end"
-                    android:textSize="@dimen/font_lbl_very_small" 
-                    android:background="@color/app_transparent"
-                    android:textStyle="bold"/>
-            </LinearLayout>
+<!--                 <TextView -->
+<!--                     android:id="@+id/txtHeaderUpdater3" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:text="IND 255/44.3" -->
+<!--                     android:maxLines="1" -->
+<!-- 					android:ellipsize="end" -->
+<!--                     android:textSize="@dimen/font_lbl_very_small"  -->
+<!--                     android:background="@color/app_transparent" -->
+<!--                     android:textStyle="bold"/> -->
+<!--             </LinearLayout> -->
              <ImageButton
                 android:id="@+id/imgHeaderBtnRight"
                 android:layout_width="0dp"
