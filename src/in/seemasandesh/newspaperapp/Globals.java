@@ -8,10 +8,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,6 +28,10 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+
 public class Globals {
 
 	public static final int APP_TRUE = 1;
@@ -44,7 +44,7 @@ public class Globals {
 	public static  String GCM_REG_ID = "";
 	public static final String VSERV_BILLBOARD_ZONE_ID = "";
 	public static final String VSERV_BANNER_ZONE_ID = "";
-	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 10;
+	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 20;
 	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
 	public final static String APP_TITLE = "Seema Sandesh News App";
 	public final static String APP_PNAME = "in.seemasandesh.newspaperapp";
@@ -482,7 +482,17 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 			else
 				rq = p.load(errorImgId);
 			
-			rq.into(iv);
+			rq.into(iv, new Callback() {
+				@Override
+				public void onSuccess() {
+					Log.i("DARSH", "Image Loaded");
+				}
+
+				@Override
+				public void onError() {
+					Log.e("DARSH", "Image Loaded ERRROR");
+				}
+			});
 		} catch (Exception e) {
 			Log.e("DARSH", "Error in loading image");
 		}

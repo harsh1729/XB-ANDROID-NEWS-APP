@@ -3,7 +3,7 @@
     android:id="@+id/llytLoadingContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_white"
+    android:background="@drawable/bg_white_gradient"
     android:onClick="onClickSpinnerView"
     android:orientation="vertical"
     android:visibility="gone" >
@@ -12,23 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3" >
-
-        <ImageView
-            android:id="@+id/imgViewLogoName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/logo_name" />
-
         <ImageView
             android:id="@+id/imgViewLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/imgViewLogoName"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo" />
+            android:src="@drawable/news_logo" />
+        <ImageView
+            android:id="@+id/imgViewLogoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgViewLogo"
+            android:layout_centerHorizontal="true"
+            android:background="@color/app_red"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/news_logo_name" />
     </RelativeLayout>
 
     <LinearLayout

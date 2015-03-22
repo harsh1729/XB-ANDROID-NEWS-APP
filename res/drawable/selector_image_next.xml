@@ -4,5 +4,5 @@
 <!--         android:drawable="@drawable/next_btn_very_light_gray" />  -->
     <item android:state_pressed="true"
         android:drawable="@drawable/next_btn_dark_gray" /> 
-    <item android:drawable="@drawable/next_btn_light_gray" />  
+    <item android:drawable="@drawable/next_btn_white"></item>
 </selector>

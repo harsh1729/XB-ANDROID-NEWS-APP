@@ -13,6 +13,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.games.internal.GamesLog;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -47,7 +48,7 @@ public class TextSliderView extends BaseSliderView {
 		//int containerWidth = pnt.x;
 		
 		int imgMainHeight = (int) ((int)containerHeight/2.5);
-		int sliderDescHeight = 36;//containerHeight/24;
+		int sliderDescHeight = (int) (24* context.getResources().getDisplayMetrics().density);//containerHeight/24;
 		
 		LinearLayout llytSliderDesc = (LinearLayout) v
 				.findViewById(R.id.description_layout);
@@ -153,18 +154,19 @@ public class TextSliderView extends BaseSliderView {
 
 
 	protected void setImage(ImageView targetImageView ,String mUrl){
+		
+		if(mUrl == null || mUrl.trim().isEmpty()){
+			targetImageView.setVisibility(View.GONE);
+			return ;
+		}
+		
+		Globals.loadImageIntoImageView(targetImageView, mUrl, mContext, R.drawable.loading_image_large, R.drawable.no_image_large);
+		/*
 		Picasso p = Picasso.with(context);
 
 		RequestCreator rq = null;
-		if (mUrl != null) {
-
-			rq = p.load(mUrl);
-
-		} 
-
-		if (rq == null) {
-			return;
-		}
+		
+		rq = p.load(mUrl);
 
 		rq.placeholder(R.drawable.loading_image_large);
 		rq.error(R.drawable.no_image_large);
@@ -183,6 +185,7 @@ public class TextSliderView extends BaseSliderView {
 				
 			}
 		});
+		*/
 	}
 	/*
 	public String getNextHeading() {

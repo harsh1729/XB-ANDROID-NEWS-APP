@@ -165,14 +165,14 @@ public class Activity_Home extends SlidingFragmentActivity {
 		llConatiner.setEnabled(false);
 
 		int screenWidth = Globals.getScreenSize(this).x;
-		int logoWidth = screenWidth/100 * 17 ;// 17%
-		int nameWidth = screenWidth/100 * 99 ;// 85%
+		int logoWidth = screenWidth/100 * 15 ;// 17%
+		int nameWidth = screenWidth/100 * 90 ;// 85%
 
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
-		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
+		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo, options);
 		logo = Globals.scaleToWidth(logo,logoWidth);
-		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.logo_name, options);
+		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_name, options);
 		name = Globals.scaleToWidth(name,nameWidth);
 
 		imgViewLogo.setImageBitmap(logo);

@@ -34,16 +34,14 @@ import com.android.volley.Response.Listener;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
+
 
 public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		BaseSliderView.OnSliderClickListener {
 	int newsId;
 	private SliderLayout slider;
 
-	//private String shareLink;
+	// private String shareLink;
 	private ListView listViewOptions;
 	private ArrayList<Object_Options> listOptions;
 	private Object_ListItem_MainNews currentNewsItem;
@@ -51,14 +49,15 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	private Boolean firstTime = true;
 	private ProgressDialog mDialog;
 	private LinearLayout sliderContainer;
-	
-	//private boolean comingFromHomeScreen = false;
-	
-	public final static int NAV_FROM_HOME =1;
-	public final static int NAV_FROM_SAVED_NEWS =2;
-	public final static int NAV_FROM_DATE_WISE =3;
+
+	// private boolean comingFromHomeScreen = false;
+
+	public final static int NAV_FROM_HOME = 1;
+	public final static int NAV_FROM_SAVED_NEWS = 2;
+	public final static int NAV_FROM_DATE_WISE = 3;
 
 	private int navFrom = NAV_FROM_HOME;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,17 +65,15 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		initNewsDetail();
 	}
 
-
 	@Override
 	protected void onResume() {
 
 		super.onResume();
-		if(firstTime)
-		{ 
+		if (firstTime) {
 			firstTime = false;
-			if(navFrom == NAV_FROM_SAVED_NEWS){
+			if (navFrom == NAV_FROM_SAVED_NEWS) {
 				showNewsDeatils();
-			}else{
+			} else {
 				getNewsDetail();
 			}
 		}
@@ -91,10 +88,9 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 			Globals.showAlertDialogError(this,
 					"Error Occured, Please try again");
 		}
-		
+
 		if (getIntent().hasExtra("navFrom"))
 			navFrom = getIntent().getIntExtra("navFrom", NAV_FROM_HOME);
-		
 
 		sliderContainer = (LinearLayout) findViewById(R.id.llytSliderContainer);
 
@@ -157,32 +153,32 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 			handleNetworkError();
 		}
 	}
-	
-	private void handleNetworkError(){
-		Globals.showAlertDialogOneButton(
-				Globals.TEXT_CONNECTION_ERROR_HEADING,
-				Globals.TEXT_CONNECTION_ERROR_DETAIL_DIALOG_MAIN_SCREEN,
-				this, "OK", null, false);
+
+	private void handleNetworkError() {
+		Globals.showAlertDialogOneButton(Globals.TEXT_CONNECTION_ERROR_HEADING,
+				Globals.TEXT_CONNECTION_ERROR_DETAIL_DIALOG_MAIN_SCREEN, this,
+				"OK", null, false);
 		Globals.hideLoadingDialog(mDialog);
 		showNewsDeatils();
 	}
 
-	private void gotNewsDetailResponce(JSONArray response){
-		
+	private void gotNewsDetailResponce(JSONArray response) {
+
 		ArrayList<Object_SubNewsItem> listNewsItemServer;
 		Log.i("DARSH", "gotNewsDetailResponce onResponse" + response);
 		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
 				response.toString());
 
-		listNewsItemServer = parserObject.getParsedJsonSubNews(newsId);	
-			
+		listNewsItemServer = parserObject.getParsedJsonSubNews(newsId);
+
 		DBHandler_SubNews dbH = new DBHandler_SubNews(getApplicationContext());
 		dbH.insertSubNewsItemList(listNewsItemServer);
-	
+
 		showNewsDeatils();
 	}
+
 	private void showNewsDeatils() {
-		//mDialog = Globals.showLoadingDialog(mDialog, this, true);
+		// mDialog = Globals.showLoadingDialog(mDialog, this, true);
 
 		if (sliderContainer == null) {
 			sliderContainer = (LinearLayout) findViewById(R.id.llytSliderContainer);
@@ -229,10 +225,10 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		if (currentNewsItem != null) {
 			parentHeading = currentNewsItem.getHeading();
 		}
-		
-			DBHandler_SubNews dbHSub = new DBHandler_SubNews(
+
+		DBHandler_SubNews dbHSub = new DBHandler_SubNews(
 				Activity_NewsDetail.this);
-			listAllCurrentNewsItem = dbHSub
+		listAllCurrentNewsItem = dbHSub
 				.getAllSubNewsItem(newsId, parentHeading);
 		// Object_AppConfig objConfig = new Object_AppConfig(this);
 
@@ -246,7 +242,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 			listAllCurrentNewsItem.add(0, temp);
 
-			//shareLink = currentNewsItem.getShareLink();
+			// shareLink = currentNewsItem.getShareLink();
 		}
 
 		Log.i("HARSH", "Count of news item is " + listAllCurrentNewsItem.size());
@@ -289,8 +285,8 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 				// list.add(nextNewsItem);
 				// list.add(prevNewsItem);
-				
-				if(navFrom == NAV_FROM_HOME)
+
+				if (navFrom == NAV_FROM_HOME)
 					createHorizontalNewsSlider();
 			}
 		});
@@ -337,7 +333,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 								null, false);
 				LinearLayout.LayoutParams lp = new LayoutParams(
 						containerWidth / 3,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
+						LinearLayout.LayoutParams.MATCH_PARENT);
 
 				rowItem.setLayoutParams(lp);
 
@@ -349,12 +345,16 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 				ImageView imgView = (ImageView) rowItem
 						.findViewById(R.id.imgNews);
-				LinearLayout.LayoutParams lpImgPrev = (LayoutParams) imgView
-						.getLayoutParams();
-				lpImgPrev.height = imgNextPrevHeightWidth;
-				lpImgPrev.width = imgNextPrevHeightWidth;
-				imgView.setLayoutParams(lpImgPrev);
-				setImage(imgView, obj.getImagePath());
+				
+				if(setImage(imgView, obj.getImagePath())){
+					LinearLayout.LayoutParams lpImgPrev = (LayoutParams) imgView
+							.getLayoutParams();
+					lpImgPrev.height = imgNextPrevHeightWidth;
+					lpImgPrev.width = imgNextPrevHeightWidth;
+					imgView.setLayoutParams(lpImgPrev);
+				}else{
+					imgView.setVisibility(View.GONE);
+				}
 
 				TextView txtHiddenNewsId = (TextView) rowItem
 						.findViewById(R.id.txtHiddenNewsId);
@@ -370,36 +370,40 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 	}
 
-	protected void setImage(ImageView targetImageView, String mUrl) {
-		Picasso p = Picasso.with(this);
+	protected boolean setImage(ImageView targetImageView, String mUrl) {
 
-		RequestCreator rq = null;
-		if (mUrl != null) {
+		if (mUrl != null && !mUrl.isEmpty()) {
+			
+			Globals.loadImageIntoImageView(targetImageView, mUrl, this, R.drawable.loading_image_large, R.drawable.no_image_large);
 
+			/*
+			Picasso p = Picasso.with(this);
+
+			RequestCreator rq = null;
 			rq = p.load(mUrl);
 
+			rq.placeholder(R.drawable.loading_image_large);
+			rq.error(R.drawable.no_image_large);
+
+			rq.fit().centerCrop();
+
+			rq.into(targetImageView, new Callback() {
+				@Override
+				public void onSuccess() {
+
+				}
+
+				@Override
+				public void onError() {
+
+				}
+			});
+			*/
+			
+			return true;
 		}
-
-		if (rq == null) {
-			return;
-		}
-
-		rq.placeholder(R.drawable.loading_image_large);
-		rq.error(R.drawable.no_image_large);
-
-		rq.fit().centerCrop();
-
-		rq.into(targetImageView, new Callback() {
-			@Override
-			public void onSuccess() {
-
-			}
-
-			@Override
-			public void onError() {
-
-			}
-		});
+		
+		return false;
 	}
 
 	public void onBackClick(View v) {
@@ -665,15 +669,21 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 					&& !currentNewsItem.getShareLink().trim().equals("")) {
 				sendIntent.putExtra(
 						Intent.EXTRA_TEXT,
-						//currentNewsItem.getContent()
-								"Read more @\n"
-								+ currentNewsItem.getShareLink()
-								+"\nvia "+getResources().getString(R.string.news_paper_name));
-			} else {
-				sendIntent.putExtra(Intent.EXTRA_TEXT,
+						// currentNewsItem.getContent()
 						"Read more @\n"
-								+ getResources().getString(R.string.txt_company_website)
-								+"\nvia "+getResources().getString(R.string.news_paper_name));
+								+ currentNewsItem.getShareLink()
+								+ "\nvia "
+								+ getResources().getString(
+										R.string.news_paper_name));
+			} else {
+				sendIntent.putExtra(
+						Intent.EXTRA_TEXT,
+						"Read more @\n"
+								+ getResources().getString(
+										R.string.txt_company_website)
+								+ "\nvia "
+								+ getResources().getString(
+										R.string.news_paper_name));
 			}
 			// sendIntent.setPackage("com.whatsapp");
 			sendIntent.setType("text/plain");

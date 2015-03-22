@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
+
+import in.seemasandesh.newspaperapp.Globals;
 import in.seemasandesh.newspaperapp.R;
 /**
  * When you want to make your own slider view, you must extends from this class.
@@ -212,6 +214,11 @@ public abstract class BaseSliderView {
 	 */
 	
 	protected void bindEventAndShow(final View v, ImageView targetImageView) {
+		if(mUrl == null || mUrl.trim().isEmpty()){
+			targetImageView.setVisibility(View.GONE);
+			return ;
+		}
+		
 		final BaseSliderView me = this;
 		targetImageView.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -225,30 +232,11 @@ public abstract class BaseSliderView {
 		mLoadListener.onStart(me);
 		// targetImageView.setImageBitmap(mRes);
 		//set Image
+		
 		RequestCreator rq = null;
 		Picasso p = Picasso.with(mContext);
 
-		
-		if (mUrl != null) {
-			
-			if(!mUrl.trim().isEmpty())
-				rq = p.load(mUrl);
-			else if (getError() != 0) {
-				rq = p.load(getError());
-				}
-
-		} else if (mFile != null) {
-			rq = p.load(mFile);
-		}  else {
-			if (getError() != 0)
-				rq = p.load(getError());
-			return;
-		}
-
-		if (rq == null) {
-			return;
-		}
-		
+		rq = p.load(mUrl);  
 		
 
 		if (getEmpty() != 0) {
@@ -258,7 +246,7 @@ public abstract class BaseSliderView {
 		if (getError() != 0) {
 			rq.error(getError());
 		}
-
+	
 		switch (mScaleType) {
 		case Fit:
 			rq.fit();
