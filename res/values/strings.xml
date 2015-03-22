@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">XB News</string>
-    <string name="news_paper_name">XB News</string>
+    <string name="app_name">Seema Sandesh</string>
+    <string name="news_paper_name">Seema Sandesh</string>
     <string name="image">image</string>
     <string name="saved_news">Saved News</string>
     <string name="app_settings">APPLICATION SETTINGS</string>
@@ -14,8 +14,8 @@
     <string name="txt_choose_date">CHOOSE DATE RANGE FOR NEWS</string>
     <string name="txt_choose_cat">CHOOSE CATEGORY</string>
     <string name="txt_about_us">Write something long about newspaper</string>
-    <string name="txt_company_name">Xerces Blue Software Solutions Pvt. Ltd.</string>
-    <string name="txt_company_website">www.xercesblue.in</string>
+    <string name="txt_company_name">Seema Sandesh</string>
+    <string name="txt_company_website">www.seemasandesh.in</string>
     <string name="txt_company_phone">Ph : 01542470701</string>
     <string name="txt_terms_of_use">TERMS OF SERVICE\n\nPlease read this document carefully before using this app. This license provides important information concerning the app.
         \n\n1.All the questions and information provided in this app are gathered from various resources including internet and we do not express any ownership of these, although we have taken extra care to keep the information accurate but we not take the responsibility in case of any faulty information or question.

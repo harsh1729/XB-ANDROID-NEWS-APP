@@ -4,8 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.xercesblue.newspaperapp.R;
+import in.seemasandesh.newspaperapp.R;
 
 /**
  * a simple slider view, which just show an image. If you want to make your own slider view,

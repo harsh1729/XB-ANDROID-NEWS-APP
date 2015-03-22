@@ -1,5 +1,7 @@
 package com.daimajia.slider.library;
 
+import in.seemasandesh.newspaperapp.R;
+
 import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +27,6 @@ import com.daimajia.slider.library.Tricks.FixedSpeedScroller;
 import com.daimajia.slider.library.Tricks.InfinitePagerAdapter;
 import com.daimajia.slider.library.Tricks.InfiniteViewPager;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.xercesblue.newspaperapp.R;
 /**
  * SliderLayout is compound layout. This is combined with {@link com.daimajia.slider.library.Indicators.PagerIndicator}
  * and {@link com.daimajia.slider.library.Tricks.ViewPagerEx} .

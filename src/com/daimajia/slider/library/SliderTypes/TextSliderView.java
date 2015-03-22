@@ -1,5 +1,7 @@
 package com.daimajia.slider.library.SliderTypes;
 
+import in.seemasandesh.newspaperapp.Custom_ThemeUtil;
+import in.seemasandesh.newspaperapp.Globals;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Point;
@@ -14,10 +16,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
-import com.xercesblue.newspaperapp.R;
-import com.xercesblue.newspaperapp.Custom_ThemeUtil;
-import com.xercesblue.newspaperapp.Globals;
-
+import in.seemasandesh.newspaperapp.R;
 /**
  * This is a slider with a description TextView.
  */
@@ -146,8 +145,8 @@ public class TextSliderView extends BaseSliderView {
 		*/
 		
 
-		empty(R.drawable.loading_no_boundry);
-		error(R.drawable.no_image);
+		empty(R.drawable.loading_image_large);
+		error(R.drawable.no_image_large);
 		bindEventAndShow(v, imgView);
 		return v;
 	}
@@ -167,8 +166,8 @@ public class TextSliderView extends BaseSliderView {
 			return;
 		}
 
-		rq.placeholder(R.drawable.loading_with_boundry);
-		rq.error(R.drawable.no_image);
+		rq.placeholder(R.drawable.loading_image_large);
+		rq.error(R.drawable.no_image_large);
 		
 		rq.fit().centerCrop();
 		

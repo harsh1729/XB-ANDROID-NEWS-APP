@@ -2,11 +2,10 @@ package com.daimajia.slider.library.Animations;
 
 import android.view.View;
 
-import com.xercesblue.newspaperapp.R;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
-
+import in.seemasandesh.newspaperapp.R;
 /**
  * A demo class to show how to use {@link com.daimajia.slider.library.Animations.BaseAnimationInterface}
  * to make  your custom animation in {@link com.daimajia.slider.library.Tricks.ViewPagerEx.PageTransformer} action.

@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.xercesblue.newspaperapp.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
-
+import in.seemasandesh.newspaperapp.R;
 /**
  * When you want to make your own slider view, you must extends from this class.
  * BaseSliderView provides some useful methods. I provide two example:
