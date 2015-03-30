@@ -2,148 +2,170 @@ package in.seemasandesh.newspaperapp;
 
 import java.io.IOException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-
-import com.google.android.gcm.GCMRegistrar;
+import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.net.http.AndroidHttpClient;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 
+@SuppressLint("NewApi")
+public class Custom_GCM_Register{
 
-public class Custom_GCM_Register {
+	private GoogleCloudMessaging gcm;
 
-	Thread_RegisterOnPhpServer thread_RegisterOnPhpServer ;
-	Custom_ConnectionDetector cd;
-	Activity context;
+	private Activity context = null;
+	String gcmId;
+	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+	
+
+	public static final String GCM_ID = "gcmId";
+	private final String KEY_GCM_PREF = "GCM_Prefs";
+	TextView txtgcmId;
+
+	
 	public Custom_GCM_Register(Activity act) {
 		context = act;
-		registerDeviceOnServer();
+		if(checkPlayServices())
+			registerGCM();
+			
 	}
 	
 	
-	private void registerDeviceOnServer(){
-		Log.i("HARSH","registerDeviceOnServer");
-		try
-        {
-        	GCMRegistrar.checkDevice(context);
-        	GCMRegistrar.checkManifest(context);
-        }
-        catch(Exception e)
-        {
-        	e.printStackTrace();
-        }
-        
-
-    	cd = new Custom_ConnectionDetector(context);
-        
-        // Check if Internet present
-        if (cd.isConnectingToInternet())
-        {
-        	String regId = GCMRegistrar.getRegistrationId(context);
-        	Log.i("HARSH","At Line 70");
-        	if (regId.equals("")) 
-        	{
-        		//Log.i("HARSH","At Line 73");
-        		//Toast.makeText(context, "GCM request send!", Toast.LENGTH_SHORT).show();
-        		GCMRegistrar.register(context, GCMIntentService.SENDER_ID);
-        		regId = GCMRegistrar.getRegistrationId(context);
-            } 
-        	Globals.GCM_REG_ID = regId;
-        	if(!GCMRegistrar.isRegisteredOnServer(context))
-        	{
-        		//Log.i("HARSH","At Line 80");
-        		int MAX_LOOP = 2;
-        		int counter =1;
-        		//  device is not registered on php server. First register it on php server and then call GCMRegistrar.setRegisteredOnServer(context, true)
-        		do{
-        			Log.i("HARSH","Do "+counter);
-        			if(!regId.trim().equals("")){
-        				Log.i("HARSH"," REGISTERING WITH ID "+regId);
-        				thread_RegisterOnPhpServer = new Thread_RegisterOnPhpServer(Globals.APP_ID,regId,context);
-        				thread_RegisterOnPhpServer.start();
-        				break;
-        			}
-        			try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-        			counter++;
-        		}while(  counter < MAX_LOOP);
-        		}
-        } 
-        else
-        { 
-        	//Toast.makeText(context, "No INTERNET Connection", Toast.LENGTH_SHORT).show();
-        	Log.i("HARSH","No INTERNET Connection");
-        }
+	private boolean checkPlayServices() {
+		Log.d("GCM",
+				"checkPlayServices called");
+		int resultCode = GooglePlayServicesUtil
+				.isGooglePlayServicesAvailable(context);
+		if (resultCode != ConnectionResult.SUCCESS) 
+		if(!googlePlayServicesChecked()){
+			Log.d("GCM", "checkplayservices connectionresult success");
+			if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+				GooglePlayServicesUtil.getErrorDialog(resultCode, context,
+						PLAY_SERVICES_RESOLUTION_REQUEST).show();
+			} else {
+				Log.d("GCM",
+						"this device is not supported google play services !");
+			
+			}
+			return false;
+		}
+		return true;
 	}
-	
-	class Thread_RegisterOnPhpServer extends Thread
-    {
-    	Context context;
-    	private String regId ;
-    	private int AppId;
-    	public Thread_RegisterOnPhpServer(int AppId,String regId,Context context)
-    	{
-    		this.regId = regId;
-    		this.context = context;
-    		this.AppId = AppId;
-    		Log.i("HARSH","In RegisterOnPhpServer constructor");
-    	}
-    	
 
-    	AndroidHttpClient httpClient;
-		@SuppressLint("NewApi")
-		public void run()
-    	{
-    		try 
-    		{
-    			httpClient =  AndroidHttpClient.newInstance("Android");
-    			String url = Globals.getURLPushNotification(regId,AppId);
-    			
-    			HttpGet httpGet = new HttpGet(url);
-    			Log.i("HARSH","ADDress is : "+url);			
-    			
-    			HttpResponse response = httpClient.execute(httpGet);
-    			String data = Globals.convertInputStreamToString(response.getEntity().getContent());
-    			if(data.equalsIgnoreCase("registered"))
-    			{
-    				GCMRegistrar.setRegisteredOnServer(context, true);
-    				Log.i("HARSH","Recieved registered!");
-    				
-    			}
-    			else if(data.equalsIgnoreCase("false"))
-    			{
-    				GCMRegistrar.setRegisteredOnServer(context, false);
-    				Log.i("HARSH","Recieved false!");					
-    			}
-    			
-    			
-    			
-    			}
-    		catch (IOException e) 
-    		{
-    			e.printStackTrace();
-    		}
-    		catch (Exception e)
-    		{
-    			e.printStackTrace();
-    		}
-    		finally{
-    			
-    			if(httpClient != null ){
-    				httpClient.close();
-    				httpClient = null;
-    			}
-    		}
-    		
-    	}
+	
+	  public void registerGCM() {
+	  
+	  gcm = GoogleCloudMessaging.getInstance(context); 
+	  gcmId = getRegistrationId(context);
+	  
+	 }
+	 
+
+	  
+	  private boolean googlePlayServicesChecked(){
+			
+			SharedPreferences prefs = this.context.getSharedPreferences(KEY_GCM_PREF, Context.MODE_PRIVATE);
+			boolean  isAlreadyChecked = prefs.getBoolean("GPS_checked", false);
+			
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putBoolean("GPS_checked", true);
+			editor.commit();
+			
+			return isAlreadyChecked;
+			
+		}
+	  
+	@SuppressLint("NewApi")
+	private String getRegistrationId(Context context) {
+		Log.i("GCM", "getRegistrationId start" );
+		final SharedPreferences prefs = context.getSharedPreferences(
+				KEY_GCM_PREF, Context.MODE_PRIVATE);
 		
-    }
+		String registrationId = prefs.getString(GCM_ID, "");
+		
+		if (registrationId.isEmpty()) {
+			Log.i("GCM", "Saved Registration not found.");
+			registerInBackground();
+			return "";
+		}
+		
+		return registrationId;
+	}
+
+
+	private void registerInBackground() {
+		Log.i("GCM", "registerInBackground start" );
+		new AsyncTask<Void, Void, String>() {
+			@Override
+			protected String doInBackground(Void... params) {
+				String msg = "Success";
+				try {
+					if (gcm == null) {
+						gcm = GoogleCloudMessaging.getInstance(context);
+					}
+					gcmId = gcm.register(Globals.GCM_SENDER_ID);
+                    storeRegistrationId(context, gcmId);
+                   
+                    
+				} catch (IOException ex) {
+					Log.e("GCM", "Error: " + ex.getMessage());
+					msg = "Error";
+				}
+				Log.i("GCM", "registerInBackground completed: " );
+				return msg;
+			}
+
+			@Override
+			protected void onPostExecute(String msg) {
+				Log.i("GCM", "registerInBackground completed: " );
+				registerOnServer();
+			}
+		}.execute(null, null, null);
+	}
+	
+	private void registerOnServer(){
+		Log.i("GCM", " registerOnServer START !!");
+		Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
+				Custom_URLs_Params.getURL_PushNotification(), Custom_URLs_Params.getParams_PushNotification(gcmId, context),
+						new Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+						Log.i("GCM", "json registerOnServer recieved !!"
+								+ response.toString());
+					}
+				}, new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError err) {
+						Log.i("GCM", "ERROR VolleyError registerOnServer");
+
+					}
+				});
+
+		Custom_VolleyAppController.getInstance().addToRequestQueue(
+				jsonObjectRQST);
+	}
+	private void storeRegistrationId(Context context, String gcmId) {
+		
+		final SharedPreferences prefs = context.getSharedPreferences(
+				KEY_GCM_PREF, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString(GCM_ID, gcmId);
+		editor.commit();
+	}
+	
+
 }

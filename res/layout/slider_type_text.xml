@@ -43,7 +43,7 @@
                         android:layout_alignParentTop="true"
                         android:background="@color/app_tranparent_black"
                         android:contentDescription="@string/image"
-                        android:src="@drawable/ic_launcher"
+                        android:scaleType="centerCrop"
                         android:padding="0dp" />
 
                      <TextView

@@ -3,6 +3,8 @@ package in.seemasandesh.newspaperapp;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -220,14 +222,14 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 			if (!isPullToRefresh)
 				mDialog = Globals.showLoadingDialog(mDialog, this,false);
 			
-			Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(Request.Method.POST,
-					Globals.getURL_NewsByCategory(), Globals.getParams_NewsByCategoryDateWise(catId, callType, lastNewsId, limit,startDate,endDate),
-							new Listener<JSONArray>() {
+			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
+					Custom_URLs_Params.getURL_NewsByCategory(), Custom_URLs_Params.getParams_NewsByCategoryDateWise(catId, callType, lastNewsId, limit,startDate,endDate),
+							new Listener<JSONObject>() {
 
 
 						
 						@Override
-						public void onResponse(JSONArray response) {
+						public void onResponse(JSONObject response) {
 							gotNewsResponce(response, catId, isPullToRefresh);
 							
 						}
@@ -275,16 +277,20 @@ public class Activity_DateWiseNewsList extends Activity_Parent {
 		}
 	}
 
-	private void gotNewsResponce(JSONArray response, int catId,
+	private void gotNewsResponce(JSONObject response, int catId,
 			Boolean isPullToRefresh) {
 
-		ArrayList<Object_ListItem_MainNews> listNewsItemServer;
+		ArrayList<Object_ListItem_MainNews> listNewsItemServer = null;
 
 		Log.i("DARSH", "getNewsDataFromServer onResponse" + response);
 
-		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
-				response.toString());
-		listNewsItemServer = parserObject.getParsedJsonMainNews(catId);
+		Custom_JsonParserNews parserObject = new Custom_JsonParserNews();
+		if(response != null && response.has("news"))
+			try {
+				listNewsItemServer = parserObject.getParsedJsonMainNews(response.getJSONArray("news"), catId);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		if (!isPullToRefresh) {
 			Globals.hideLoadingDialog(mDialog);
 

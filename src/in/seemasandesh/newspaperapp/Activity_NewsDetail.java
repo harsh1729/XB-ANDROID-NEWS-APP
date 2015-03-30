@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONArray;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.StateListDrawable;
@@ -21,6 +22,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,7 +36,6 @@ import com.android.volley.Response.Listener;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-
 
 public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		BaseSliderView.OnSliderClickListener {
@@ -128,8 +129,9 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 			}
 
 			Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(
-					Request.Method.POST, Globals.getURL_NewsDetail(),
-					Globals.getParams_NewsDetail(newsId),
+					Request.Method.POST,
+					Custom_URLs_Params.getURL_NewsDetail(),
+					Custom_URLs_Params.getParams_NewsDetail(newsId),
 					new Listener<JSONArray>() {
 
 						@Override
@@ -166,10 +168,10 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 		ArrayList<Object_SubNewsItem> listNewsItemServer;
 		Log.i("DARSH", "gotNewsDetailResponce onResponse" + response);
-		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
-				response.toString());
+		Custom_JsonParserNews parserObject = new Custom_JsonParserNews();
 
-		listNewsItemServer = parserObject.getParsedJsonSubNews(newsId);
+		listNewsItemServer = parserObject
+				.getParsedJsonSubNews(response, newsId);
 
 		DBHandler_SubNews dbH = new DBHandler_SubNews(getApplicationContext());
 		dbH.insertSubNewsItemList(listNewsItemServer);
@@ -185,6 +187,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		}
 
 		sliderContainer.removeAllViews();
+		
 		slider = new SliderLayout(this);
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
@@ -193,7 +196,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
 		slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Top);
 		slider.setDuration(2000);
-
+		
 		Thread thread = new Thread() {
 			public void run() {
 				taskThread();
@@ -248,50 +251,128 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		Log.i("HARSH", "Count of news item is " + listAllCurrentNewsItem.size());
 
 		int itemNo = 0;
-		for (Object_SubNewsItem item : listAllCurrentNewsItem) {
-			final TextSliderView textSliderView = new TextSliderView(this);
-			textSliderView.description(item.getNewsContent())
-					.image(item.getNewsImagePath())
-					.Heading(item.getNewsHeading())
-					.setScaleType(BaseSliderView.ScaleType.CenterCrop)
-					.setOnSliderClickListener(this);
 
-			textSliderView.setImageTag(item.getNewsImageTagline());
+		if (listAllCurrentNewsItem.size() > 1) {
+			
+			
+			
+			for (Object_SubNewsItem item : listAllCurrentNewsItem) {
+				final TextSliderView textSliderView = new TextSliderView(this);
+				textSliderView.description(item.getNewsContent())
+						.image(item.getNewsImagePath())
+						.Heading(item.getNewsHeading())
+						.setScaleType(BaseSliderView.ScaleType.CenterCrop)
+						.setOnSliderClickListener(this);
 
-			/*
-			 * if (nextNewsItem != null) {
-			 * textSliderView.setNextHeading(nextNewsItem.getHeading());
-			 * textSliderView.setNextImageURL(objConfig .getNewsImagesFullPath()
-			 * + nextNewsItem.getImage()); nextNewsId = nextNewsItem.getId(); }
-			 * 
-			 * if (prevNewsItem != null) {
-			 * textSliderView.setPrevHeading(prevNewsItem.getHeading());
-			 * textSliderView.setPrevImageURL(objConfig .getNewsImagesFullPath()
-			 * + prevNewsItem.getImage()); prevNewsId = prevNewsItem.getId(); }
-			 */
-			// textSliderView.getBundle().putString("imgURL",objConfig.getNewsImagesFullPath()
-			// + item.getNewsImage());
+				textSliderView.setImageTag(item.getNewsImageTagline());
 
-			textSliderView.getBundle().putInt("itemNo", itemNo);
-			itemNo++;
-			slider.addSlider(textSliderView);
+				/*
+				 * if (nextNewsItem != null) {
+				 * textSliderView.setNextHeading(nextNewsItem.getHeading());
+				 * textSliderView.setNextImageURL(objConfig
+				 * .getNewsImagesFullPath() + nextNewsItem.getImage());
+				 * nextNewsId = nextNewsItem.getId(); }
+				 * 
+				 * if (prevNewsItem != null) {
+				 * textSliderView.setPrevHeading(prevNewsItem.getHeading());
+				 * textSliderView.setPrevImageURL(objConfig
+				 * .getNewsImagesFullPath() + prevNewsItem.getImage());
+				 * prevNewsId = prevNewsItem.getId(); }
+				 */
+				// textSliderView.getBundle().putString("imgURL",objConfig.getNewsImagesFullPath()
+				// + item.getNewsImage());
 
-		}
-		this.runOnUiThread(new Runnable() {
-			public void run() {
-				slider.notifyDataSetChange();
-				Globals.hideLoadingDialog(mDialog);
-				sliderContainer.addView(slider);
+				textSliderView.getBundle().putInt("itemNo", itemNo);
+				itemNo++;
+				slider.addSlider(textSliderView);
 
-				// list.add(nextNewsItem);
-				// list.add(prevNewsItem);
-
-				if (navFrom == NAV_FROM_HOME)
-					createHorizontalNewsSlider();
 			}
-		});
+			this.runOnUiThread(new Runnable() {
+				public void run() {
+					slider.notifyDataSetChange();
+					Globals.hideLoadingDialog(mDialog);
+					sliderContainer.addView(slider);
+
+					// list.add(nextNewsItem);
+					// list.add(prevNewsItem);
+
+					if (navFrom == NAV_FROM_HOME)
+						createHorizontalNewsSlider();
+				}
+			});
+		} else if (currentNewsItem != null) {
+			this.runOnUiThread(new Runnable() {
+				public void run() {
+					addSingleNewsItem();
+				}
+			});
+		}
+
 	}
 
+	private void addSingleNewsItem(){
+		LayoutInflater layoutInflater = LayoutInflater.from(this);
+
+		final View v = layoutInflater.inflate(R.layout.slider_type_text, null);
+
+		int sliderDescHeight = (int) (24* this.getResources().getDisplayMetrics().density);
+		LinearLayout llytSliderDesc = (LinearLayout) v
+				.findViewById(R.id.description_layout);
+		LinearLayout.LayoutParams lpDesc = (LayoutParams) llytSliderDesc.getLayoutParams();
+		lpDesc.height = sliderDescHeight;
+		llytSliderDesc.setLayoutParams(lpDesc);
+		llytSliderDesc.setBackgroundResource(Custom_ThemeUtil.getThemeColorId(this));
+		
+		int imgMainHeight = (int) ((int) Globals.getScreenSize(this).y / 2.5);
+		
+		ImageView imgView = (ImageView) v
+				.findViewById(R.id.imgNewsDetailBig);
+		
+		
+		if (setImage(imgView, currentNewsItem.getImagePath())) {
+			RelativeLayout.LayoutParams lpImg = new RelativeLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT, imgMainHeight);
+			imgView.setLayoutParams(lpImg);
+			imgView.setClickable(true);
+			imgView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					showZoomedImage(0);
+				}
+			});
+			
+		} else {
+			imgView.setVisibility(View.GONE);
+		}
+		
+		
+		TextView txtNewsDesc = (TextView) v
+				.findViewById(R.id.txtNewsDescription);
+		txtNewsDesc.setText(currentNewsItem.getContent());
+		txtNewsDesc.setTextSize(Globals.getAppFontSize_Normal(this));
+
+		TextView txtHeading = (TextView) v
+				.findViewById(R.id.txtNewsHeading);
+		txtHeading.setText(currentNewsItem.getHeading());
+		txtHeading.setTextSize(Globals.getAppFontSize_Large(this));
+
+		TextView txtImagetag = (TextView) v
+				.findViewById(R.id.txtNewsImageTag);
+		if (currentNewsItem.getImageTagline() != null
+				&& !currentNewsItem.getImageTagline().isEmpty()) {
+			txtImagetag.setText(currentNewsItem.getImageTagline());
+		} else {
+			txtImagetag.setVisibility(View.GONE);
+		}
+				
+		Globals.hideLoadingDialog(mDialog);
+		sliderContainer.addView(v);
+		
+		if (navFrom == NAV_FROM_HOME)
+			createHorizontalNewsSlider();
+			
+	}
 	private void createHorizontalNewsSlider() {
 		LinearLayout container = (LinearLayout) findViewById(R.id.llytscrollNewsContainer);
 		container.removeAllViews();
@@ -345,14 +426,15 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 				ImageView imgView = (ImageView) rowItem
 						.findViewById(R.id.imgNews);
-				
-				if(setImage(imgView, obj.getImagePath())){
+
+				if (setImage(imgView, obj.getImagePath())) {
 					LinearLayout.LayoutParams lpImgPrev = (LayoutParams) imgView
 							.getLayoutParams();
 					lpImgPrev.height = imgNextPrevHeightWidth;
 					lpImgPrev.width = imgNextPrevHeightWidth;
 					imgView.setLayoutParams(lpImgPrev);
-				}else{
+					
+				} else {
 					imgView.setVisibility(View.GONE);
 				}
 
@@ -373,36 +455,15 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	protected boolean setImage(ImageView targetImageView, String mUrl) {
 
 		if (mUrl != null && !mUrl.isEmpty()) {
-			
-			Globals.loadImageIntoImageView(targetImageView, mUrl, this, R.drawable.loading_image_large, R.drawable.no_image_large);
 
-			/*
-			Picasso p = Picasso.with(this);
+			Globals.loadImageIntoImageView(targetImageView, mUrl, this,
+					R.drawable.loading_image_large, R.drawable.no_image_large);
 
-			RequestCreator rq = null;
-			rq = p.load(mUrl);
+		
 
-			rq.placeholder(R.drawable.loading_image_large);
-			rq.error(R.drawable.no_image_large);
-
-			rq.fit().centerCrop();
-
-			rq.into(targetImageView, new Callback() {
-				@Override
-				public void onSuccess() {
-
-				}
-
-				@Override
-				public void onError() {
-
-				}
-			});
-			*/
-			
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -420,7 +481,10 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 					.toString());
 			if (nextNewsId >= 0) {
 				newsId = nextNewsId;
-				showNewsDeatils();
+				getNewsDetail();
+			} else {
+				Toast.makeText(this, "Some error occured ", Toast.LENGTH_SHORT)
+						.show();
 			}
 		} catch (Exception ex) {
 
@@ -449,12 +513,17 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		int itemNo = slider.getBundle().getInt("itemNo");
 
 		if (slider.isImageload) {
-			Intent i = new Intent(this, Activity_ZoomedImage.class);
-			// i.putExtra("Url", url);
-			i.putExtra("newsId", newsId);
-			i.putExtra("itemNo", itemNo);
-			startActivity(i);
+			showZoomedImage(itemNo);
 		}
+	}
+	
+	
+	private void showZoomedImage(int itemNo){
+		Intent i = new Intent(this, Activity_ZoomedImage.class);
+		// i.putExtra("Url", url);
+		i.putExtra("newsId", newsId);
+		i.putExtra("itemNo", itemNo);
+		startActivity(i);
 	}
 
 	public void onClickOptions(View v) {

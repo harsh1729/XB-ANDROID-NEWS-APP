@@ -23,7 +23,10 @@ public class Object_Category {
 	}
 
 	public String getImageName() {
-		return imageName.trim();
+		if(imageName != null)
+			return imageName.trim();
+		
+		return "";
 	}
 
 	public void setImageName(String imageName) {

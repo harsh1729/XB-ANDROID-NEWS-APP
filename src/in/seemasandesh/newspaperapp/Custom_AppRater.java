@@ -1,5 +1,6 @@
 package in.seemasandesh.newspaperapp;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -58,13 +61,16 @@ public class Custom_AppRater {
 		final Dialog dialog = new Dialog(mContext);
 		dialog.setTitle("Rate " + Globals.APP_TITLE);
 
+		//Window window = dialog.getWindow();
+		//window.setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		
 		LinearLayout ll = new LinearLayout(mContext);
 		ll.setOrientation(LinearLayout.VERTICAL);
-
+		ll.setBackgroundResource(R.drawable.bg_white_gradient);
 		TextView tv = new TextView(mContext);
 		tv.setText("If you liked this app, please take a moment to rate it. Thanks for your support!");
 		tv.setWidth(240);
-		tv.setPadding(4, 0, 4, 10);
+		tv.setPadding(6, 10, 6, 10);
 		ll.addView(tv);
 
 		Button b1 = new Button(mContext);

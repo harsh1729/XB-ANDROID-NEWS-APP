@@ -92,7 +92,7 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 									Object_Category catChildFirst = new Object_Category();
 									catChildFirst.setName(cur.getString(cur
 											.getColumnIndex(KEY_NAME)));
-									catParent.setImageName(cur
+									catChildFirst.setImageName(cur
 											.getString(cur.getColumnIndex(KEY_IMAGE)));
 									catChildFirst.setId(cur.getInt(cur
 											.getColumnIndex(KEY_ID)));
@@ -105,8 +105,8 @@ public class DBHandler_Category extends SQLiteOpenHelper {
 								Object_Category catChild = new Object_Category();
 								catChild.setName(childCur.getString(childCur
 										.getColumnIndex(KEY_NAME)));
-								catParent.setImageName(cur
-										.getString(cur.getColumnIndex(KEY_IMAGE)));
+								catChild.setImageName(childCur
+										.getString(childCur.getColumnIndex(KEY_IMAGE)));
 								catChild.setId(childCur.getInt(childCur
 										.getColumnIndex(KEY_ID)));
 								catChild.setTopNewsId(cur.getInt(cur.getColumnIndex(KEY_TOP_NEWS_ID)));

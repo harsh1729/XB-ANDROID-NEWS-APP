@@ -93,6 +93,7 @@ public class DBHandler_MainNews extends SQLiteOpenHelper {
 			}
 		}
 		
+		db.close();
 		return topNews;
 	}
 	/*

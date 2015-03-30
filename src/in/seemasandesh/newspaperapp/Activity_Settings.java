@@ -14,7 +14,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class Activity_Settings extends Activity_Parent {
@@ -44,6 +43,9 @@ public class Activity_Settings extends Activity_Parent {
 		float fontfactor =obj.getFontFactor();
 		int seekProgress = (int) ((fontfactor-1)*100);
 		
+		boolean isNotificationDisabled = obj.isNotificationEnabled();
+		ToggleButton toggleButton = (ToggleButton)findViewById(R.id.togglebutton);
+		toggleButton.setChecked(isNotificationDisabled);
 		
 		SeekBar seek = (SeekBar)findViewById(R.id.seekBarFont);
 		
@@ -181,10 +183,14 @@ public class Activity_Settings extends Activity_Parent {
 	public void onToggleNotificationClicked(View view) {
 	    // Is the toggle on?
 	    boolean on = ((ToggleButton) view).isChecked();
+	    Object_AppConfig objConfig = new Object_AppConfig(this);
 	    
 	    if (on) {
-	    	
+	    	//Toast.makeText(this, "ON", Toast.LENGTH_SHORT).show();
+	    	objConfig.setNotificationEnabled(true);
 	    } else {
+	    	//Toast.makeText(this, "OFF", Toast.LENGTH_SHORT).show();
+	    	objConfig.setNotificationEnabled(false);
 	    }
 	}
 	public void onSelectSettingOptions(View view) {

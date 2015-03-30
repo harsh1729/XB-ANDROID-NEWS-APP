@@ -24,22 +24,41 @@ public class Activity_ContactUs extends Activity_Parent{
 		super.initSuper();
 	}
 	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		EditText txtEmail = (EditText)findViewById(R.id.edtEmail);	
+		EditText txtName = (EditText)findViewById(R.id.edtName);
+		
+		Object_AppConfig obj =  new Object_AppConfig(this);
+		
+		txtEmail.setText(obj.getUserContact());
+		txtName.setText(obj.getUserName());
+		
+	}
 	public void onClickSendMessage(View v){
 		if(!validateMessage())
 			return;
  
-		TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-		String deviceImei = telephonyManager.getDeviceId();
+		
 		EditText txtMsg = (EditText)findViewById(R.id.edtMessage);
 		EditText txtEmail = (EditText)findViewById(R.id.edtEmail);
 		
 		EditText txtName = (EditText)findViewById(R.id.edtName);
 		
-		postToServer(deviceImei,txtEmail.getText().toString(),txtMsg.getText().toString(),txtName.getText().toString());
+		postToServer(Globals.getDeviceIMEI(this),txtEmail.getText().toString(),txtMsg.getText().toString(),txtName.getText().toString());
+		
+		Object_AppConfig obj =  new Object_AppConfig(this);
+		obj.setUserName(txtName.getText().toString());
+		obj.setUserContact(txtEmail.getText().toString());
 		
 		txtEmail.setText("");
 		txtMsg.setText("");
 		txtName.setText("");
+		
+		new Custom_GCM_Register(this);
    	 	//Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show();
 	}
 	
@@ -53,7 +72,7 @@ public class Activity_ContactUs extends Activity_Parent{
 		}
 
 		Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(Request.Method.POST,
-				Globals.getURL_ContactUs(), Globals.getParams_NewsByContactUs(imeiNo, contactDetail, message,name),
+				Custom_URLs_Params.getURL_ContactUs(), Custom_URLs_Params.getParams_ContactUs(imeiNo, contactDetail, message,name),
 						new Listener<JSONArray>() {
 				
 					@Override

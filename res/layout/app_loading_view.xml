@@ -3,7 +3,7 @@
     android:id="@+id/llytLoadingContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_white_gradient"
+    android:background="@color/app_loading_screen_bg"
     android:onClick="onClickSpinnerView"
     android:orientation="vertical"
     android:visibility="gone" >
@@ -11,14 +11,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" >
+        android:layout_weight="6"
+        android:gravity="center" >
         <ImageView
             android:id="@+id/imgViewLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/news_logo" />
+            android:src="@drawable/news_logo_round" />
         <ImageView
             android:id="@+id/imgViewLogoName"
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:id="@+id/llytSpinnerContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="4"
         android:gravity="center"
         android:orientation="vertical" >
 

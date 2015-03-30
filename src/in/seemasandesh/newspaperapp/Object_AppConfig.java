@@ -10,7 +10,6 @@ public class Object_AppConfig {
 	private int theme;
 	private float fontFactor;
 	
-	
 
 	private String serverPath;
 	//private String newsImagesPath;
@@ -127,6 +126,52 @@ public class Object_AppConfig {
 		}
 		
 		this.serverPath = serverPath;
+	}
+	
+	
+	
+	public String getUserContact() {
+		String contact = "";
+		if(prefs != null)
+			contact = prefs.getString("appConfig_contact", "");
+		
+		return contact;
+	}
+	public void setUserContact(String contact) {
+		if (editor != null) {
+			editor.putString("appConfig_contact", contact);
+			editor.commit();
+		}
+	}
+	
+	public String getUserName() {
+		String name = "";
+		if(prefs != null)
+			name = prefs.getString("appConfig_name", "");
+		
+		return name;
+	}
+	public void setUserName(String name) {
+		if (editor != null) {
+			editor.putString("appConfig_name", name);
+			editor.commit();
+		}
+	}
+
+	public boolean isNotificationEnabled() {
+		boolean notificationEnabled = true;
+		if(prefs != null)
+			notificationEnabled = prefs.getBoolean("appConfig_NotificationEnabled", true);
+		
+		return notificationEnabled;
+	}
+
+	public void setNotificationEnabled(boolean notificationEnabled) {
+		
+		if (editor != null) {
+			editor.putBoolean("appConfig_NotificationEnabled", notificationEnabled);
+			editor.commit();
+		}
 	}
 	
 	/* Sending full path fro server now

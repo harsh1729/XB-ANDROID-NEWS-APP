@@ -7,7 +7,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -73,19 +72,20 @@ public class Activity_Home extends SlidingFragmentActivity {
 		super.onResume();
 		
 		Object_AppConfig obj = new Object_AppConfig(this);
+
+		new Custom_GCM_Register(this);
 		
 		if(selectedTheme != obj.getTheme() || fontFactor != obj.getFontFactor()){
 			Custom_ThemeUtil.onActivityCreateSetTheme(this);
-			serverCallForCategoriesAndNews();
+			//serverCallForCategoriesAndNews(false); //Already done on init_Home
 			selectedTheme = obj.getTheme();
 			fontFactor = obj.getFontFactor();
-			//showCategories();
+			serverCallForCategoriesAndNews(true); // Do again for theme change.
 		}
 		
 		
 		if(comingFromPushMessage){
 			comingFromPushMessage = false;
-			
 			Globals.showAlertDialogOneButton("News Flash", GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
 		}
 	}
@@ -97,7 +97,6 @@ public class Activity_Home extends SlidingFragmentActivity {
 	private void initHome() {
 
 		showLoadingScreen();
-		new Custom_GCM_Register(this);
 
 		
 		DBHandler_Main db = new DBHandler_Main(this);
@@ -147,7 +146,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		initPullToRefreshListProperties();
 		// Get categories from Server in case of change along with Application
 		// Configuration
-		serverCallForCategoriesAndNews();
+		serverCallForCategoriesAndNews(false);
 		
 		Custom_ConnectionDetector cd = new Custom_ConnectionDetector(this);
 		if(cd.isConnectingToInternet()){
@@ -166,11 +165,11 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 		int screenWidth = Globals.getScreenSize(this).x;
 		int logoWidth = screenWidth/100 * 15 ;// 17%
-		int nameWidth = screenWidth/100 * 90 ;// 85%
+		int nameWidth = screenWidth ;// /100 * 9085%
 
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
-		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo, options);
+		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_round, options);
 		logo = Globals.scaleToWidth(logo,logoWidth);
 		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_name, options);
 		name = Globals.scaleToWidth(name,nameWidth);
@@ -179,21 +178,20 @@ public class Activity_Home extends SlidingFragmentActivity {
 		imgViewName.setImageBitmap(name);
 	}
 
-	private void serverCallForCategoriesAndNews() {
+	private void serverCallForCategoriesAndNews(boolean showSpinner) {
 		try {
 			Log.i("HARSH", "FirstCall");
-			showSpinnerCategories();			
+			if(showSpinner)
+				showSpinnerCategories();			
 
-			String url = Globals.getURL_CatNewsFirstCall();
+			String url = Custom_URLs_Params.getURL_CatNewsFirstCall();
 			Log.i("HARSH", "Cat URL -- "+url);
 			
 			//CustomRequest jsObjRequest = new CustomRequest(Method.POST, url, params, this.createRequestSuccessListener(), this.createRequestErrorListener());
 			Object_AppConfig objAppConfig = new Object_AppConfig(Activity_Home.this);
 			
-			Log.i("DARSH", "PARAMS"+Globals.getParams_CatNewsFirstCall(objAppConfig.getVersionNoCategory(),objAppConfig.getVersionNoAppConfig()));
-		
 			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
-					url, Globals.getParams_CatNewsFirstCall(objAppConfig.getVersionNoCategory(),objAppConfig.getVersionNoAppConfig()),
+					url, Custom_URLs_Params.getParams_CatNewsFirstCall(objAppConfig.getVersionNoCategory(),objAppConfig.getVersionNoAppConfig()),
 							new Listener<JSONObject>() {
 
 						@Override
@@ -513,6 +511,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 		 */
 		ProgressBar bar = (ProgressBar)findViewById(R.id.spinnerCat);
 		bar.setVisibility(View.VISIBLE);
+		
+		mDialog = Globals.showLoadingDialog(mDialog, this,false);
 	}
 
 	public void hideSpinnerCategories() {
@@ -526,6 +526,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 		}*/
 		ProgressBar bar = (ProgressBar)findViewById(R.id.spinnerCat);
 		bar.setVisibility(View.GONE);
+		
+		Globals.hideLoadingDialog(mDialog);
 	}
 
 	/*
@@ -579,7 +581,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 					mDialog = Globals.showLoadingDialog(mDialog, this,false);
 
 			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
-					Globals.getURL_NewsByCategory(), Globals.getParams_NewsByCategory(catId, callType, lastNewsId, limit),
+					Custom_URLs_Params.getURL_NewsByCategory(), Custom_URLs_Params.getParams_NewsByCategory(catId, callType, lastNewsId, limit),
 							new Listener<JSONObject>() {
 
 
@@ -602,8 +604,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 										Globals.TEXT_CONNECTION_ERROR_DETAIL_DIALOG_MAIN_SCREEN,
 										Activity_Home.this, "OK", null, false);
 								Globals.hideLoadingDialog(mDialog);
-								hideLoadingScreen();
 								showNewsList(catId);
+								hideLoadingScreen();
 							} else {
 								Toast.makeText(
 										Activity_Home.this,
@@ -662,11 +664,10 @@ public class Activity_Home extends SlidingFragmentActivity {
 			Boolean isPullToRefresh){
 		ArrayList<Object_ListItem_MainNews> listNewsItemServer;
 
-		Log.i("DARSH", "getNewsDataFromServer onResponse" + response);
+		Log.i("DARSH", "insertNewAndDeleteOldNews news onResponse" + response);
 
-		Custom_JsonParserNews parserObject = new Custom_JsonParserNews(
-				response.toString());
-		listNewsItemServer = parserObject.getParsedJsonMainNews(catId);
+		Custom_JsonParserNews parserObject = new Custom_JsonParserNews();
+		listNewsItemServer = parserObject.getParsedJsonMainNews(response,catId);
 
 		if (!isPullToRefresh) {
 			Globals.hideLoadingDialog(mDialog);
@@ -904,7 +905,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 				if(obj.getText().equals(Globals.OPTION_SAVED_NEWS)){
 					nextClass = Activity_SavedNews.class;
 				}else if(obj.getText().equals(Globals.OPTION_REFRESH)){
-					serverCallForCategoriesAndNews();
+					serverCallForCategoriesAndNews(true);
 				}
 				else if(obj.getText().equals(Globals.OPTION_SETTINGS)){
 					nextClass = Activity_Settings.class;

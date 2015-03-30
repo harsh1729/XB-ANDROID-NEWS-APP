@@ -12,21 +12,18 @@ import android.util.Log;
 
 public class Custom_JsonParserNews {
 
-	private String jsonString;
-	//private  listNews;
 
-	public Custom_JsonParserNews(String jsonString) {
-		this.jsonString = jsonString;
+	public Custom_JsonParserNews() {
+	
 	}
-	public ArrayList<Object_ListItem_MainNews> getParsedJsonMainNews(int catId)
+	public ArrayList<Object_ListItem_MainNews> getParsedJsonMainNews(JSONArray mainArray, int catId)
 	{
 		ArrayList<Object_ListItem_MainNews> listNews = new ArrayList<Object_ListItem_MainNews>();
 		
-		if(jsonString != null && !jsonString.trim().equals(""))
+		if(mainArray != null )
 		{
 			try 
 			{
-				JSONArray mainArray = new JSONArray(jsonString);
 				if(mainArray != null)
 				for(int i=0;i<mainArray.length();i++)
 				{
@@ -124,13 +121,13 @@ public class Custom_JsonParserNews {
 		return listNews;
 	}
 	
-	public ArrayList<Object_SubNewsItem> getParsedJsonSubNews(int parentNewsId)
+	
+	public ArrayList<Object_SubNewsItem> getParsedJsonSubNews(JSONArray mainArray,int parentNewsId)
 	{
 		ArrayList<Object_SubNewsItem> listNews = new ArrayList<Object_SubNewsItem>();
-		if(jsonString != null && !jsonString.trim().equals(""))
+		if(mainArray != null )
 			try 
 			{
-				JSONArray mainArray = new JSONArray(jsonString);
 				if(mainArray != null)
 				for(int i=0;i<mainArray.length();i++)
 				{
@@ -175,4 +172,5 @@ public class Custom_JsonParserNews {
 		
 		return listNews;
 	}
+	
 }

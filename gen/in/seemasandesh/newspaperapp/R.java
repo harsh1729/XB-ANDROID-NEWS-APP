@@ -1528,10 +1528,10 @@ containing a value of this type.
         public static final int abs__bright_foreground_disabled_holo_light=0x7f07001c;
         public static final int abs__bright_foreground_holo_dark=0x7f070019;
         public static final int abs__bright_foreground_holo_light=0x7f07001a;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f070031;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f070032;
-        public static final int abs__primary_text_holo_dark=0x7f070033;
-        public static final int abs__primary_text_holo_light=0x7f070034;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f070032;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f070033;
+        public static final int abs__primary_text_holo_dark=0x7f070034;
+        public static final int abs__primary_text_holo_light=0x7f070035;
         /**  CACACA 
          */
         public static final int app_black=0x7f070022;
@@ -1545,6 +1545,7 @@ containing a value of this type.
         public static final int app_lightgray=0x7f070026;
         public static final int app_lightgreen=0x7f07001e;
         public static final int app_lightred=0x7f07002a;
+        public static final int app_loading_screen_bg=0x7f070031;
         public static final int app_offwhite=0x7f070020;
         public static final int app_red=0x7f070029;
         public static final int app_tranparent_black=0x7f070023;
@@ -1566,8 +1567,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f070006;
         public static final int common_signin_btn_light_text_focused=0x7f070007;
         public static final int common_signin_btn_light_text_pressed=0x7f070005;
-        public static final int common_signin_btn_text_dark=0x7f070035;
-        public static final int common_signin_btn_text_light=0x7f070036;
+        public static final int common_signin_btn_text_dark=0x7f070036;
+        public static final int common_signin_btn_text_light=0x7f070037;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f07000f;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1586,8 +1587,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f070011;
         public static final int wallet_holo_blue_light=0x7f070015;
         public static final int wallet_link_text_light=0x7f070016;
-        public static final int wallet_primary_text_holo_light=0x7f070037;
-        public static final int wallet_secondary_text_holo_dark=0x7f070038;
+        public static final int wallet_primary_text_holo_light=0x7f070038;
+        public static final int wallet_secondary_text_holo_dark=0x7f070039;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1883,8 +1884,8 @@ containing a value of this type.
         public static final int indicator_bg_top=0x7f0200ae;
         public static final int loading_image_large=0x7f0200af;
         public static final int loading_image_small=0x7f0200b0;
-        public static final int news_logo=0x7f0200b1;
-        public static final int news_logo_name=0x7f0200b2;
+        public static final int news_logo_name=0x7f0200b1;
+        public static final int news_logo_round=0x7f0200b2;
         public static final int next_black=0x7f0200b3;
         public static final int next_blue=0x7f0200b4;
         public static final int next_btn_dark_gray=0x7f0200b5;
@@ -2399,10 +2400,9 @@ containing a value of this type.
         public static final int txt_about_us=0x7f06003f;
         public static final int txt_choose_cat=0x7f06003e;
         public static final int txt_choose_date=0x7f06003d;
-        public static final int txt_company_name=0x7f060040;
-        public static final int txt_company_phone=0x7f060042;
-        public static final int txt_company_website=0x7f060041;
-        public static final int txt_terms_of_use=0x7f060043;
+        public static final int txt_company_phone=0x7f060041;
+        public static final int txt_company_website=0x7f060040;
+        public static final int txt_terms_of_use=0x7f060042;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

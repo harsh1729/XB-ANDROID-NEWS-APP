@@ -156,7 +156,11 @@ public class Custom_AdapterCatHome extends BaseExpandableListAdapter  {
 		ImageView imgViewChild = (ImageView) convertView
 				.findViewById(R.id.img_GroupCatgeory);
 		
-		//Globals.loadImageIntoImageView(imgViewChild, childCat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+		if(childCat.getImageName() != null && !childCat.getImageName().trim().isEmpty())
+			Globals.loadImageIntoImageView(imgViewChild, childCat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+		else
+			imgViewChild.setImageResource(R.drawable.no_image_small);
+		
 		
 
 		TextView tv = (TextView) convertView.findViewById(R.id.txt_GroupText);
@@ -207,7 +211,11 @@ public class Custom_AdapterCatHome extends BaseExpandableListAdapter  {
 		ImageView img = (ImageView) convertView
 				.findViewById(R.id.img_GroupCatgeory);
 		
-		Globals.loadImageIntoImageView(img, cat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+		if(cat.getImageName() != null && !cat.getImageName().trim().isEmpty())
+			Globals.loadImageIntoImageView(img, cat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+		else
+			img.setImageResource(R.drawable.no_image_small);
+			
 		if (getChildrenCount(groupPosition) > 0) {
 			ImageView indicator = ((ImageView) convertView
 					.findViewById(R.id.img_GroupIndicator));

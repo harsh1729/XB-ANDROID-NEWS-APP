@@ -14,9 +14,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -44,11 +47,12 @@ public class Globals {
 	public static  String GCM_REG_ID = "";
 	public static final String VSERV_BILLBOARD_ZONE_ID = "";
 	public static final String VSERV_BANNER_ZONE_ID = "";
-	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 20;
+	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 10;
 	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
 	public final static String APP_TITLE = "Seema Sandesh News App";
 	public final static String APP_PNAME = "in.seemasandesh.newspaperapp";
 	public final static String SHARE_URL = "http://xercesblue.in/download/androidApp.php?id=5";
+	public final static String GCM_SENDER_ID = "690168566655";
 	/* To be changed with each client   */
 	
 	public static final String DEFAULT_APP_SERVER_PATH= "http://xbnews.in/newsci/client_requests/";//"http://xercesblue.in/newsentry/";
@@ -83,104 +87,6 @@ public class Globals {
 	public static final String OPTION_REFRESH = "Refresh All";
 	public static final String OPTION_SHARE = "Share";
 	
-	static String getURL_CatNewsFirstCall(){
-		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_cat_news
-		//return DEFAULT_APP_SERVER_PATH+"getAppConfig.php?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
-		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_cat_news");
-		return DEFAULT_APP_SERVER_PATH+"news/mob_get_cat_news";//?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
-	}
-	
-	static Map<String, String> getParams_CatNewsFirstCall(int catVersionId,int appVersionId){
-		HashMap<String, String> mParams = new HashMap<String, String>();
-			        mParams.put("clientid", CLIENT_ID+"");
-			        mParams.put("catversion", catVersionId+"");
-			        mParams.put("appconfigversion", appVersionId+"");
-			        mParams.put("limit", Globals.FINAL_NEWS_LIMIT_FIRST_CALL+"");
-			        
-			        return mParams;
-	}
-	static String getURL_NewsByCategory(){ //int catId , int lastNewsId, String callType
-		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
-		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_news_by_category");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
-		return  DEFAULT_APP_SERVER_PATH+"news/mob_get_news_by_category";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		//Calltype : fresh,new,old
-	}
-
-	static String getURL_ContactUs(){ //int catId , int lastNewsId, String callType
-		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
-		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_contact_us");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
-		return  DEFAULT_APP_SERVER_PATH+"news/mob_contact_us";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		//Calltype : fresh,new,old
-	}
-	static Map<String, String> getParams_NewsByCategory(int catId,String callType,int lastNewsId,int limit){
-		
-		
-		HashMap<String, String> mParams = new HashMap<String, String>();
-			        mParams.put("catid", catId+"");
-			        mParams.put("calltype", callType);
-			        mParams.put("lastnewsid", lastNewsId+"");
-			        mParams.put("limit", limit+"");
-			        Log.i("DARSH", "getParams_NewsByCategory --->" + mParams);
-			        
-			        return mParams;
-	}
-static Map<String, String> getParams_NewsByCategoryDateWise(int catId,String callType,int lastNewsId,int limit,String startDate,String endDate ){
-		
-		
-		HashMap<String, String> mParams = new HashMap<String, String>();
-			        mParams.put("catid", catId+"");
-			        mParams.put("calltype", callType);
-			        mParams.put("lastnewsid", lastNewsId+"");
-			        mParams.put("limit", limit+"");
-			        mParams.put("startdate", startDate+"");
-			        mParams.put("enddate", endDate+"");
-			        Log.i("DARSH", "getParams_NewsByCategory --->" + mParams);
-			        
-			        return mParams;
-	}
-	
-static Map<String, String> getParams_NewsByContactUs(String device_uid,String contactDetail, String message , String name){
-	
-	
-	HashMap<String, String> mParams = new HashMap<String, String>();
-		        mParams.put("clientid", CLIENT_ID+"");
-		        mParams.put("device_uid", device_uid);
-		        mParams.put("contact_detail", contactDetail);
-		        mParams.put("message", message);
-		        mParams.put("name", name);
-		        
-		        Log.i("DARSH", "getParams_NewsByContactUs --->" + mParams);
-		        
-		        return mParams;
-}
-	static String getURL_NewsDetail(){ //int catId , int lastNewsId, String callType
-		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
-		//return  DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		Log.i("HARSH", DEFAULT_APP_SERVER_PATH+"news/mob_get_news_detail");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
-		return  DEFAULT_APP_SERVER_PATH+"news/mob_get_news_detail";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
-		
-		//Calltype : fresh,new,old
-	}
-
-	static Map<String, String> getParams_NewsDetail(int newsId){	
-		HashMap<String, String> mParams = new HashMap<String, String>();
-			        mParams.put("newsid", newsId+"");			        
-			        Log.i("DARSH", "getParams_NewsDetail --->" + mParams);
-			        
-			        return mParams;
-	}
-	static String getURLPushNotification(String gcmId,int appId){
-		//DEFAULT_APP_SERVER_PATH
-		return  "http://xercesblue.in/newsentry/pushNotification/registerPushNotificationUser.php?gcmId="+gcmId+"&AppId="+appId;
-	}
 	
 	public static String getShareAppMsg() {
 		return "Friends, check out this awesome news app . ";
@@ -494,8 +400,27 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 				}
 			});
 		} catch (Exception e) {
-			Log.e("DARSH", "Error in loading image");
+			Log.e("DARSH", "Error in loading image with url "+ imgURL);
 		}
+		
+	}
+	public static int getAppVersion(Context context) {
+		try {
+			PackageInfo packageInfo = context.getPackageManager()
+					.getPackageInfo(context.getPackageName(), 0);
+			return packageInfo.versionCode;
+		} catch (NameNotFoundException e) {
+			Log.d("xerces", "I never expected this! Going down, going down!"
+					+ e);
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static String getDeviceIMEI(Context con){
+		
+		TelephonyManager telephonyManager = (TelephonyManager)con.getSystemService(Context.TELEPHONY_SERVICE);
+		String deviceImei = telephonyManager.getDeviceId();		
+		return deviceImei;
 		
 	}
 }
