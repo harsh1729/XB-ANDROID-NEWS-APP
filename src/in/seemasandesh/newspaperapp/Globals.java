@@ -86,6 +86,7 @@ public class Globals {
 	public static final String OPTION_SETTINGS = "Settings";
 	public static final String OPTION_REFRESH = "Refresh All";
 	public static final String OPTION_SHARE = "Share";
+	public static final String OPTION_E_PAPER = "E Paper";
 	
 	
 	public static String getShareAppMsg() {
@@ -374,7 +375,7 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 		
 	}
 	
-	public static void loadImageIntoImageView(ImageView iv ,String imgURL, Context context ,int loadingImgId ,int errorImgId ){
+	public static void loadImageIntoImageView(final ImageView iv ,String imgURL, Context context ,int loadingImgId ,int errorImgId ){
 		
 		try {
 			Picasso p = Picasso.with(context);
@@ -389,6 +390,7 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 				rq = p.load(errorImgId);
 			
 			rq.into(iv, new Callback() {
+				
 				@Override
 				public void onSuccess() {
 					Log.i("DARSH", "Image Loaded");
@@ -398,7 +400,11 @@ static public void showAlertDialogOneButton(String title,String msg,Context cont
 				public void onError() {
 					Log.e("DARSH", "Image Loaded ERRROR");
 				}
+			  
+				
 			});
+			
+			
 		} catch (Exception e) {
 			Log.e("DARSH", "Error in loading image with url "+ imgURL);
 		}

@@ -155,7 +155,7 @@ public class Custom_GCM_Register{
 					}
 				});
 
-		Custom_VolleyAppController.getInstance().addToRequestQueue(
+		Custom_AppController.getInstance().addToRequestQueue(
 				jsonObjectRQST);
 	}
 	private void storeRegistrationId(Context context, String gcmId) {

@@ -7,6 +7,16 @@ import android.content.Context;
 import android.util.Log;
 
 public class Custom_URLs_Params {
+	
+	static String getURL_EpaperStatesnCities(){
+		return "http://xercesblue.in/HARSHTEST/get_epaper_states_cities.php";//?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
+	}
+	
+	static Map<String, String> getParams_EpaperStatesnCities(){
+		HashMap<String, String> mParams = new HashMap<String, String>();
+			        mParams.put("clientid", Globals.CLIENT_ID+"");
+			        return mParams;
+	}
 
 	static String getURL_CatNewsFirstCall(){
 		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_cat_news

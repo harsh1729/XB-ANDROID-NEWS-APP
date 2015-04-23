@@ -34,6 +34,7 @@ public class Activity_Parent extends Activity {
 		
 		TextView txtHeading = ((TextView)findViewById(R.id.txtHeader));
 		
+		
 		if(this.getClass() == Activity_SavedNews.class){
 			txtHeading.setText("Saved News");
 			
@@ -56,6 +57,13 @@ public class Activity_Parent extends Activity {
 		else if(this.getClass() == Activity_Settings.class){
 			txtHeading.setText("Settings");
 		}
+		else if(this.getClass() == Activity_EPaperShowStates.class){
+			txtHeading.setText("Select State");
+		}
+		else if(this.getClass() == Activity_EPaperShowCities.class){
+			txtHeading.setText("Select City");
+		}
+		
 		
 	}
 	 

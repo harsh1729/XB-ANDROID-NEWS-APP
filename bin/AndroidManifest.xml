@@ -20,32 +20,31 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="in.seemasandesh.newspaperapp.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-	
-	<uses-permission android:name="in.seemasandesh.newspaperapp.C2D_MESSAGE"/>
-        <uses-permission android:name="android.permission.VIBRATE"/>
-        <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-        <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="in.seemasandesh.newspaperapp.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
-        android:name="in.seemasandesh.newspaperapp.Custom_VolleyAppController"
+        android:name=".Custom_AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
-        
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        
+
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_Splash"
+            android:name=".Activity_Splash"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_Home"
+            android:name=".Activity_Home"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
@@ -56,77 +55,104 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_NewCatWise"
+            android:name=".Activity_NewCatWise"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Single_news_show"
+            android:name=".Single_news_show"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_NewsDetail"
+            android:name=".Activity_NewsDetail"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.ChildAnimationExample"
+            android:name=".ChildAnimationExample"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_ZoomedImage"
+            android:name=".Activity_ZoomedImage"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_SavedNews"
+            android:name=".Activity_SavedNews"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_Settings"
+            android:name=".Activity_Settings"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_SelectDateRange"
+            android:name=".Activity_SelectDateRange"
             android:configChanges="orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
 
-        <service android:name="in.seemasandesh.newspaperapp.GCMIntentService" />
+        <service android:name=".GCMIntentService" />
 
         <receiver
-            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:name=".GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
                 <category android:name="in.seemasandesh.newspaperapp" />
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_DateWiseNewsList" >
+        <activity android:name=".Activity_DateWiseNewsList"
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Activity_ContactUs" 
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Activity_TermsOfUSe"
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Activity_AboutUs" 
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_ContactUs" >
+            android:name=".Activity_EPaperShowStates" 
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_TermsOfUSe" >
+            android:name=".Activity_EPaperShowCities"
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="in.seemasandesh.newspaperapp.Activity_AboutUs" >
+            android:name=".Activity_EPaperReader"
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

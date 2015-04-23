@@ -133,27 +133,13 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		lpImg.width = imgWidthHeight;
 		
 		iv.setLayoutParams(lpImg);
-		/*
-		Picasso p = Picasso.with(context);
-		RequestCreator rq = null;
-
-		if(!imgURL.trim().isEmpty()){
-			rq = p.load(imgURL);
-			rq.placeholder(R.drawable.loading_image_small);
-			rq.error(R.drawable.no_image_small);
-		}
+		
+		
+		
+		if(!imgURL.isEmpty())
+			Globals.loadImageIntoImageView(iv, imgURL, context, R.drawable.loading_image_small, R.drawable.no_image_small);
 		else
-			rq = p.load(R.drawable.no_image_small);
-		
-		
-		
-		
-		
-		//rq.resize(imgWidthHeight,imgWidthHeight);
-		//rq.centerCrop();
-		rq.into(iv);
-	*/
-		Globals.loadImageIntoImageView(iv, imgURL, context, R.drawable.loading_image_small, R.drawable.no_image_small);
+			iv.setImageResource(R.drawable.no_image_small);
 		
 		TextView txtDate = (TextView) convertView
 				.findViewById(R.id.txt_news_item_date);
@@ -190,11 +176,10 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		
 		
 		ImageView iv = (ImageView) convertView.findViewById(R.id.img_news_item);
-		Picasso p = Picasso.with(context);
-		RequestCreator rq = null;
-
-		rq = p.load(imgURL);
-		rq.into(iv);
+		if(!imgURL.isEmpty())
+			Globals.loadImageIntoImageView(iv, imgURL, context, R.drawable.loading_image_large, R.drawable.no_image_large);
+		else
+			iv.setImageResource(R.drawable.no_image_large);
 		
 		
 		return convertView;
@@ -227,11 +212,10 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		
 		
 		ImageView iv = (ImageView) convertView.findViewById(R.id.img_news_item);
-		Picasso p = Picasso.with(context);
-		RequestCreator rq = null;
-
-		rq = p.load(imgURL);
-		rq.into(iv);
+		if(!imgURL.isEmpty())
+			Globals.loadImageIntoImageView(iv, imgURL, context, R.drawable.loading_image_large, R.drawable.no_image_large);
+		else
+			iv.setImageResource(R.drawable.no_image_large);
 		
 		
 		return convertView;

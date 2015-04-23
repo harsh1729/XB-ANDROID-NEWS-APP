@@ -96,7 +96,7 @@ public class Activity_ContactUs extends Activity_Parent{
 				});
 
 	
-		Custom_VolleyAppController.getInstance().addToRequestQueue(
+		Custom_AppController.getInstance().addToRequestQueue(
 				jsonObjectRQST);
 		
 	}catch(Exception ex){

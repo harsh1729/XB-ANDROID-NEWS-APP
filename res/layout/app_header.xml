@@ -20,12 +20,21 @@
                 android:padding="4dp"
                 android:background="@color/app_transparent"
                 android:onClick="onClickToggle" />
+            
+            <ImageView 
+                android:id="@+id/imgHeaderText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:scaleType="fitCenter"
+                android:padding="4dp"
+                android:background="@color/app_transparent"/>
 
             <TextView
                 android:id="@+id/txtHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5.5"
+                android:layout_weight="4"
                 android:maxLines="1"
 				android:ellipsize="end"
                 android:textColor="@color/app_black"
@@ -33,8 +42,9 @@
                 android:gravity="center_vertical"
                 android:background="@color/app_transparent"
                 android:paddingLeft="4dp"
-                android:text="@string/news_paper_name"
                 android:textSize="@dimen/font_lbl_news_paper_name" />
+            
+<!--                 android:text="@string/news_paper_name" -->
 
 <!--             <LinearLayout -->
 <!--                 android:id="@+id/llytHeaderUpdateContainer" -->

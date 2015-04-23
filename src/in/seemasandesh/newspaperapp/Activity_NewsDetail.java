@@ -148,7 +148,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 						}
 					});
 
-			Custom_VolleyAppController.getInstance().addToRequestQueue(
+			Custom_AppController.getInstance().addToRequestQueue(
 					jsonObjectRQST);
 
 		} catch (Exception ex) {

@@ -196,8 +196,6 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.i("DARSH", "json Response recieved !!"
-									+ response.toString());
 
 							parseAppConfigJson(response);
 						}
@@ -219,7 +217,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 						}
 					});
 
-			Custom_VolleyAppController.getInstance().addToRequestQueue(
+			Custom_AppController.getInstance().addToRequestQueue(
 					jsonObjectRQST);
 
 		}
@@ -343,7 +341,83 @@ public class Activity_Home extends SlidingFragmentActivity {
 	}
 
 
-
+	private void parseAppEpaperJson(JSONObject response) {
+	
+		Globals.hideLoadingDialog(mDialog);
+		if (response == null){
+			return;
+		}
+		Log.i("DARSH", "RESPONCE parseAppEpaperJson is : "+response.toString());
+		try{
+			
+			ArrayList<Object_State> listStates = new ArrayList<Object_State>();
+			ArrayList<Object_Cities> listCities= new ArrayList<Object_Cities>();
+			
+			if (response.has("states")) {
+				JSONArray arrayStates = response.getJSONArray("states");
+				
+				for(int i=0; i<arrayStates.length(); i++)
+				{
+					Object_State ob = new Object_State();
+					JSONObject json_State = arrayStates.getJSONObject(i);
+					
+					ob.id = json_State.getInt("id");
+					ob.name = json_State.getString("name");
+					listStates.add(ob);
+				}
+			}
+			
+			if (response.has("cities")) {
+				JSONArray arrayCities = response.getJSONArray("cities");
+				
+				for(int i=0; i<arrayCities.length(); i++)
+				{
+					Object_Cities ob = new Object_Cities();
+					JSONObject json_City = arrayCities.getJSONObject(i);
+					
+					ob.id = json_City.getInt("id");
+					ob.state_id = json_City.getInt("state_id");
+					ob.image_url = json_City.getString("image_url");
+					ob.name = json_City.getString("name");
+					listCities.add(ob);
+				}
+			}
+			Class<?> nextClass = null;
+			if(listStates.size() > 1){
+				Activity_EPaperShowStates.listStates.clear();
+				for(Object_State obj: listStates){
+					
+					Activity_EPaperShowStates.listStates.add(obj);
+				}
+				
+				nextClass = Activity_EPaperShowStates.class;
+				
+			}else{
+				if(listCities.size() > 0){
+					Activity_EPaperShowCities.selectedStateId = 0;
+					nextClass = Activity_EPaperShowCities.class;
+				}
+					
+			}
+			
+			Activity_EPaperShowCities.listCities.clear();
+			for(Object_Cities obj: listCities){
+				
+				Activity_EPaperShowCities.listCities.add(obj);
+			}
+			
+			if(nextClass != null){
+				Intent i = new Intent(this, nextClass);
+				startActivity(i);
+			}else{
+				Toast.makeText(this, "No Epaper found, try again later",Toast.LENGTH_SHORT ).show();
+			}
+			
+		}catch(Exception ex){
+			
+		}
+		
+	}
 
 	private void parseAppConfigJson(JSONObject response) {
 
@@ -351,6 +425,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 			showCategories();
 			return;
 		}
+		Log.i("DARSH", "RESPONCE parseAppConfigJson is : "+response.toString());
 		try {
 			// Set App Config
 			if (response.has("appconfig_need_update")) {
@@ -619,7 +694,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 					});
 
 		
-			Custom_VolleyAppController.getInstance().addToRequestQueue(
+			Custom_AppController.getInstance().addToRequestQueue(
 					jsonObjectRQST);
 			
 		}catch(Exception ex){
@@ -775,24 +850,11 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 	public void initOptionsList() {
 
-		// new
-		// ListView(this);
-		// int width = Globals.getScreenSize(this).x / 2;
-
-		// RelativeLayout.LayoutParams lp = new
-		// RelativeLayout.LayoutParams(width,RelativeLayout.LayoutParams.WRAP_CONTENT);
-		// lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		// lp.addRule(RelativeLayout.BELOW,R.id.llytHomeHeader);
-
-		// listViewOptions.setLayoutParams(lp);
-		// listViewOptions.setBackgroundResource(R.color.app_black);
-		// listViewOptions.setPadding(2, 2, 2, 2);
-		// listViewOptions.setVisibility(View.GONE);
 
 		String[] values = new String[] { Globals.OPTION_SAVED_NEWS, Globals.OPTION_CALENDER, Globals.OPTION_SETTINGS,
-				Globals.OPTION_REFRESH };
+				Globals.OPTION_REFRESH ,Globals.OPTION_E_PAPER };
 
-		ArrayList<StateListDrawable> listDrawable = getDrawableList();
+		ArrayList<StateListDrawable> listDrawable = getOptionsDrawableList();
 
 		listOptions = new ArrayList<Object_Options>();
 
@@ -802,7 +864,6 @@ public class Activity_Home extends SlidingFragmentActivity {
 			obj.setText(values[i]);
 			if(listDrawable.size() > i)
 				obj.setStateDrawable(listDrawable.get(i));
-			//obj.setImageResourceId(imgIds[i]);
 
 			listOptions.add(obj);
 		}
@@ -810,10 +871,6 @@ public class Activity_Home extends SlidingFragmentActivity {
 		Custom_AdapterOptions adapter = new Custom_AdapterOptions(this,
 				listOptions);
 		listViewOptions.setAdapter(adapter);
-
-		// RelativeLayout root =
-		// (RelativeLayout)findViewById(R.id.rlytHomeRoot);
-		// root.addView(listViewOptions);
 
 		listViewOptions.setOnItemClickListener(new OnItemClickListener() {
 
@@ -826,7 +883,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		});
 	}
 
-	private ArrayList<StateListDrawable> getDrawableList(){
+	private ArrayList<StateListDrawable> getOptionsDrawableList(){
 		ArrayList<StateListDrawable> listDrawable = new ArrayList<StateListDrawable>();
 
 		try{
@@ -861,17 +918,21 @@ public class Activity_Home extends SlidingFragmentActivity {
 					getResources().getDrawable(R.drawable.refresh_selected));
 			stateRefresh.addState(new int[] { },
 					getResources().getDrawable(Custom_ThemeUtil.getRefreshImageId(this)));
-
-
-			//int[] imgIds = new int[] { R.drawable.selector_options_save,
-			//R.drawable.selector_options_calender,
-			//R.drawable.selector_options_settings, R.drawable.selector_options_refresh };
+			
+			StateListDrawable stateEpaper= new StateListDrawable();
+			stateEpaper.addState(new int[] {android.R.attr.state_pressed},
+					getResources().getDrawable(R.drawable.epaper_selected));
+			stateEpaper.addState(new int[] {android.R.attr.state_focused},
+					getResources().getDrawable(R.drawable.epaper_selected));
+			stateEpaper.addState(new int[] { },
+					getResources().getDrawable(Custom_ThemeUtil.getEpaperImageId(this)));
 
 
 			listDrawable.add(stateSave);
 			listDrawable.add(stateCalender);
 			listDrawable.add(stateSettings);
 			listDrawable.add(stateRefresh);
+			listDrawable.add(stateEpaper);
 		}catch(Exception ex){
 
 		}
@@ -912,6 +973,9 @@ public class Activity_Home extends SlidingFragmentActivity {
 				}
 				else if(obj.getText().equals(Globals.OPTION_CALENDER)){
 					nextClass = Activity_SelectDateRange.class;
+				}else if(obj.getText().equals(Globals.OPTION_E_PAPER)){
+					getEPaperDetailsFromServer();
+					//nextClass = Activity_EPaperShowStates.class;
 				}
 				if (nextClass != null) {
 					Intent intent = new Intent(this, nextClass);
@@ -921,6 +985,55 @@ public class Activity_Home extends SlidingFragmentActivity {
 		}
 	}
 
+	private void getEPaperDetailsFromServer(){
+		
+		try {
+			
+			mDialog = Globals.showLoadingDialog(mDialog, this,false);			
+
+			String url = Custom_URLs_Params.getURL_EpaperStatesnCities();
+			
+			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
+					url, Custom_URLs_Params.getParams_EpaperStatesnCities(),
+							new Listener<JSONObject>() {
+
+						@Override
+						public void onResponse(JSONObject response) {
+							parseAppEpaperJson(response);
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError err) {
+							Log.i("DARSH", "ERROR VolleyError");
+							
+							Globals.hideLoadingDialog(mDialog);
+							Globals.showAlertDialogOneButton(
+									Globals.TEXT_CONNECTION_ERROR_HEADING,
+									Globals.TEXT_CONNECTION_ERROR_DETAIL_TOAST,
+									Activity_Home.this, "OK", null, false);
+							if(err != null){
+								Log.i("DARSH", "ERROR Details getLocalizedMessage : "+err.getLocalizedMessage());
+								Log.i("DARSH", "ERROR Details getMessage : "+err.getMessage());
+								Log.i("DARSH", "ERROR Details getStackTrace : "+err.getStackTrace());
+							}
+
+						}
+					});
+
+			Custom_AppController.getInstance().addToRequestQueue(
+					jsonObjectRQST);
+
+		}
+
+		catch (Exception e) {
+			Log.i("HARSH",
+					"Excetion FIRSTCALL getEPaperDetailsFromServer");
+			Globals.hideLoadingDialog(mDialog);
+
+
+		}
+
+	}
 	private void showLoadingScreen() {
 
 		LinearLayout ll = (LinearLayout) findViewById(R.id.llytLoadingContainer);

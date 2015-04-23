@@ -28,6 +28,11 @@
     <color name="app_yellow">#F4BF00</color>
     <color name="app_transparent">#00000000</color>
     
-    <color name="app_loading_screen_bg">#FCFBE3</color>
+    <color name="app_loading_screen_bg">#E1E1E1</color> <!-- FCFBE3 -->
+    
+    
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="view_divider_color">#BABABA</color>
+    <color name="view_divider_color_2">#DADADA</color>
     
 </resources>

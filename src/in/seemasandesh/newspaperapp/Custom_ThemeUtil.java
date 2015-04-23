@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.StateListDrawable;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -79,6 +80,7 @@ public class Custom_ThemeUtil
 		RelativeLayout rlytRoot =(RelativeLayout) activity.findViewById(R.id.rlytRoot);
 		
 		TextView txtScreenHeading = ((TextView)activity.findViewById(R.id.txtHeader));
+		ImageView imgHeaderText = (ImageView)activity.findViewById(R.id.imgHeaderText);
 		
 		//TextView txtUpdater1	 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater1));
 		//TextView txtUpdater2 = ((TextView)activity.findViewById(R.id.txtHeaderUpdater2));
@@ -88,12 +90,14 @@ public class Custom_ThemeUtil
 		if(currentTheme == THEME_YELLOW_VALUE){
 			llHeader.setBackgroundResource(R.color.app_black);
 			txtScreenHeading.setTextColor(activity.getResources().getColor(R.color.app_white));
+			imgHeaderText.setImageResource(R.drawable.header_text_white);
 			//txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_white));
 			//txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_white));
 			//txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_white));
 		}else{
 			llHeader.setBackgroundResource(R.color.app_white);
 			txtScreenHeading.setTextColor(activity.getResources().getColor(R.color.app_black));
+			imgHeaderText.setImageResource(R.drawable.header_text_black);
 			//txtUpdater1.setTextColor(activity.getResources().getColor(R.color.app_black));
 			//txtUpdater2.setTextColor(activity.getResources().getColor(R.color.app_black));
 			//txtUpdater3.setTextColor(activity.getResources().getColor(R.color.app_black));
@@ -629,6 +633,10 @@ public class Custom_ThemeUtil
 	public static int getRefreshImageId(Activity activity){	
 
 		return activity.getResources().getIdentifier("refresh"+getImagePostFix(activity), "drawable", activity.getPackageName());
+	}
+	public static int getEpaperImageId(Activity activity){	
+
+		return activity.getResources().getIdentifier("epaper"+getImagePostFix(activity), "drawable", activity.getPackageName());
 	}
 	public static int getSettingsImageId(Activity activity){	
 
