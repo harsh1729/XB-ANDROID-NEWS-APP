@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -120,26 +121,46 @@ public class Activity_ZoomedImage extends Activity {
 		}
 	    Bitmap adv = ((BitmapDrawable)currentImage.getDrawable()).getBitmap();//BitmapFactory.decodeResource(getResources(), R.drawable.adv);
 	    Intent share = new Intent(Intent.ACTION_SEND);
+	    Object_SubNewsItem item;
+	    String imageName = "temp.jpg";
 	    if(listAllCurrentNewsItem.size() > currentSubItemNo){
-			Object_SubNewsItem item = listAllCurrentNewsItem.get(currentSubItemNo);
+			 item = listAllCurrentNewsItem.get(currentSubItemNo);
 			 share.putExtra(Intent.EXTRA_TEXT, item.getNewsHeading());
 			  share.setType("text/plain");
+			  if(item.getNewsImagePath() != null && !item.getNewsImagePath().trim().isEmpty()){
+				  String[] array = item.getNewsImagePath().split(File.separator);
+				  
+				  if(array.length > 0){
+					  imageName = array[array.length -1];
+				  }
+			  }  
 	    }
 	   
+		String filePath =  Environment.getExternalStorageDirectory()
+	            + File.separator +Globals.getStringFromResources(this, R.string.app_name);
+		String imagePath = filePath  + File.separator +imageName;
+		
+		Log.i("DARSH", "filePath "+filePath);
+		Log.i("DARSH", "imagePath "+imagePath);
 		
 	    share.setType("image/jpeg");
 	    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 	    adv.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-	    File f = new File(Environment.getExternalStorageDirectory()
-	            + File.separator + "temporary_file.jpg");
+	    File f = new File(filePath);
 	    try {
+	    	if (!f.exists()) {
+                f.mkdirs();
+            }
+	    	
+	    	f= new File(imagePath);
 	        f.createNewFile();
 	        new FileOutputStream(f).write(bytes.toByteArray());
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	    
 	    share.putExtra(Intent.EXTRA_STREAM,
-	            Uri.parse( Environment.getExternalStorageDirectory()+ File.separator+"temporary_file.jpg"));
+	            Uri.parse(imagePath));
 	    if(isPackageInstalled("com.whatsapp",this)){
 	          share.setPackage("com.whatsapp"); 
 	          startActivity(Intent.createChooser(share, "Share Image"));

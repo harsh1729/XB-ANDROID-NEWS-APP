@@ -25,69 +25,7 @@
             android:orientation="vertical"
             android:padding="10dp" >
             
-            <LinearLayout
-            android:id="@+id/llytImagesHorizontalContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="30dp" >
-
-            <LinearLayout
-                android:id="@+id/llytLeft"
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_rounded"
-                android:minHeight="300dp"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:onClick="onClickNews"
-                android:padding="10dp" >
-
-                <ImageView
-                    android:id="@+id/llytImageLeft"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:src="@drawable/test_1_small"
-                    android:scaleType="fitCenter"
-                     />
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/app_tranparent_black"
-                    android:text="Ganganagar"
-                    android:gravity="center"
-                    android:textColor="@color/app_white"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llytRight"
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_rounded"
-                android:minHeight="300dp"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:onClick="onClickNews"
-                android:padding="10dp" >
-
-                <ImageView
-                    android:id="@+id/llytImageRight"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:src="@drawable/test_1_small"
-                    android:scaleType="fitCenter"
-                     />
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/app_tranparent_black"
-                    android:text="Suratgarh"
-                    android:gravity="center"
-                    android:textColor="@color/app_white"/>
-            </LinearLayout>
-        </LinearLayout>
+           
         </LinearLayout>
 
         

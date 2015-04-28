@@ -5,8 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -42,7 +40,7 @@ public class Globals {
 	
 	/* To be changed with each client */
 	public static final int APP_ID= 1;
-	public static final int CLIENT_ID= 1;
+	public static final int CLIENT_ID= 2;
 	public static final String AD_INMOBI_PROPERTY_ID = "";
 	public static  String GCM_REG_ID = "";
 	public static final String VSERV_BILLBOARD_ZONE_ID = "";
@@ -181,7 +179,9 @@ public class Globals {
 	}
 	
 	*/
-
+	static public String getStringFromResources(Context con, int resourceId){
+		return con.getResources().getString(resourceId);
+	}
 	static public void showAlertDialogError(final Activity activity){
 		
 		showAlertDialogError(activity,"Please try again.");
@@ -200,6 +200,7 @@ public class Globals {
 		
 		Globals.showAlertDialog("Error",msg ,activity,"OK", listener,null,null,false);
 	}
+	
 	
 static public void showAlertDialogOneButton(String title,String msg,Context context,String positiveButtonText,DialogInterface.OnClickListener listnerPositive,Boolean isCancelable){
 		

@@ -480,8 +480,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 				if (response.getInt("categories_need_update") > 0) {
 
 					if (response.has("category_version")) {
-						objConfig.setVersionNoCategory(response
-								.getInt("category_version"));
+						objConfig.setVersionNoCategory(response.getInt("category_version"));
+						
 					}
 					if(response.has("categories")){
 						JSONArray Cat_Object_Array = response.getJSONArray("categories");

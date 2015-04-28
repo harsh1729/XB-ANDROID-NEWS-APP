@@ -58,6 +58,8 @@ public class Custom_ThemeUtil
 				setThemeNewsDetail(activity);
 			}else if(activity.getClass() == Activity_SelectDateRange.class){
 				setThemeSetDateRange(activity);
+			}else if(activity.getClass() == Activity_EPaperReader.class){
+				setThemeEpaperReader(activity);
 			}else {
 				setThemeGeneralHeaderBack(activity);
 			}
@@ -221,6 +223,91 @@ public class Custom_ThemeUtil
 		imgBtnCalStart.setImageResource(idImg);
 	}
 	
+	
+	private static void setThemeEpaperReader(Activity activity){
+
+		Object_AppConfig obj = new Object_AppConfig(activity);
+
+		//Get controls
+		RelativeLayout catConatiner =(RelativeLayout) activity.findViewById(R.id.expListPapersContainers);
+
+
+		ImageButton imgButtonToggle = (ImageButton)(activity.findViewById(R.id.imgHeaderBtnLeft));
+
+		ListView expandableListView = (ListView)(activity.findViewById(R.id.expListPapers));
+
+		expandableListView.setDividerHeight(0);
+		
+		
+		int appBackgroundThemeColor = THEME_BLACK_BG_COLOR;
+		String imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
+
+		switch (obj.getTheme())
+		{
+
+		case THEME_YELLOW_VALUE:		
+			appBackgroundThemeColor = THEME_YELLOW_BG_COLOR;
+			catConatiner.setBackgroundResource(appBackgroundThemeColor);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_YELLOW_POST_TEXT;
+			break;
+
+		case THEME_RED_VALUE:
+			appBackgroundThemeColor = THEME_RED_BG_COLOR;
+			catConatiner.setBackgroundResource(appBackgroundThemeColor);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_RED_POST_TEXT;
+
+			break;
+
+		case THEME_GREEN_VALUE:
+			appBackgroundThemeColor = THEME_GREEN_BG_COLOR;
+			catConatiner.setBackgroundResource(appBackgroundThemeColor);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_GREEN_POST_TEXT;
+			break;
+
+		case THEME_BLUE_VALUE:	
+			appBackgroundThemeColor = THEME_BLUE_BG_COLOR;
+			catConatiner.setBackgroundResource(appBackgroundThemeColor);
+			
+			imagePostFix = Custom_ThemeUtil.THEME_BLUE_POST_TEXT;
+
+			break;
+
+		case THEME_BLACK_VALUE:
+			appBackgroundThemeColor = THEME_BLACK_BG_COLOR;
+			catConatiner.setBackgroundResource(appBackgroundThemeColor);
+
+			imagePostFix = Custom_ThemeUtil.THEME_BLACK_POST_TEXT;
+
+			break;
+
+		default:
+			break;
+
+		}
+
+		StateListDrawable stateToggleBG = new StateListDrawable();
+		stateToggleBG.addState(new int[] {android.R.attr.state_pressed},
+				activity.getResources().getDrawable(appBackgroundThemeColor));
+		stateToggleBG.addState(new int[] {android.R.attr.state_focused},
+				activity.getResources().getDrawable(appBackgroundThemeColor));
+		stateToggleBG.addState(new int[] { },
+				activity.getResources().getDrawable(R.color.app_transparent ));
+		
+		int idDrawers = activity.getResources().getIdentifier("drawers"+imagePostFix, "drawable", activity.getPackageName());
+		
+		if (android.os.Build.VERSION.SDK_INT >= 16) 
+		{
+			imgButtonToggle.setBackground(stateToggleBG);
+		}
+		
+		imgButtonToggle.setImageResource(idDrawers);
+
+		
+	}
+
 	private static void setThemeHome(Activity activity){
 
 		Object_AppConfig obj = new Object_AppConfig(activity);

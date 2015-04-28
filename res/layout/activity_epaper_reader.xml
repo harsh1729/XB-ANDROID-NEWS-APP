@@ -5,11 +5,39 @@
     android:id="@+id/rlytRoot"
     tools:context="${relativePackage}.${activityClass}" >
 <include layout="@layout/app_header" />
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llytHeader" />
+
+     <com.example.zoomslidersample.SubsamplingScaleImageView
+            android:id="@+id/imageViewEpaper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/llytHeader" />
+     
+      <ImageButton
+        android:id="@+id/imgBtnPrev"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/selector_image_prev"
+        android:onClick="onClickPrev"
+        android:scaleType="fitCenter"
+        android:background="@color/app_transparent" 
+        />
+      <ImageButton
+        android:id="@+id/imgBtnNext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/selector_image_next"
+        android:onClick="onClickNext"
+        android:scaleType="fitCenter"
+        android:background="@color/app_transparent" 
+        />
 
 
 </RelativeLayout>
