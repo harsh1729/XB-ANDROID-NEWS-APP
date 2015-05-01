@@ -60,9 +60,7 @@ public class Activity_Parent extends Activity {
 		else if(this.getClass() == Activity_EPaperShowStates.class){
 			txtHeading.setText("Select State");
 		}
-		else if(this.getClass() == Activity_EPaperShowCities.class){
-			txtHeading.setText("Select City");
-		}
+		
 		
 		
 	}

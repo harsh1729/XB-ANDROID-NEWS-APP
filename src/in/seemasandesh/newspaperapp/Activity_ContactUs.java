@@ -7,10 +7,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -69,6 +66,7 @@ public class Activity_ContactUs extends Activity_Parent{
 		try{
 		if (!cd.isConnectingToInternet()) {
 			Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+			return ;
 		}
 
 		Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(Request.Method.POST,

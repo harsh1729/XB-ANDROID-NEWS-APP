@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -125,7 +126,7 @@ public class Activity_ZoomedImage extends Activity {
 	    String imageName = "temp.jpg";
 	    if(listAllCurrentNewsItem.size() > currentSubItemNo){
 			 item = listAllCurrentNewsItem.get(currentSubItemNo);
-			 share.putExtra(Intent.EXTRA_TEXT, item.getNewsHeading());
+			 share.putExtra(Intent.EXTRA_TEXT,item.getNewsHeading());
 			  share.setType("text/plain");
 			  if(item.getNewsImagePath() != null && !item.getNewsImagePath().trim().isEmpty()){
 				  String[] array = item.getNewsImagePath().split(File.separator);
@@ -272,7 +273,7 @@ public class Activity_ZoomedImage extends Activity {
 		//final ImageView iv = (ImageView)findViewById(R.id.image_zoom);
 		container.addView(currentImage);
 		
-	     txtHead.setText(item.getNewsHeading());
+	     txtHead.setText(item.getNewsHeadingSpan());
 	     
 	     txtIndicator.setText(currentSubItemNo+1 +" / "+ listAllCurrentNewsItem.size());
 	     
@@ -394,7 +395,7 @@ public class Activity_ZoomedImage extends Activity {
 			imgBtnNext.setVisibility(View.VISIBLE);
 		}
 		if(currentSubItemNo < listAllCurrentNewsItem.size()){
-			txtHead.setText(listAllCurrentNewsItem.get(currentSubItemNo).getNewsHeading());
+			txtHead.setText(listAllCurrentNewsItem.get(currentSubItemNo).getNewsHeadingSpan());
 			txtIndicator.setText(currentSubItemNo+1 +" / "+ listAllCurrentNewsItem.size());
 		}
 	}

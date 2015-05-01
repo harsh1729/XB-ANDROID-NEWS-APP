@@ -14,13 +14,13 @@
                  android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:clickable="true"
-                android:onClick="onClickNews"
+                android:clickable="true"      
                 android:padding="10dp" >
 
                 <ImageView
                     android:id="@+id/imageLeft"
                     android:layout_width="match_parent"
+                    
                     android:layout_height="200dp"
                     android:scaleType="fitCenter"
                      />
@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:onClick="onClickNews"
                 android:padding="10dp" >
 
                 <ImageView

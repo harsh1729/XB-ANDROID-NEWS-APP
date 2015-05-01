@@ -69,12 +69,11 @@
     
      <ImageButton
         android:id="@+id/imgBtnPrev"
-        android:layout_width="50dp"
+        android:layout_width="31dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="4dp"
         android:src="@drawable/selector_image_prev"
         android:onClick="onClickPrev"
         android:scaleType="fitCenter"
@@ -82,12 +81,11 @@
         />
       <ImageButton
         android:id="@+id/imgBtnNext"
-        android:layout_width="50dp"
+        android:layout_width="31dp"
         android:layout_height="50dp"
+        android:layout_marginRight="4dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
         android:src="@drawable/selector_image_next"
         android:onClick="onClickNext"
         android:scaleType="fitCenter"

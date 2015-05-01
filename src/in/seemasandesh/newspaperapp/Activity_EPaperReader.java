@@ -6,9 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,10 +22,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
 import com.example.zoomslidersample.ImageSource;
 import com.example.zoomslidersample.SubsamplingScaleImageView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -45,8 +38,9 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 	private SlidingMenu slidingMenu;
 	SubsamplingScaleImageView imageViewEpaper ;
 	ArrayList<Object_Epaper> list;
+	static Object_Cities selectedCity;
 	String image_url;
-	int currentPos = 0;
+	int currentPos = 1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +48,6 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 		setContentView(R.layout.activity_epaper_reader);
 		setBehindContentView(R.layout.container_expandable_list_epaper);
 		initReader();
-		getEPaperDetailsFromServer();
 	}
 	
 	private void initReader(){
@@ -72,16 +65,41 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 		Custom_ThemeUtil.onActivityCreateSetTheme(this);
 		
 		TextView txtHeading = ((TextView)findViewById(R.id.txtHeader));
-		txtHeading.setText("E Paper");
+		txtHeading.setText("ई पेपर");//
+		
+		txtHeading.setPadding(30, 0, 0, 0);
 		
 		imageViewEpaper = (SubsamplingScaleImageView)findViewById(R.id.imageViewEpaper);
+		
+		mDialog = Globals.showLoadingDialog(mDialog, this,false);			
+
+		expListPapers = (ListView) findViewById(R.id.expListPapers);
+		expListPapers.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int pos, long id) {
+				onClickNewsPage(pos+1);
+			}
+			
+		});
+		
+		int slidingWidth = Globals.getScreenSize(this).x*2/5;
+		slidingMenu = getSlidingMenu();
+		slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
+		slidingMenu.setShadowDrawable(R.drawable.shadow_sliding_menu);
+		slidingMenu.setFadeDegree(0.85f);
+		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slidingMenu.setBehindWidth(slidingWidth);
+		
+		configureEpaper();
 		
 	}
 	
 	
 	
 	public void onClickPrev(View v){
-		if(currentPos > 0)
+		if(currentPos > 1)
 		{
 			onClickNewsPage(currentPos - 1);
 			
@@ -90,112 +108,30 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 	
 	public void onClickNext(View v){
 		
-		if(currentPos < list.size()-1)
+		if(currentPos < selectedCity.total_pages)
 		{
 			onClickNewsPage(currentPos + 1);
 			
 		}
 	}
 
-	private void getEPaperDetailsFromServer(){
-		
-		try {
-			
-			mDialog = Globals.showLoadingDialog(mDialog, this,false);			
-
-			expListPapers = (ListView) findViewById(R.id.expListPapers);
-			expListPapers.setOnItemClickListener(new OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int pos, long id) {
-					onClickNewsPage(pos);
-				}
-				
-			});
-			
-			int slidingWidth = Globals.getScreenSize(this).x*2/5;
-			slidingMenu = getSlidingMenu();
-			slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
-			slidingMenu.setShadowDrawable(R.drawable.shadow_sliding_menu);
-			slidingMenu.setFadeDegree(0.85f);
-			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-			slidingMenu.setBehindWidth(slidingWidth);
-			slidingMenu.setSlidingEnabled(false);
-			
-			String url = "http://xercesblue.in/HARSHTEST/get_Epapers.php";
-			
-			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
-					url, null,
-							new Listener<JSONObject>() {
-
-						@Override
-						public void onResponse(JSONObject response) {
-							parseAppEpaperJson(response);
-						}
-					}, new ErrorListener() {
-						@Override
-						public void onErrorResponse(VolleyError err) {
-							Log.i("DARSH", "ERROR VolleyError");
-							
-							Globals.hideLoadingDialog(mDialog);
-							Globals.showAlertDialogOneButton(
-									Globals.TEXT_CONNECTION_ERROR_HEADING,
-									Globals.TEXT_CONNECTION_ERROR_DETAIL_TOAST,
-									Activity_EPaperReader.this, "OK", null, false);
-							if(err != null){
-								Log.i("DARSH", "ERROR Details getLocalizedMessage : "+err.getLocalizedMessage());
-								Log.i("DARSH", "ERROR Details getMessage : "+err.getMessage());
-								Log.i("DARSH", "ERROR Details getStackTrace : "+err.getStackTrace());
-							}
-
-						}
-					});
-
-			Custom_AppController.getInstance().addToRequestQueue(
-					jsonObjectRQST);
-
-		}
-
-		catch (Exception e) {
-			Log.i("HARSH",
-					"Excetion FIRSTCALL getEPaperDetailsFromServer");
-			Globals.hideLoadingDialog(mDialog);
-
-
-		}
-
-	}
-
 	
 	
-	private void parseAppEpaperJson(JSONObject response) {
 	
-		Globals.hideLoadingDialog(mDialog);
-		if (response == null){
-			return;
-		}
-		
-		slidingMenu.setSlidingEnabled(true);
-		Log.i("DARSH", "RESPONCE parseAppEpaperJson is : "+response.toString());
+	private void configureEpaper() {
+	
 		try{
 			 list = new ArrayList<Object_Epaper>();
 			
-			if (response.has("epaper")) {
-				JSONArray arrayStates = response.getJSONArray("epaper");
 				
-				for(int i=0; i<arrayStates.length(); i++)
+				for(int i=1; i <= selectedCity.total_pages; i++)
 				{
 					Object_Epaper ob = new Object_Epaper();
-					JSONObject json_State = arrayStates.getJSONObject(i);
-					ob.url = json_State.getString("image_url");
+					ob.url = getEpaperThumbImageUrl(i, selectedCity.thumb_image_url);
 					ob.id = i;
 					list.add(ob);
 				}
-			}
-			
-			
-			//createHorizontalNewsSlider(list);
+				
 			if(list.size() > 0)
 				setSlidingMenu(list);
 			else
@@ -207,12 +143,22 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 		
 	}
 	
+	private String getEpaperThumbImageUrl(int pos , String url){
+		
+		return url.replace("_1.jpg", "_"+pos+".jpg");
+	}
+	
+private String getEpaperBigImageUrl(int pos , String url){
+		
+		return url.replace(".pdf", "_"+pos+".jpg");
+	}
+	
 	public void onClickNewsPage(int pos) {
-		if(list != null && list.size() > pos){	
+
+		if(selectedCity.total_pages >= pos){	
 			
-			currentPos = pos;
-			Object_Epaper obj = list.get(pos);			
-			image_url = obj.url.replace("_small", "");
+			currentPos = pos;			
+			image_url = getEpaperBigImageUrl(pos, selectedCity.pdf_url);
 			this.showContent();
 				
 			mDialog = Globals.showLoadingDialog(mDialog, this, false);
@@ -232,13 +178,13 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 		ImageButton imgBtnNext = (ImageButton)findViewById(R.id.imgBtnNext);
 		ImageButton imgBtnPrev = (ImageButton)findViewById(R.id.imgBtnPrev);
 		
-		if(currentPos == 0){
+		if(currentPos == 1){
 			imgBtnPrev.setVisibility(View.GONE);
 		}else{
 			imgBtnPrev.setVisibility(View.VISIBLE);
 		}
 		
-		if(currentPos == list.size()-1){
+		if(currentPos == list.size()){
 			imgBtnNext.setVisibility(View.GONE);
 		}else{
 			imgBtnNext.setVisibility(View.VISIBLE);
@@ -339,27 +285,23 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 	@Override 
 	public void onDestroy() {  // could be in onPause or onStop
 		Log.i("DARSH", "onDestroy");
+
+		selectedCity = null;
 	   Picasso.with(this).cancelRequest(target);
 	   super.onDestroy();
-	   //quit();
 	}
-	
-	 public void quit() {
-	       //int pid = android.os.Process.myPid();
-	       //android.os.Process.killProcess(pid);
-	        System.exit(0);
-	    }
-	
-	
+
 	private void setSlidingMenu(ArrayList<Object_Epaper> list){
 		Custom_AdapterEpaper adapter = new Custom_AdapterEpaper(this,
 				list);
 		expListPapers.setAdapter(adapter);
-		onClickNewsPage(0);
+		onClickNewsPage(1);
 	}
 	
 	public void onClickToggle(View v) {
 		this.toggle();
 	}
+	
+	
 
 }

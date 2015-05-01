@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,17 +23,17 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.android.volley.Request;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -349,12 +350,12 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 		
 		TextView txtNewsDesc = (TextView) v
 				.findViewById(R.id.txtNewsDescription);
-		txtNewsDesc.setText(currentNewsItem.getContent());
+		txtNewsDesc.setText( currentNewsItem.getContentSpan());
 		txtNewsDesc.setTextSize(Globals.getAppFontSize_Normal(this));
 
 		TextView txtHeading = (TextView) v
 				.findViewById(R.id.txtNewsHeading);
-		txtHeading.setText(currentNewsItem.getHeading());
+		txtHeading.setText(currentNewsItem.getHeadingSpan());
 		txtHeading.setTextSize(Globals.getAppFontSize_Large(this));
 
 		TextView txtImagetag = (TextView) v
@@ -422,7 +423,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 
 				TextView txtNextHeading = (TextView) rowItem
 						.findViewById(R.id.txtHeading);
-				txtNextHeading.setText(obj.getHeading());
+				txtNextHeading.setText(obj.getHeadingSpan());
 
 				ImageView imgView = (ImageView) rowItem
 						.findViewById(R.id.imgNews);
@@ -726,14 +727,22 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	 * }
 	 */
 
+	@SuppressLint("NewApi")
 	private void shareNews(int pos) {
 
 		if (currentNewsItem != null) {
 
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
-			sendIntent.putExtra(Intent.EXTRA_SUBJECT,
-					currentNewsItem.getHeading() + "\n\n");
+			if (android.os.Build.VERSION.SDK_INT >= 13) 
+			{
+				sendIntent.putExtra(Intent.EXTRA_SUBJECT,
+						currentNewsItem.getHeading()  + "\n\n");
+			}else{
+				sendIntent.putExtra(Intent.EXTRA_SUBJECT,
+						currentNewsItem.getHeading()  + "\n\n");
+			}
+			
 			if (currentNewsItem.getShareLink() != null
 					&& !currentNewsItem.getShareLink().trim().equals("")) {
 				sendIntent.putExtra(
@@ -749,7 +758,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 						Intent.EXTRA_TEXT,
 						"Read more @\n"
 								+ getResources().getString(
-										R.string.txt_company_website)
+										R.string.txt_company_website)+"/detail/"+currentNewsItem.getId()
 								+ "\nvia "
 								+ getResources().getString(
 										R.string.news_paper_name));

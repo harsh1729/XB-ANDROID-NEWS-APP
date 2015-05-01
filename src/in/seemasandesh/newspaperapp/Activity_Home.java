@@ -157,25 +157,42 @@ public class Activity_Home extends SlidingFragmentActivity {
 	}
 
 	private void resizeLogoImages(){
+		
 		ImageView imgViewLogo = (ImageView)findViewById(R.id.imgViewLogo);
 		ImageView imgViewName = (ImageView)findViewById(R.id.imgViewLogoName);
+		
+		
+		ImageView imgViewLogoXB = (ImageView)findViewById(R.id.imgViewLogoXB);
+		ImageView imgViewLogoXBName = (ImageView)findViewById(R.id.imgViewLogoNameXB);
 
 		LinearLayout llConatiner = (LinearLayout)findViewById(R.id.llytLoadingContainer);
 		llConatiner.setEnabled(false);
 
 		int screenWidth = Globals.getScreenSize(this).x;
-		int logoWidth = screenWidth/100 * 15 ;// 17%
-		int nameWidth = screenWidth ;// /100 * 9085%
+		int logoWidth = screenWidth/100 * 15 ;
+		int nameWidth = screenWidth ;
+		
+		int logoWidthXB = screenWidth/100 * 8 ;
+		int nameWidthXB =(int) ((int) screenWidth/2.5) ;
 
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
+		
 		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_round, options);
 		logo = Globals.scaleToWidth(logo,logoWidth);
 		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_name, options);
 		name = Globals.scaleToWidth(name,nameWidth);
+		
+		Bitmap logoXB = BitmapFactory.decodeResource(getResources(), R.drawable.xb, options);
+		logoXB = Globals.scaleToWidth(logoXB,logoWidthXB);
+		Bitmap nameXB = BitmapFactory.decodeResource(getResources(), R.drawable.name_xb, options);
+		nameXB = Globals.scaleToWidth(nameXB,nameWidthXB);
 
 		imgViewLogo.setImageBitmap(logo);
 		imgViewName.setImageBitmap(name);
+		
+		imgViewLogoXB.setImageBitmap(logoXB);
+		imgViewLogoXBName.setImageBitmap(nameXB);
 	}
 
 	private void serverCallForCategoriesAndNews(boolean showSpinner) {
@@ -341,47 +358,52 @@ public class Activity_Home extends SlidingFragmentActivity {
 	}
 
 
-	private void parseAppEpaperJson(JSONObject response) {
+	private void parseAppEpaperJson(JSONArray arrayStates) {
 	
 		Globals.hideLoadingDialog(mDialog);
-		if (response == null){
+		if (arrayStates == null){
 			return;
 		}
-		Log.i("DARSH", "RESPONCE parseAppEpaperJson is : "+response.toString());
+		Log.i("DARSH", "RESPONCE parseAppEpaperJson is : "+arrayStates.toString());
 		try{
 			
 			ArrayList<Object_State> listStates = new ArrayList<Object_State>();
-			ArrayList<Object_Cities> listCities= new ArrayList<Object_Cities>();
-			
-			if (response.has("states")) {
-				JSONArray arrayStates = response.getJSONArray("states");
 				
 				for(int i=0; i<arrayStates.length(); i++)
 				{
-					Object_State ob = new Object_State();
+					Object_State obState = new Object_State();
 					JSONObject json_State = arrayStates.getJSONObject(i);
 					
-					ob.id = json_State.getInt("id");
-					ob.name = json_State.getString("name");
-					listStates.add(ob);
-				}
-			}
-			
-			if (response.has("cities")) {
-				JSONArray arrayCities = response.getJSONArray("cities");
-				
-				for(int i=0; i<arrayCities.length(); i++)
-				{
-					Object_Cities ob = new Object_Cities();
-					JSONObject json_City = arrayCities.getJSONObject(i);
+					obState.id = json_State.getInt("id");
+					obState.name = json_State.getString("name");
+					obState.date = json_State.getString("publishdate");
 					
-					ob.id = json_City.getInt("id");
-					ob.state_id = json_City.getInt("state_id");
-					ob.image_url = json_City.getString("image_url");
-					ob.name = json_City.getString("name");
-					listCities.add(ob);
+					if(json_State.has("areas")){
+						
+						JSONArray arrayCities = json_State.getJSONArray("areas");
+						if(arrayCities.length() > 0){
+							obState.listCities = new ArrayList<Object_Cities>();
+						}
+						for(int j=0; j<arrayCities.length(); j++)
+						{
+							Object_Cities ob = new Object_Cities();
+							JSONObject json_City = arrayCities.getJSONObject(j);
+							ob.id = json_City.getInt("id");
+							ob.pdf_url = json_City.getString("filename");
+							ob.name = json_City.getString("name");
+							ob.epaper_id = json_City.getInt("epaperid");
+							ob.total_pages = json_City.getInt("totalpages");
+							ob.area_code = json_City.getString("areacode");
+							ob.thumb_image_url = json_City.getString("previewimage");
+							
+							obState.listCities.add(ob);
+						}
+					}
+					
+					listStates.add(obState);
 				}
-			}
+			
+			
 			Class<?> nextClass = null;
 			if(listStates.size() > 1){
 				Activity_EPaperShowStates.listStates.clear();
@@ -392,19 +414,14 @@ public class Activity_Home extends SlidingFragmentActivity {
 				
 				nextClass = Activity_EPaperShowStates.class;
 				
-			}else{
-				if(listCities.size() > 0){
-					Activity_EPaperShowCities.selectedStateId = 0;
+			}else if(listStates.size() == 1){
+				if(listStates.get(0).listCities != null && listStates.get(0).listCities.size() > 0){
+					Activity_EPaperShowCities.selectedState = listStates.get(0);
 					nextClass = Activity_EPaperShowCities.class;
 				}
 					
 			}
 			
-			Activity_EPaperShowCities.listCities.clear();
-			for(Object_Cities obj: listCities){
-				
-				Activity_EPaperShowCities.listCities.add(obj);
-			}
 			
 			if(nextClass != null){
 				Intent i = new Intent(this, nextClass);
@@ -993,12 +1010,12 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 			String url = Custom_URLs_Params.getURL_EpaperStatesnCities();
 			
-			Custom_VolleyObjectRequest jsonObjectRQST = new Custom_VolleyObjectRequest(Request.Method.POST,
-					url, Custom_URLs_Params.getParams_EpaperStatesnCities(),
-							new Listener<JSONObject>() {
+			Custom_VolleyArrayRequest jsonObjectRQST = new Custom_VolleyArrayRequest(Request.Method.POST,
+					url, Custom_URLs_Params.getParams_EpaperStatesnCities(null,0),
+							new Listener<JSONArray>() {
 
 						@Override
-						public void onResponse(JSONObject response) {
+						public void onResponse(JSONArray response) {
 							parseAppEpaperJson(response);
 						}
 					}, new ErrorListener() {

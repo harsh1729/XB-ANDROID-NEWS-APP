@@ -3,6 +3,8 @@ package com.daimajia.slider.library.SliderTypes;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -178,12 +180,12 @@ public abstract class BaseSliderView {
 		return mErrorPlaceHolderRes;
 	}
 
-	public String getDescription() {
-		return desscription;
+	public Spanned getDescription() {
+		return Html.fromHtml(desscription);
 	}
 
-	public String getHeading() {
-		return heading;
+	public Spanned getHeading() {
+		return Html.fromHtml(heading);
 	}
 
 	

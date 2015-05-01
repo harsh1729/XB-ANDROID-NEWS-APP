@@ -18,9 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-
 public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 
 	LayoutInflater myInflater;
@@ -109,8 +106,7 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		//Set News Heading
 		TextView tv = (TextView) convertView.findViewById(R.id.txt_news_item_heading);
 		
-		String heading = objNews.getHeading();
-		tv.setText(heading);
+		tv.setText(objNews.getHeadingSpan());
 		tv.setTextSize(Globals.getAppFontSize_Normal(context));
 		
 		Point point = Globals.getScreenSize(context);
@@ -158,8 +154,7 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		//Set News Heading
 		TextView tv = (TextView) convertView.findViewById(R.id.txt_news_item_heading);
 		
-		String heading = objNews.getHeading();
-		tv.setText(heading);
+		tv.setText(objNews.getHeadingSpan());
 		tv.setTextSize(Globals.getAppFontSize_Normal(context));
 		
 		Point point = Globals.getScreenSize(context);
@@ -194,8 +189,7 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
 		//Set News Heading
 		TextView tv = (TextView) convertView.findViewById(R.id.txt_news_item_heading);
 		
-		String heading = objNews.getHeading();
-		tv.setText(heading);
+		tv.setText(objNews.getHeadingSpan());
 		tv.setTextSize(Globals.getAppFontSize_Normal(context));
 		
 		Point point = Globals.getScreenSize(context);

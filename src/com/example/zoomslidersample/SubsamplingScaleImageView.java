@@ -127,7 +127,7 @@ public class SubsamplingScaleImageView extends ImageView {
     private int orientation = ORIENTATION_0;
 
     // Max scale allowed (prevent infinite zoom)
-    private float maxScale = 2.5F;
+    private float maxScale = 2F;
 
     // Min scale allowed (prevent infinite zoom)
     private float minScale = minScale();
@@ -147,7 +147,7 @@ public class SubsamplingScaleImageView extends ImageView {
     private boolean quickScaleEnabled = true;
 
     // Double tap zoom behaviour
-    private float doubleTapZoomScale = 1F;
+    private float doubleTapZoomScale = 2F;
     private int doubleTapZoomStyle = ZOOM_FOCUS_FIXED;
 
     // Current scale and scale at start of zoom
@@ -2049,7 +2049,7 @@ public class SubsamplingScaleImageView extends ImageView {
     public final void setMinimumDpi(int dpi) {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         float averageDpi = (metrics.xdpi + metrics.ydpi)/2;
-        setMaxScale(averageDpi/dpi);
+       setMaxScale(averageDpi/dpi);
     }
 
     /**

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class Custom_AdapterEpaper extends BaseAdapter  {
@@ -79,10 +80,14 @@ public class Custom_AdapterEpaper extends BaseAdapter  {
 		ImageView img = (ImageView) convertView
 				.findViewById(R.id.imgViewEpaperThumb);
 		
+		TextView txt  = (TextView)convertView
+				.findViewById(R.id.txt_GroupText);
+		
 		if(epaper.url != null && !epaper.url.trim().isEmpty())
 			Globals.loadImageIntoImageView(img, epaper.url, activity, R.drawable.loading_image_small, R.drawable.no_image_small);
 		else
 			img.setImageResource(R.drawable.no_image_small);
+		txt.setText("Page "+(position +1));
 
 		img.getLayoutParams().height = rowHeight;
 		if(position == 0)

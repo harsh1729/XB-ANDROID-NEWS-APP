@@ -2,7 +2,7 @@
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"    
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@color/app_transparent"
     >
   
@@ -12,5 +12,14 @@
 	    android:layout_height="match_parent"
 	    android:gravity="center"
 	    android:scaleType="fitCenter"  />
+	<TextView
+	    android:id="@+id/txt_GroupText"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center_horizontal"
+	    android:textSize="@dimen/font_lbl_small"
+	    android:textColor="@drawable/selector_text_color_black_to_white" />
+	
 	
 </LinearLayout>

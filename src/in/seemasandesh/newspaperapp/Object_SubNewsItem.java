@@ -1,5 +1,8 @@
 package in.seemasandesh.newspaperapp;
 
+import android.text.Html;
+import android.text.Spanned;
+
 
 
 
@@ -34,6 +37,9 @@ public class Object_SubNewsItem
 	public String getNewsHeading() {
 		return newsHeading;
 	}
+	public Spanned getNewsHeadingSpan() {
+		return Html.fromHtml(newsHeading);
+	}
 
 	public void setNewsHeading(String newsHeading) {
 		this.newsHeading = newsHeading;
@@ -43,6 +49,9 @@ public class Object_SubNewsItem
 		return newsContent;
 	}
 
+	public Spanned getNewsContentSpan() {
+		return Html.fromHtml(newsContent);
+	}
 	public void setNewsContent(String newsContent) {
 		this.newsContent = newsContent;
 	}
@@ -73,6 +82,9 @@ public class Object_SubNewsItem
 		return newsImageTagline;
 	}
 
+	public Spanned getNewsImageTaglineSpan() {
+		return Html.fromHtml(newsImageTagline);
+	}
 	public void setNewsImageTagline(String newsImageTagline) {
 		this.newsImageTagline = newsImageTagline;
 	}

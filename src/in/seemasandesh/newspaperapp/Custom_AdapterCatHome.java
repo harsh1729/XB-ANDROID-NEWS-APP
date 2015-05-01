@@ -2,10 +2,6 @@ package in.seemasandesh.newspaperapp;
 
 import java.util.ArrayList;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-
-import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,9 +153,9 @@ public class Custom_AdapterCatHome extends BaseExpandableListAdapter  {
 				.findViewById(R.id.img_GroupCatgeory);
 		
 		if(childCat.getImageName() != null && !childCat.getImageName().trim().isEmpty())
-			Globals.loadImageIntoImageView(imgViewChild, childCat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+			Globals.loadImageIntoImageView(imgViewChild, childCat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.category_default);
 		else
-			imgViewChild.setImageResource(R.drawable.no_image_small);
+			imgViewChild.setImageResource(R.drawable.category_default);
 		
 		
 
@@ -212,9 +208,9 @@ public class Custom_AdapterCatHome extends BaseExpandableListAdapter  {
 				.findViewById(R.id.img_GroupCatgeory);
 		
 		if(cat.getImageName() != null && !cat.getImageName().trim().isEmpty())
-			Globals.loadImageIntoImageView(img, cat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.no_image_small);
+			Globals.loadImageIntoImageView(img, cat.getImageName(), activity, R.drawable.loading_image_small, R.drawable.category_default);
 		else
-			img.setImageResource(R.drawable.no_image_small);
+			img.setImageResource(R.drawable.category_default);
 			
 		if (getChildrenCount(groupPosition) > 0) {
 			ImageView indicator = ((ImageView) convertView

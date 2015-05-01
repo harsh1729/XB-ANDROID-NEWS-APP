@@ -201,9 +201,9 @@ public class Activity_Settings extends Activity_Parent {
 		case R.id.txtAboutUs:
 			nextClass = Activity_AboutUs.class;
 			break;
-		case R.id.txtTerms:
-			nextClass = Activity_TermsOfUSe.class;
-			break;
+		//case R.id.txtTerms:
+			//nextClass = Activity_TermsOfUSe.class;
+			//break;
 		case R.id.txtShareUs:
 			shareClick();
 			break;

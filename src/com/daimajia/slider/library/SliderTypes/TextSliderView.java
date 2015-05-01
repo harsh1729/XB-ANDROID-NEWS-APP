@@ -5,6 +5,8 @@ import in.seemasandesh.newspaperapp.Globals;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Point;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -221,8 +223,8 @@ public class TextSliderView extends BaseSliderView {
 		this.prevHeading = prevHeading;
 	}
 */
-	public String getImageTag() {
-		return imageTag;
+	public Spanned getImageTag() {
+		return Html.fromHtml(imageTag);
 	}
 
 	public void setImageTag(String imageTag) {

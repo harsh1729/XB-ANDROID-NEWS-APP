@@ -9,12 +9,18 @@ import android.util.Log;
 public class Custom_URLs_Params {
 	
 	static String getURL_EpaperStatesnCities(){
-		return "http://xercesblue.in/HARSHTEST/get_epaper_states_cities.php";//?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
+		return Globals.DEFAULT_APP_SERVER_PATH+"epaper/mob_get_epaper";//?CatVersion="+catVersionId+"&AppConfigVersion=0"+appVersionId;
 	}
 	
-	static Map<String, String> getParams_EpaperStatesnCities(){
+	static Map<String, String> getParams_EpaperStatesnCities(String date , int stateid){
 		HashMap<String, String> mParams = new HashMap<String, String>();
 			        mParams.put("clientid", Globals.CLIENT_ID+"");
+			        if(date != null && !date.trim().isEmpty()){
+			        	mParams.put("date",date);
+			        }
+			        if(stateid != 0){
+			        	mParams.put("stateid",stateid+"");
+			        }
 			        return mParams;
 	}
 
@@ -50,8 +56,8 @@ public class Custom_URLs_Params {
 		//http://www.newstest2.tk/newsci/client_requests/news/mob_get_news_by_category
 		//return  Globals.DEFAULT_APP_SERVER_PATH+"getnewsbycategory.php?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
 		
-		Log.i("HARSH", Globals.DEFAULT_APP_SERVER_PATH+"news/mob_contact_us");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
-		return  Globals.DEFAULT_APP_SERVER_PATH+"news/mob_contact_us";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
+		Log.i("HARSH", Globals.DEFAULT_APP_SERVER_PATH+"contactus/mob_contact_us");//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType);
+		return  Globals.DEFAULT_APP_SERVER_PATH+"contactus/mob_contact_us";//?CatId="+catId+ "&lastNewsId=" + lastNewsId + "&callType="+ callType;
 		
 		//Calltype : fresh,new,old
 	}

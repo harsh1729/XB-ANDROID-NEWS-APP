@@ -3,6 +3,9 @@ package in.seemasandesh.newspaperapp;
 
 import java.util.ArrayList;
 
+import android.text.Html;
+import android.text.Spanned;
+
 public class Object_ListItem_MainNews implements Interface_ListItem
 {
 	/*		FIELDS OF NEWS TABLE  */
@@ -32,6 +35,10 @@ public class Object_ListItem_MainNews implements Interface_ListItem
 		this.id = id;
 	}
 
+	public Spanned getHeadingSpan() {
+		return Html.fromHtml(heading) ;
+	}
+	
 	public String getHeading() {
 		return heading;
 	}
@@ -44,6 +51,9 @@ public class Object_ListItem_MainNews implements Interface_ListItem
 		return content;
 	}
 
+	public Spanned getContentSpan() {
+		return Html.fromHtml(content);
+	}
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -91,6 +101,10 @@ public class Object_ListItem_MainNews implements Interface_ListItem
 	
 	public String getImageTagline() {
 		return imageTagline;
+	}
+	
+	public Spanned getImageTaglineSpan() {
+		return Html.fromHtml(imageTagline) ;
 	}
 
 	public void setImageTagline(String imageTagline) {

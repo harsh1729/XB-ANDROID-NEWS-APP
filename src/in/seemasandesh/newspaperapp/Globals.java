@@ -49,7 +49,7 @@ public class Globals {
 	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
 	public final static String APP_TITLE = "Seema Sandesh News App";
 	public final static String APP_PNAME = "in.seemasandesh.newspaperapp";
-	public final static String SHARE_URL = "http://xercesblue.in/download/androidApp.php?id=5";
+	public final static String SHARE_URL = "https://play.google.com/store/apps/details?id="+APP_PNAME;
 	public final static String GCM_SENDER_ID = "690168566655";
 	/* To be changed with each client   */
 	
