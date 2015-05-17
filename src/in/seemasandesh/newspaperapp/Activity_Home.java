@@ -86,7 +86,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		if(comingFromPushMessage){
 			comingFromPushMessage = false;
-			Globals.showAlertDialogOneButton("News Flash", GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
+			Globals.showAlertDialogOneButton("News Flash",Globals. GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
 		}
 	}
 	
@@ -158,7 +158,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 
 	private void resizeLogoImages(){
 		
-		ImageView imgViewLogo = (ImageView)findViewById(R.id.imgViewLogo);
+		//ImageView imgViewLogo = (ImageView)findViewById(R.id.imgViewLogo);
 		ImageView imgViewName = (ImageView)findViewById(R.id.imgViewLogoName);
 		
 		
@@ -178,8 +178,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
 		
-		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_round, options);
-		logo = Globals.scaleToWidth(logo,logoWidth);
+		//Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_round, options);
+		//logo = Globals.scaleToWidth(logo,logoWidth);
 		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_name, options);
 		name = Globals.scaleToWidth(name,nameWidth);
 		
@@ -188,7 +188,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		Bitmap nameXB = BitmapFactory.decodeResource(getResources(), R.drawable.name_xb, options);
 		nameXB = Globals.scaleToWidth(nameXB,nameWidthXB);
 
-		imgViewLogo.setImageBitmap(logo);
+		//imgViewLogo.setImageBitmap(logo);
 		imgViewName.setImageBitmap(name);
 		
 		imgViewLogoXB.setImageBitmap(logoXB);
