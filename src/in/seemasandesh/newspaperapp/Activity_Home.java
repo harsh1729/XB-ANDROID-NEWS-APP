@@ -86,7 +86,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		if(comingFromPushMessage){
 			comingFromPushMessage = false;
-			Globals.showAlertDialogOneButton("News Flash",Globals. GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
+			Globals.showAlertDialogOneButton("News Flash",GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
 		}
 	}
 	
