@@ -1,7 +1,9 @@
 package in.seemasandesh.newspaperapp;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -218,13 +220,14 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
     private String getFormatedDateTime(String dateString){
     	
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy",Locale.ENGLISH);
-        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-        Date tempDate = new Date();
+        
+        SimpleDateFormat currentdateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy",Locale.ENGLISH);
+        //dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        //Assuming server time is in IST
         Date formattedDate = null;
         
         try {
-        	tempDate = dateFormat.parse(dateString);
-        	formattedDate = tempDate;
+        	formattedDate = dateFormat.parse(dateString);
         } catch (Exception e) {
         	Log.i("HARSH", "Exception in date formatting");
         }
@@ -233,7 +236,28 @@ public class Custom_AdapterNewsList extends  ArrayAdapter<Interface_ListItem> {
         if(formattedDate != null){
         	Log.i("HARSH", " dateString "+dateString);
         	 Log.i("HARSH", "formattedDate  "+formattedDate);
+        	 
+        	 TimeZone tz = TimeZone.getTimeZone(Globals.SERVER_TIME_ZONE);
+        	 Calendar c = Calendar.getInstance(tz);
+        	// Calendar cal = Calendar.getInstance();
+        	 
+        	 String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+        	            String.format("%02d" , c.get(Calendar.MINUTE))+":"+
+        	            String.format("%02d" , c.get(Calendar.SECOND)) +" "+ 
+        	            Globals.getTwoDigitNo(c.get(Calendar.DAY_OF_MONTH))+"-"+
+        	            Globals.getTwoDigitNo(c.get(Calendar.MONTH)+1)+"-"+
+        	            Globals.getTwoDigitNo(c.get(Calendar.YEAR));
+        	 			
+        	 
+        	 //+":"+String.format("%03d" , c.get(Calendar.MILLISECOND))
+        	 
+        	 Log.i("HARSH", "new time  "+time);
+        	 
         	 Date currentDate = new Date();
+			try {
+				currentDate = currentdateFormat.parse(time);
+			} catch (ParseException e) {
+			}//new Date();
         	 
         	 Log.i("HARSH", "currentGMT "+currentDate);
         	long diffInMilliSec = currentDate.getTime() - formattedDate.getTime();

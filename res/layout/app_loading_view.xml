@@ -3,7 +3,7 @@
     android:id="@+id/llytLoadingContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_loading_screen_bg"
+    android:background="@color/app_white"
     android:onClick="onClickSpinnerView"
     android:orientation="vertical"
     android:visibility="gone" >
@@ -12,23 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:gravity="center" >
+        android:gravity="top" >
        
         <ImageView
             android:id="@+id/imgViewLogoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="@color/app_red"
-            android:layout_marginTop="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:background="@color/app_transparent"
             android:src="@drawable/news_logo_name" />
         
         <ProgressBar
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgViewLogoName"
             android:layout_centerHorizontal="true"
@@ -65,11 +62,11 @@
 <!--             android:textSize="@dimen/font_lbl_small_medium"  -->
 <!--             /> -->
         
-        <ImageView
-            android:id="@+id/imgViewLogoXB"
-            android:layout_marginRight="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+<!--         <ImageView -->
+<!--             android:id="@+id/imgViewLogoXB" -->
+<!--             android:layout_marginRight="4dp" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" /> -->
         
         <ImageView
             android:id="@+id/imgViewLogoNameXB"

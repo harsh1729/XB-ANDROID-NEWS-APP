@@ -38,7 +38,7 @@ public class Custom_ThemeUtil
 	public static final int THEME_BLACK_BG_COLOR = R.color.app_lightgray;
 	public static final int THEME_BLUE_BG_COLOR = R.color.app_verylightblue;
 
-	public static final int DEFAULT_THEME = THEME_YELLOW_VALUE;
+	public static final int DEFAULT_THEME = THEME_RED_VALUE;
 
 	public static void onThemeChange(Activity activity)
 	{

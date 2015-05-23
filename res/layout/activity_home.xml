@@ -42,7 +42,7 @@
             ptr:ptrAnimationStyle="flip"
             android:listSelector="@color/app_transparent"
             android:background=	"@color/app_transparent"
-            android:divider="#000000" >
+            android:divider="#000000"  >
         </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
         <LinearLayout

@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -90,7 +92,7 @@ public class GCMIntentService extends IntentService {
 				if (android.os.Build.VERSION.SDK_INT < 11) {
 					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 							this).setSmallIcon(R.drawable.ic_launcher)
-							.setContentTitle(this.getResources().getString(R.string.news_paper_name)).setContentText(pushMessageHeader);
+							.setContentTitle(this.getResources().getString(R.string.news_paper_name)).setContentText(Html.fromHtml(pushMessageHeader));
 					
 					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(Activity_Home.class);
@@ -116,7 +118,7 @@ public class GCMIntentService extends IntentService {
 					notification = new Notification.Builder(this)
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setWhen(System.currentTimeMillis())
-					.setContentTitle(this.getResources().getString(R.string.news_paper_name)).setContentText(pushMessageHeader)
+					.setContentTitle(this.getResources().getString(R.string.news_paper_name)).setContentText(Html.fromHtml(pushMessageHeader))
 					.setContentIntent(pIntent)
 					// .setContentInfo(
 					// String.valueOf(++MainActivity.numOfNotifications) )
@@ -126,7 +128,7 @@ public class GCMIntentService extends IntentService {
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setWhen(System.currentTimeMillis())
 					.setContentTitle(this.getResources().getString(R.string.news_paper_name))
-					.setContentText(pushMessageHeader).setContentIntent(pIntent)
+					.setContentText(Html.fromHtml(pushMessageHeader)).setContentIntent(pIntent)
 					// .setContentInfo(
 					// String.valueOf(++MainActivity.numOfNotifications) )
 					.setLights(0xFFFF0000, 500, 500).build();

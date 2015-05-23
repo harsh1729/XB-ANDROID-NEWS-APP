@@ -86,9 +86,10 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		if(comingFromPushMessage){
 			comingFromPushMessage = false;
-			Globals.showAlertDialogOneButton("News Flash",Globals. GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
+			Globals.showAlertDialogOneButton("News Flash",GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
 		}
 	}
+	
 	
 	/*
 	 * @Override protected void onResume() { super.onResume();
@@ -162,18 +163,18 @@ public class Activity_Home extends SlidingFragmentActivity {
 		ImageView imgViewName = (ImageView)findViewById(R.id.imgViewLogoName);
 		
 		
-		ImageView imgViewLogoXB = (ImageView)findViewById(R.id.imgViewLogoXB);
+		//ImageView imgViewLogoXB = (ImageView)findViewById(R.id.imgViewLogoXB);
 		ImageView imgViewLogoXBName = (ImageView)findViewById(R.id.imgViewLogoNameXB);
 
 		LinearLayout llConatiner = (LinearLayout)findViewById(R.id.llytLoadingContainer);
 		llConatiner.setEnabled(false);
 
 		int screenWidth = Globals.getScreenSize(this).x;
-		int logoWidth = screenWidth/100 * 15 ;
+		//int logoWidth = screenWidth/100 * 15 ;
 		int nameWidth = screenWidth ;
 		
-		int logoWidthXB = screenWidth/100 * 8 ;
-		int nameWidthXB =(int) ((int) screenWidth/2.5) ;
+		//int logoWidthXB = screenWidth/100 * 8 ;
+		int nameWidthXB =(int) ((int) screenWidth/1.5) ;
 
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
@@ -183,15 +184,15 @@ public class Activity_Home extends SlidingFragmentActivity {
 		Bitmap name = BitmapFactory.decodeResource(getResources(), R.drawable.news_logo_name, options);
 		name = Globals.scaleToWidth(name,nameWidth);
 		
-		Bitmap logoXB = BitmapFactory.decodeResource(getResources(), R.drawable.xb, options);
-		logoXB = Globals.scaleToWidth(logoXB,logoWidthXB);
-		Bitmap nameXB = BitmapFactory.decodeResource(getResources(), R.drawable.name_xb, options);
+		//Bitmap logoXB = BitmapFactory.decodeResource(getResources(), R.drawable.xb, options);
+		//logoXB = Globals.scaleToWidth(logoXB,logoWidthXB);
+		Bitmap nameXB = BitmapFactory.decodeResource(getResources(), R.drawable.xb, options);
 		nameXB = Globals.scaleToWidth(nameXB,nameWidthXB);
 
 		//imgViewLogo.setImageBitmap(logo);
 		imgViewName.setImageBitmap(name);
 		
-		imgViewLogoXB.setImageBitmap(logoXB);
+		//imgViewLogoXB.setImageBitmap(logoXB);
 		imgViewLogoXBName.setImageBitmap(nameXB);
 	}
 
@@ -585,7 +586,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		}
 		*/
 		Object_AppConfig obj = new Object_AppConfig(this);
-		showNewsList(obj.getRootCatId());
+		showNewsList(obj.getRootCatId(),Globals.CALLTYPE_FRESH);
 		hideLoadingScreen();
 	}
 
@@ -652,7 +653,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 							Globals.TEXT_NO_INTERNET_HEADING,
 							Globals.TEXT_NO_INTERNET_DETAIL_DIALOG_MAIN_SCREEN,
 							Activity_Home.this, "OK", null, false);
-					showNewsList(catId);
+					showNewsList(catId,callType);
 
 				} else {
 					Toast.makeText(
@@ -680,7 +681,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 						
 						@Override
 						public void onResponse(JSONObject response) {
-							gotNewsResponce(response, catId, isPullToRefresh);
+							gotNewsResponce(response, catId, isPullToRefresh,callType);
 							
 						}
 
@@ -696,7 +697,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 										Globals.TEXT_CONNECTION_ERROR_DETAIL_DIALOG_MAIN_SCREEN,
 										Activity_Home.this, "OK", null, false);
 								Globals.hideLoadingDialog(mDialog);
-								showNewsList(catId);
+								showNewsList(catId,callType);
 								hideLoadingScreen();
 							} else {
 								Toast.makeText(
@@ -720,7 +721,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 	}
 
 	private void gotNewsResponce(JSONObject response, int catId,
-			Boolean isPullToRefresh) {
+			Boolean isPullToRefresh,final String callType) {
 
 		try {
 			
@@ -732,7 +733,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 				
 				if(response.has("news"))
 					if(insertNewAndDeleteOldNews(response.getJSONArray("news"),catId,isPullToRefresh))
-							showNewsList(catId);
+							showNewsList(catId,callType);
 						
 			}
 			
@@ -744,7 +745,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 					Activity_Home.this, "OK", null, false);
 			Globals.hideLoadingDialog(mDialog);
 			hideLoadingScreen();
-			showNewsList(catId);
+			showNewsList(catId,callType);
 		}
 	}
 
@@ -787,7 +788,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		return true;
 	}
-	private void showNewsList(final int catId) {
+	private void showNewsList(final int catId , final String callType) {
 
 		getListData().clear();
 
@@ -831,7 +832,10 @@ public class Activity_Home extends SlidingFragmentActivity {
 					listViewNews.onRefreshComplete();
 					//PullToRefreshListView lv1 = (PullToRefreshListView) findViewById(R.id.lst_cat_wise_news);
 					// Custom_ExpandableListAdapter.main_page_adaptor.notifyDataSetChanged();
-					listViewNews.setAdapter(news_adaptor);
+					if(callType.equalsIgnoreCase(Globals.CALLTYPE_OLD))
+						news_adaptor.notifyDataSetChanged();
+					else	
+						listViewNews.setAdapter(news_adaptor);
 					//setCategoryHeading(currentCategoryId);
 
 				}
