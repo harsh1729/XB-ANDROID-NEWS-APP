@@ -319,6 +319,9 @@ private static void setThemeEPaperShowCities(Activity activity){
 
 		ImageButton imgButtonToggle = (ImageButton)(activity.findViewById(R.id.imgHeaderBtnLeft));
 
+		ImageButton imgButtonShare = (ImageButton)(activity.findViewById(R.id.imgHeaderBtnRight));
+		imgButtonShare.setPadding(0, 0, 0, 0);
+		
 		ListView expandableListView = (ListView)(activity.findViewById(R.id.expListPapers));
 
 		expandableListView.setDividerHeight(0);
@@ -382,12 +385,14 @@ private static void setThemeEPaperShowCities(Activity activity){
 				activity.getResources().getDrawable(R.color.app_transparent ));
 		
 		int idDrawers = activity.getResources().getIdentifier("drawers"+imagePostFix, "drawable", activity.getPackageName());
-		
+		int idShare =  activity.getResources().getIdentifier("share"+imagePostFix, "drawable", activity.getPackageName());
 		if (android.os.Build.VERSION.SDK_INT >= 16) 
 		{
 			imgButtonToggle.setBackground(stateToggleBG);
+			imgButtonShare.setBackground(stateToggleBG);
 		}
 		
+		imgButtonShare.setImageResource(idShare);
 		imgButtonToggle.setImageResource(idDrawers);
 
 		

@@ -41,21 +41,33 @@ public class Globals {
 	
 	/* To be changed with each client */
 	public static final int APP_ID= 1;
-	public static final int CLIENT_ID= 3;
+
+	public static final int CLIENT_ID= 2;
+
 	public static final String AD_INMOBI_PROPERTY_ID = "";
+
 	public static  String GCM_REG_ID = "";
+
 	public static final String VSERV_BILLBOARD_ZONE_ID = "";
+
 	public static final String VSERV_BANNER_ZONE_ID = "";
-	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 5;
-	public static final int FINAL_NEWS_LIMIT_REFRESH = 3;
-	public final static String APP_TITLE = "RCN Digital News App";
+
+	public static final int FINAL_NEWS_LIMIT_FIRST_CALL = 10;
+
+	public static final int FINAL_NEWS_LIMIT_REFRESH = 5;
+
+	public final static String APP_TITLE = "Seema Sandesh News App";
+
 	public final static String APP_PNAME = "in.seemasandesh.newspaperapp";
+
 	public final static String SHARE_URL = "https://play.google.com/store/apps/details?id="+APP_PNAME;
+
 	public final static String GCM_SENDER_ID = "690168566655";
+
+	public static final String DEFAULT_APP_SERVER_PATH= "http://xbnews.in/newsci/client_requests/";//"http://xbnews.in/newsci/client_requests/";//"http://drron.tk/client_requests/"//"http://xercesblue.in/newsentry/";//"http://newstest4.tk/client_requests/"
+
 	public final static String SERVER_TIME_ZONE = "GMT+05:30";
 	/* To be changed with each client   */
-	
-	public static final String DEFAULT_APP_SERVER_PATH= "http://xbnews.in/newsci/client_requests/";//"http://xbnews.in/newsci/client_requests/";//"http://drron.tk/client_requests/"//"http://xercesblue.in/newsentry/";//"http://newstest4.tk/client_requests/"
 	//public static final String DEFAULT_APP_NEWS_IMAGES_PATH= "uploads/";
 	//public static final String DEFAULT_APP_CAT_IMAGES_PATH= "CategoryUploads/";
 	public static final String PREFIX_HOME_IMAGES="small_";

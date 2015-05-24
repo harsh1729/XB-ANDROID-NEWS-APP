@@ -4,12 +4,16 @@ package in.seemasandesh.newspaperapp;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -61,6 +65,16 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 			}
 		});
 
+		ImageButton imgButtonShare = (ImageButton) (findViewById(R.id.imgHeaderBtnRight));
+
+		imgButtonShare.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				onClickShare();
+
+			}
+		});
 
 		Custom_ThemeUtil.onActivityCreateSetTheme(this);
 		
@@ -96,6 +110,32 @@ public class Activity_EPaperReader extends SlidingFragmentActivity {
 		
 	}
 	
+	@SuppressLint("NewApi")
+	private void onClickShare() {
+
+		if (selectedCity.pdf_url != null && !selectedCity.pdf_url.isEmpty()) {
+			this.showContent();
+			String image_Path = getImagePath(getEpaperBigImageUrl(currentPos, selectedCity.pdf_url));
+			if( image_Path != null){
+				
+				Bitmap bit = loadFromExternalMemory(image_Path);
+				if(bit !=  null){
+					Intent share = new Intent(Intent.ACTION_SEND);
+					share.setType("image/jpeg");
+				
+					share.putExtra(Intent.EXTRA_STREAM, Uri.parse(image_Path));
+					startActivity(Intent.createChooser(share, "Via Seema Sandesh"));
+				}else{
+					Toast.makeText(this, "No Image found, Please try again.", Toast.LENGTH_SHORT).show();
+				}
+			}else{
+				
+			 Toast.makeText(this, "Error, Please try again!", Toast.LENGTH_SHORT).show();
+			}
+
+			
+		}
+	}
 	
 	
 	public void onClickPrev(View v){
@@ -194,7 +234,8 @@ private String getEpaperBigImageUrl(int pos , String url){
 			//txtIndicator.setText(currentSubItemNo+1 +" / "+ listAllCurrentNewsItem.size());
 		}
 	}
-	private Bitmap loadFromExternalMemory(String url){
+	
+	private String getImagePath(String url){
 		
 		String imageName = "";
 		if(url != null && !url.trim().isEmpty()){
@@ -210,11 +251,16 @@ private String getEpaperBigImageUrl(int pos , String url){
 		String filePath =  Environment.getExternalStorageDirectory()
 	            + File.separator +Globals.getStringFromResources(this, R.string.app_name);
 		String imagePath = filePath  + File.separator +imageName;
-	    
+		
+		return imagePath;
+	}
+	private Bitmap loadFromExternalMemory(String url){
+
 		Bitmap bitmap = null;
 		try{
+			String imagePath = getImagePath(url);
 			bitmap = BitmapFactory.decodeFile(imagePath);
-		}catch(java.lang.OutOfMemoryError ex){
+		}catch(Exception ex){
 			
 			//Toast.makeText(Activity_EPaperReader.this, "Failed to load image, please try again.",Toast.LENGTH_SHORT ).show();
 		}

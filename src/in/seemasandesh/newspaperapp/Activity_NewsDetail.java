@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -312,6 +311,7 @@ public class Activity_NewsDetail extends SherlockFragmentActivity implements
 	}
 
 	private void addSingleNewsItem(){
+		
 		LayoutInflater layoutInflater = LayoutInflater.from(this);
 
 		final View v = layoutInflater.inflate(R.layout.slider_type_text, null);
