@@ -2,10 +2,15 @@ package in.seemasandesh.newspaperapp;
 
 
 import java.io.UnsupportedEncodingException;
-import java.util.Map;    
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
-import org.json.JSONException;    
+import org.json.JSONException;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -41,8 +46,7 @@ public class Custom_VolleyArrayRequest extends Request<JSONArray> {
     @Override
     protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
         try {
-            String jsonString = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
+            String jsonString =  new String(response.data,HttpHeaderParser.parseCharset(response.headers));
             return Response.success(new JSONArray(jsonString),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
@@ -51,8 +55,27 @@ public class Custom_VolleyArrayRequest extends Request<JSONArray> {
             return Response.error(new ParseError(je));
         }
     }
+    
+    /*
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        HashMap<String, String> headers = new HashMap<String, String>();
+        headers.put("Content-Type", "application/json; charset=utf-8");
+        return headers;
+    }
 
-
+    @Override
+    protected Response<JSONObject> parseNetworkResponse (NetworkResonse response) {
+        try {
+            String utf8String = new String(response.data, "UTF-8");
+            return Response.success(new JSONObject(utf8String), HttpHeaderParser.parseCacheHeaders(response));
+        } catch (UnsupportedEncodingException e) {
+            // log error
+        } catch (JSONException e) {
+            // log error
+        }
+    }
+*/
 	@Override
 	protected void deliverResponse(JSONArray response) {
 		 listener.onResponse(response);

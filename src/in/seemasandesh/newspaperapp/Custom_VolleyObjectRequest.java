@@ -2,9 +2,15 @@ package in.seemasandesh.newspaperapp;
 
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Map;    
+
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;    
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -40,8 +46,7 @@ public class Custom_VolleyObjectRequest extends Request<JSONObject> {
     @Override
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
-            String jsonString = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
+            String jsonString = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
             return Response.success(new JSONObject(jsonString),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
@@ -51,6 +56,14 @@ public class Custom_VolleyObjectRequest extends Request<JSONObject> {
         }
     }
 
+    /*
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        HashMap<String, String> headers = new HashMap<String, String>();
+        headers.put("Content-Type", "application/json; charset=utf-8");
+        return headers;
+    }
+    */
     @Override
     protected void deliverResponse(JSONObject response) {
         listener.onResponse(response);

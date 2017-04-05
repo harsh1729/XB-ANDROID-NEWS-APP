@@ -86,7 +86,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 		
 		if(comingFromPushMessage){
 			comingFromPushMessage = false;
-			Globals.showAlertDialogOneButton("News Flash",GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
+			if(!(GCMIntentService.pushMessageHeader.isEmpty() && GCMIntentService.pushMessageText.isEmpty()))
+				Globals.showAlertDialogOneButton("News Flash",GCMIntentService.pushMessageHeader +"\n\n"+GCMIntentService.pushMessageText, this, "OK", null, false);
 		}
 	}
 	
@@ -174,7 +175,7 @@ public class Activity_Home extends SlidingFragmentActivity {
 		int nameWidth = screenWidth ;
 		
 		//int logoWidthXB = screenWidth/100 * 8 ;
-		int nameWidthXB =(int) ((int) screenWidth/1.5) ;
+		int nameWidthXB =(int) ((int) screenWidth/2) ;
 
 		Options options = new BitmapFactory.Options();
 		options.inScaled = false;
@@ -196,6 +197,8 @@ public class Activity_Home extends SlidingFragmentActivity {
 		imgViewLogoXBName.setImageBitmap(nameXB);
 	}
 
+	
+	
 	private void serverCallForCategoriesAndNews(boolean showSpinner) {
 		try {
 			Log.i("HARSH", "FirstCall");

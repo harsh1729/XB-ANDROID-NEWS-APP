@@ -42,7 +42,7 @@ public class Globals {
 	/* To be changed with each client */
 	public static final int APP_ID= 1;
 
-	public static final int CLIENT_ID= 2;
+	public static final int CLIENT_ID = 3;
 
 	public static final String AD_INMOBI_PROPERTY_ID = "";
 
