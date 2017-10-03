@@ -2527,7 +2527,7 @@ containing a value of this type.
         public static final int txtChooseCity=0x7f080085;
         public static final int txtChooseDate=0x7f080080;
         public static final int txtCompanyName=0x7f080074;
-        public static final int txtContactUs=0x7f0800ac;
+        public static final int txtContactUs=0x7f0800ad;
         public static final int txtEmail=0x7f080077;
         public static final int txtEndDate=0x7f080090;
         public static final int txtHeader=0x7f0800b6;
@@ -2541,13 +2541,13 @@ containing a value of this type.
         public static final int txtNewsImageTag=0x7f0800f2;
         public static final int txtOptions=0x7f0800e3;
         public static final int txtPhone=0x7f080076;
-        public static final int txtRateUs=0x7f0800ab;
+        public static final int txtRateUs=0x7f0800ac;
         public static final int txtRight=0x7f0800c8;
         public static final int txtSampleFont=0x7f0800a3;
-        public static final int txtShareUs=0x7f0800aa;
+        public static final int txtShareUs=0x7f0800ab;
         public static final int txtStartDate=0x7f080083;
         public static final int txtSupportFeedback=0x7f0800a7;
-        public static final int txtTermsOfUSe=0x7f0800ad;
+        public static final int txtTerms=0x7f0800aa;
         public static final int txtTheme=0x7f080099;
         public static final int txtWebsite=0x7f080075;
         public static final int txt_GroupText=0x7f0800d5;

@@ -256,21 +256,21 @@
                         android:maxLines="1"
                          />
                    
-<!--                     <TextView -->
-<!--                          android:id="@+id/txtTerms" -->
-<!--                         android:layout_width="match_parent" -->
-<!--                         android:layout_height="wrap_content" -->
-<!--                          android:background="@drawable/selector_bg_offwhite" -->
-<!--                         android:layout_marginTop="10dp" -->
-<!--                         android:text="Terms of use" -->
-<!--                         android:padding="10dp" -->
-<!--                         android:textColor="@drawable/selector_text_color_black_to_white" -->
-<!--                         android:onClick="onSelectSettingOptions" -->
-<!--         				android:clickable="true" -->
-<!--         				android:textSize="@dimen/font_lbl_normal" -->
-<!--         				android:ellipsize="end" -->
-<!--                         android:maxLines="1" -->
-<!--                          /> -->
+                    <TextView
+                         android:id="@+id/txtTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="Privacy Policy"
+                        android:padding="10dp"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
                     
                     <TextView
                          android:id="@+id/txtShareUs"

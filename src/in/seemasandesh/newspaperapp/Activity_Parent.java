@@ -52,7 +52,7 @@ public class Activity_Parent extends Activity {
 			txtHeading.setText("News By Date");
 		}
 		else if(this.getClass() == Activity_TermsOfUSe.class){
-			txtHeading.setText("Terms Of Use");
+			txtHeading.setText("Privacy Policy");
 		}
 		else if(this.getClass() == Activity_Settings.class){
 			txtHeading.setText("Settings");
