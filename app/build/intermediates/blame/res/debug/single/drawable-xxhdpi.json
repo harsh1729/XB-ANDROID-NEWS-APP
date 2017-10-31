@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\facebookicon.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-xxhdpi\\facebookicon.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\twittericon.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-xxhdpi\\twittericon.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_launcher.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\gmailicon.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-xxhdpi\\gmailicon.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\whatsappicon.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-xxhdpi\\whatsappicon.png"
+    }
+]

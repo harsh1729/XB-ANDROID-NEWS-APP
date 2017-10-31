@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\anim\\slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_top.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\anim\\slide_out_to_top.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\anim\\slide_in_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_top.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\anim\\slide_in_from_top.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\f06f55cdebc2e6f8c5a4194893791b73c469d2f0\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    }
+]

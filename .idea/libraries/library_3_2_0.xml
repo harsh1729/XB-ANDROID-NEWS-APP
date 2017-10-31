@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="library-3.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/cb0bc53f9a8040db771b0a0b4e906ff86f506a41/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/cb0bc53f9a8040db771b0a0b4e906ff86f506a41/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.navercorp.pulltorefresh/library/3.2.0/cebde58207de94ac3d436b9de827e96aecef2f17/library-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

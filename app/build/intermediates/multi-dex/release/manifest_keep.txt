@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:33
+-keep class in.seemasandesh.newspaperapp.Custom_AppController { <init>(...); }
+

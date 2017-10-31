@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\libs\NineOldAndroid-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\2\NineOldAndroid-2.4.0_aa243fe64061b0182d96a948621d1d2e5f03f100\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6c16dc7708cd20a368b8ea5c596b53b394074c1d">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_273c42c19b4a65775954c4fb50e8ce6eae8970a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\libs\picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\2\picasso-2.5.2_e33ad9b6d222bc0eb7ccc685c57c402adb7b26e7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GG\.android\build-cache\7d4954a7796ac4576077dd636bc5f11c4cbded67\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_993de2ccb096a9f0ad1bdf16f060b72176da3377\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_765829d99aa50740c26ca113949165b2bd93723d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\libs\volley.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="D:\PC Projects Backup\Repository\XB-ANDROID-NEWS-APP\app\build\intermediates\transforms\dex\debug\folders\1000\2\volley_672527f319c3b3316094981ba039024e65c02ebb\classes.dex" />
+    </item>
+
+</items>

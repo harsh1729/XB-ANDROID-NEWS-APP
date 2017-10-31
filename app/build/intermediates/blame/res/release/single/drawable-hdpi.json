@@ -1,0 +1,426 @@
+[
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\back_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\back_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\two_way_arrow_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\two_way_arrow_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_secondry_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\progress_secondry_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\options_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\options_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\back_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\back_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\default_ptr_flip.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\default_ptr_flip.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\drawers_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\drawers_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\thumb.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\thumb.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\drawers_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\drawers_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_bg_holo_light.9.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progress_bg_holo_light.9.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\thumb_normal_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\thumb_normal_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\thumb_focused_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\thumb_focused_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo6.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo6.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\no_image_large.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\no_image_large.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\two_way_arrow_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\two_way_arrow_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\two_way_arrow_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\two_way_arrow_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_track.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\progress_track.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\back_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\back_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo1.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo1.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\two_way_arrow_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\two_way_arrow_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo7.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo7.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\previous_btn_white.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\previous_btn_white.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\back_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\back_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\two_way_arrow_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\two_way_arrow_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\loading_image_small.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\loading_image_small.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\thumb_pressed_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\thumb_pressed_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\ic_launcher.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_secondary_holo_light.9.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progress_secondary_holo_light.9.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_btn_white.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_btn_white.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo3.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo3.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\drawers_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\drawers_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\drawers_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\drawers_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\header_text_white.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\header_text_white.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\default_ptr_rotate.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\default_ptr_rotate.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\xb.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\xb.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\category_default.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\category_default.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo4.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo4.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\whatsapp.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\whatsapp.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\cancel_white.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\cancel_white.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\options_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\options_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\back_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\back_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\thumb_disabled_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\thumb_disabled_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\options_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\options_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\options_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\options_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\refresh_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\refresh_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\header_text_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\header_text_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\options_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\options_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_btn_grey.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_btn_grey.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\no_image_small.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\no_image_small.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_black.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_black.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\share_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\share_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\drawers_blue.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\drawers_blue.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_primary_holo_light.9.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progress_primary_holo_light.9.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\expand_yellow.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\expand_yellow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\settings_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\settings_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\news_logo_name.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\news_logo_name.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\previous_btn_grey.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\previous_btn_grey.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\loading_image_large.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\loading_image_large.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\save_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\save_green.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\indicator_arrow.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\indicator_arrow.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progress_primary_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\progress_primary_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo8.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo8.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo5.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo5.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\progressbar_indeterminate_holo2.png",
+        "source": "C:\\Users\\GG\\.android\\build-cache\\cb0bc53f9a8040db771b0a0b4e906ff86f506a41\\output\\res\\drawable-hdpi\\progressbar_indeterminate_holo2.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\epaper_red.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\epaper_red.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\next_selected.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\next_selected.png"
+    },
+    {
+        "merged": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi\\calender_green.png",
+        "source": "D:\\PC Projects Backup\\Repository\\XB-ANDROID-NEWS-APP\\app\\src\\main\\res\\drawable-hdpi\\calender_green.png"
+    }
+]

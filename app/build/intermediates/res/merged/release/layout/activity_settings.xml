@@ -1,0 +1,326 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlytRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_lightgray"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- Header aligned to top -->
+
+    <include
+        layout="@layout/app_header" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llytHeader"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_transparent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="12dp" >
+
+                <TextView
+                    android:id="@+id/txtAppSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_transparent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/app_settings"
+                    android:textColor="@color/app_red"
+                    android:textSize="@dimen/font_lbl_small_medium" />
+
+                <LinearLayout
+                    android:id="@+id/llytBottomLineAppSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/app_red"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_transparent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/app_theme"
+                    android:textColor="@color/app_black"
+                    android:textSize="@dimen/font_lbl_normal" />
+
+                <LinearLayout
+                    android:id="@+id/llytThemeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/llytThemeRed"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1.5"
+                        android:background="@color/app_red"
+                        android:onClick="onClickTheme"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:id="@+id/llytThemeYellow"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_yellow_gradient"
+                        android:onClick="onClickTheme"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:id="@+id/llytThemeBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@color/app_darkblue"
+                        android:onClick="onClickTheme"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:id="@+id/llytThemeGreen"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@color/app_green"
+                        android:onClick="onClickTheme"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:id="@+id/llytThemeBlack"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@color/app_black"
+                        android:onClick="onClickTheme"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llytBottomLineTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/app_lightgray"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAppFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_transparent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/app_set_font"
+                    android:textColor="@color/app_black"
+                    android:textSize="@dimen/font_lbl_normal" />
+
+                <SeekBar
+                    android:id="@+id/seekBarFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:max="100"
+                    android:maxHeight="4dp"
+                    android:minHeight="4dp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="18dp" />
+                <!--
+        android:progressDrawable="@drawable/seekbar_progress_red"
+            android:thumb="@drawable/thumb_focused_red"
+                -->
+
+                <TextView
+                    android:id="@+id/txtSampleFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:background="@color/app_transparent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/app_sample_font"
+                    android:textColor="@color/app_black"
+                    android:textSize="@dimen/font_lbl_normal" />
+
+                <LinearLayout
+                    android:id="@+id/llytBottomLineFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/app_lightgray"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAppNotifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_transparent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/app_set_notification"
+                    android:textColor="@color/app_black"
+                    android:textSize="@dimen/font_lbl_normal" />
+
+                <ToggleButton
+                    android:id="@+id/togglebutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:onClick="onToggleNotificationClicked"
+                    android:textOff="Notification Off"
+                    android:textOn="Notification On" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_rounded"
+                    android:orientation="vertical"
+                    android:layout_marginTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="12dp" >
+
+                    <TextView
+                        android:id="@+id/txtSupportFeedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_transparent"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/app_support_feedback"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/font_lbl_small_medium" />
+
+                     <LinearLayout
+                    android:id="@+id/llytBottomLineSupportFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/app_red"
+                    android:orientation="vertical" >
+                </LinearLayout>
+                
+                    <TextView
+                         android:id="@+id/txtAboutUs"
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="About Us"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
+                   
+                    <TextView
+                         android:id="@+id/txtTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="Privacy Policy"
+                        android:padding="10dp"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
+                    
+                    <TextView
+                         android:id="@+id/txtShareUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="Share this app"
+                        android:padding="10dp"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
+                   
+                    <TextView
+                         android:id="@+id/txtRateUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="Rate this app"
+                        android:padding="10dp"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
+                    
+                    <TextView
+                        android:id="@+id/txtContactUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_offwhite"
+                        android:layout_marginTop="10dp"
+                        android:text="Contact Us"
+                        android:padding="10dp"
+                        android:textColor="@drawable/selector_text_color_black_to_white"
+                        android:onClick="onSelectSettingOptions"
+        				android:clickable="true"
+        				android:textSize="@dimen/font_lbl_normal"
+        				android:ellipsize="end"
+                        android:maxLines="1"
+                         />
+                </LinearLayout>
+            </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
